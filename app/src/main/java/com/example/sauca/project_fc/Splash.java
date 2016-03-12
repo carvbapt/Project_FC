@@ -38,7 +38,7 @@ public class Splash extends AppCompatActivity {
     public void  onClick(View v){
         if(v.getId()==R.id.imageButton){
             Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG).show();
-            intent=new Intent(this,Menu.class);
+            intent=new Intent(this, com.example.sauca.project_fc.Menu.class);
             startActivity(intent);
 
         }
