@@ -33,6 +33,7 @@ public class Splash extends AppCompatActivity {
         });
     }
 
+
     public void  onClick(View v){
     }
 
