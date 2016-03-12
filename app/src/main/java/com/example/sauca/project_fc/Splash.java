@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Splash extends AppCompatActivity {
 
@@ -35,6 +36,12 @@ public class Splash extends AppCompatActivity {
 
 
     public void  onClick(View v){
+        if(v.getId()==R.id.imageButton){
+            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG).show();
+            intent=new Intent(this,Menu.class);
+            startActivity(intent);
+
+        }
     }
 
     @Override
