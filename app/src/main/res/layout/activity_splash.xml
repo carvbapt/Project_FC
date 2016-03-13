@@ -11,7 +11,7 @@
 
     <ImageButton
         android:layout_width="fill_parent"
-        android:layout_height="250pt"
+        android:layout_height="fill_parent"
         android:id="@+id/BT_Splash"
         android:src="@drawable/fc_splash"
         android:scaleType="fitXY" />

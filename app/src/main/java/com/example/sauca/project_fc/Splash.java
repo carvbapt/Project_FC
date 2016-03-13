@@ -1,10 +1,10 @@
 package com.example.sauca.project_fc;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Splash extends AppCompatActivity {
@@ -16,14 +16,16 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        FloatingActionButton bts = (FloatingActionButton) findViewById(R.id.BT_Splash);
+        getSupportActionBar().hide();
+
+        ImageButton bts = (ImageButton) findViewById(R.id.BT_Splash);
 
         bts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                intent=new Intent(Splash.this, com.example.sauca.project_fc.Menu.class);
+                intent = new Intent(Splash.this, Login.class);
                 startActivity(intent);
             }
         });
