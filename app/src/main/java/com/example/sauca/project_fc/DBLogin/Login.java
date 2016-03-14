@@ -32,6 +32,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sauca.project_fc.DBLogin.Login_List;
+import com.example.sauca.project_fc.DBLogin.Login_Reg;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,8 +55,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-             "sandro.carvalho@fastcall.pt","s"};//  "foo@example.com:hello", "bar@example.com:world"
-//    };
+            "sandro.carvalho@fastcall.pt","s"};//  "foo@example.com:hello", "bar@example.com:world"
     /*
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -77,7 +79,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
         // Set up the login form.
 
-        intent= new Intent(this,Menu.class);
+
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -98,8 +100,27 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                intent= new Intent(Login.this,Menu.class);
                 attemptLogin();
-                Toast.makeText(Login.this,"LOGIN YES",Toast.LENGTH_LONG).show();
+                Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Button SignInButton = (Button) findViewById(R.id.BT_Reg);
+        SignInButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(Login.this, Login_Reg.class);
+                startActivity(intent);
+            }
+        });
+
+        Button ListInButton = (Button) findViewById(R.id.BT_List);
+        ListInButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent= new Intent(Login.this,Login_List.class);
+                startActivity(intent);
             }
         });
 

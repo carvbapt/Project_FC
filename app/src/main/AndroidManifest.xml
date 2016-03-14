@@ -13,7 +13,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".Splash">
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -32,21 +31,36 @@
                 android:value="com.example.sauca.project_fc.Splash" />
         </activity>
         <activity
-            android:name=".Login"
-            android:label="@string/title_activity_login"
-            android:parentActivityName=".Splash">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sauca.project_fc.Splash" />
-        </activity>
-        <activity
             android:name=".Frota"
             android:label="@string/title_activity_frota"
             android:parentActivityName=".Menu">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sauca.project_fc.Menu" />
-
+        </activity>
+        <activity
+            android:name=".DBLogin.Login_Reg"
+            android:label="@string/title_activity_login_reg"
+            android:parentActivityName=".Login">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sauca.project_fc.Login" />
+        </activity>
+        <activity
+            android:name=".DBLogin.Login_List"
+            android:label="@string/title_activity_login_list"
+            android:parentActivityName=".Login">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sauca.project_fc.Login" />
+        </activity>
+        <activity
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".Splash">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sauca.project_fc.Splash" />
         </activity>
     </application>
 
