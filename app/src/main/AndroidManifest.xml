@@ -18,10 +18,10 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Menu"
             android:label="@string/title_activity_menu"
@@ -31,7 +31,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sauca.project_fc.Splash" />
         </activity>
-
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"
@@ -39,6 +38,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sauca.project_fc.Splash" />
+        </activity>
+        <activity
+            android:name=".Frota"
+            android:label="@string/title_activity_frota"
+            android:parentActivityName=".Menu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.sauca.project_fc.Menu" />
+
         </activity>
     </application>
 

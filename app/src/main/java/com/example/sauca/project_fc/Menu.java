@@ -1,13 +1,21 @@
 package com.example.sauca.project_fc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class Menu extends AppCompatActivity {
+
+    Intent intent;
+    String message;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +23,14 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        TextView txt= (TextView) findViewById(R.id.email);
+
+        // Get the message from the intent
+        intent = getIntent();
+        message = intent.getStringExtra(Login.EXTRA_MESSAGE);
+        Log.i("Menu", "MSG-" + message);
+        txt.setText(message);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -27,4 +43,15 @@ public class Menu extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    public void onClick(View v){
+
+        Intent inte;
+
+        if(v.getId()==R.id.BT_Frota){
+            // Launching the login activity
+            inte = new Intent(this, Frota.class);
+            inte.putExtra(Login.EXTRA_MESSAGE,message);
+            startActivity(inte);
+        }
+    }
 }
