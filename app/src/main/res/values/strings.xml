@@ -30,4 +30,12 @@
     <string name="list">Listar</string>
     <string name="elim">Eliminar</string>
 
+
+
+    // LISTA UTILIZADORES
+    <string-array name="logo">
+        <item>@drawable/fc_icon </item>
+        <item>@drawable/fs_icon </item>
+    </string-array>
+
 </resources>
