@@ -5,7 +5,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_frota">Frota</string>
     <string name="title_activity_login_reg">Registrar Utilizador</string>
-    <string name="title_activity_login_list">Listar Utilizador</string>
+    <string name="title_activity_login_list">Listar Utilizadores</string>
 
 
     <!-- Strings related to login -->

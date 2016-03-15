@@ -44,7 +44,7 @@ public class DataBaseLogin extends SQLiteOpenHelper {
         contentValues.put(COL_5, email);
         long result=db.insert(TABLE_NAME,null,contentValues);
 
-        if(result==1)
+        if(result>=1)
             return  true;
         else
             return false;

@@ -25,7 +25,7 @@ public class Splash extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                intent = new Intent(Splash.this, Login.class);
+                intent = new Intent(Splash.this, com.example.sauca.project_fc.Login.class);
                 startActivity(intent);
             }
         });

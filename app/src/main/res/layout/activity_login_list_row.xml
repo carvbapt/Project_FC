@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="55dp"
+    android:background="#81EFFE">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/rlogo"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/fc_icon" />
+
+    <TextView
+        android:layout_width="25dp"
+        android:layout_height="50dp"
+        android:id="@+id/rid"
+        android:layout_toRightOf="@+id/rlogo"
+        android:text="Id"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginLeft="5dp" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/rnome"
+        android:layout_toRightOf="@+id/rid"
+        android:text="Nome"
+        android:textStyle="italic"
+        android:gravity="center_vertical"
+        />
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/rapelido"
+        android:layout_toRightOf="@+id/rnome"
+        android:text="Apelido"
+        android:textStyle="italic"
+        android:gravity="center_vertical"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/rlogo">
+    </View>
+
+</RelativeLayout>
