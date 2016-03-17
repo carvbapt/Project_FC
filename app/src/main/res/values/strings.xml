@@ -4,7 +4,7 @@
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_frota">Frota</string>
-    <string name="title_activity_login_reg">Registrar Utilizador</string>
+    <string name="title_activity_login_reg">Registar Utilizador</string>
     <string name="title_activity_login_list">Listar Utilizadores</string>
 
 
@@ -12,8 +12,9 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Login</string>
-    <string name="action_register">Registrar</string>
+    <string name="action_register">Registar</string>
     <string name="action_list">Listar</string>
+    <string name="action_quit">Sair</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -26,6 +27,7 @@
     <string name="nome">Nome</string>
     <string name="apelido">Apelido</string>
     <string name="email">Email</string>
+    <string name="empresa">Empresa</string>
     <string name="add">Adicionar</string>
     <string name="list">Listar</string>
     <string name="elim">Eliminar</string>
@@ -36,6 +38,11 @@
     <string-array name="logo">
         <item>@drawable/fc_icon </item>
         <item>@drawable/fs_icon </item>
+    </string-array>
+
+    <string-array name="empresa">
+        <item>Fastcall</item>
+        <item>Fieldservices</item>
     </string-array>
 
 </resources>

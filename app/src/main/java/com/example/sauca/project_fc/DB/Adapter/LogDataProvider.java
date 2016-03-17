@@ -1,4 +1,4 @@
-package com.example.sauca.project_fc.DBLogin;
+package com.example.sauca.project_fc.DB.Adapter;
 
 /**
  * Created by Sauca on 15-03-2016.

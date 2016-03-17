@@ -90,6 +90,17 @@
                 android:text="@string/action_list"
                 android:textStyle="bold" />
 
+            <Button
+                style="?android:textAppearanceSmall"
+                android:id="@+id/BT_Quit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/action_quit"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
+
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

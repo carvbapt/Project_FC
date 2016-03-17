@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.sauca.project_fc.Login.Login;
+
 public class Splash extends AppCompatActivity {
 
     Intent intent;
@@ -25,7 +27,7 @@ public class Splash extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                intent = new Intent(Splash.this, com.example.sauca.project_fc.Login.class);
+                intent = new Intent(Splash.this, Login.class);
                 startActivity(intent);
             }
         });

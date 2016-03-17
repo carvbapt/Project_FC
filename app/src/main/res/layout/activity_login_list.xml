@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.sauca.project_fc.DBLogin.Login_List">
+    tools:context=".Login.Login_List">
 
     <LinearLayout
         android:orientation="horizontal"

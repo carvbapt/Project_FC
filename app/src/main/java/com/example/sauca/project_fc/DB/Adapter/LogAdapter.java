@@ -1,7 +1,6 @@
-package com.example.sauca.project_fc.DBLogin;
+package com.example.sauca.project_fc.DB.Adapter;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,16 @@ import android.widget.TextView;
 import com.example.sauca.project_fc.R;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * Created by Sauca on 15-03-2016.
  */
 public class LogAdapter extends ArrayAdapter{
 
-    List list = new ArrayList();
-    TypedArray imgs;
+   private ArrayList list = new ArrayList();
 
-    public LogAdapter(Context context, int resource) {
+   public LogAdapter(Context context, int resource) {
         super(context, resource);
     }
 
@@ -69,7 +67,6 @@ public class LogAdapter extends ArrayAdapter{
         handler.emp_apelido.setText(dataProvider.getEmp_apelido());
 
 //        System.out.println("getview:" + position + " " + convertView);
-
         return row;
     }
 

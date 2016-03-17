@@ -1,4 +1,4 @@
-package com.example.sauca.project_fc;
+package com.example.sauca.project_fc.Login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -32,8 +32,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sauca.project_fc.DBLogin.Login_List;
-import com.example.sauca.project_fc.DBLogin.Login_Reg;
+import com.example.sauca.project_fc.Menu;
+import com.example.sauca.project_fc.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,11 +75,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setupActionBar();
-
-        // Set up the login form.
-
-
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -100,7 +95,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent= new Intent(Login.this,Menu.class);
+                intent = new Intent(Login.this, Menu.class);
                 attemptLogin();
                 Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
             }
@@ -123,6 +118,17 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 startActivity(intent);
             }
         });
+
+        Button ExitButton = (Button) findViewById(R.id.BT_Quit);
+        ExitButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveTaskToBack(true);
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+            }
+        });
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);

@@ -8,8 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.sauca.project_fc.Login.Login;
 
 public class Menu extends AppCompatActivity {
 
@@ -32,15 +33,15 @@ public class Menu extends AppCompatActivity {
         Log.i("Menu", "MSG-" + message);
         txt.setText(message);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.i.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void onClick(View v){
