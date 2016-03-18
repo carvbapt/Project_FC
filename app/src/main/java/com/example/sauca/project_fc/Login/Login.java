@@ -42,6 +42,10 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
+ *
+ *  Linkar co lista de utilizadores e inserir session Internet OK/KO
+ *
+ *
  */
 public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
@@ -75,6 +79,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -408,7 +413,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             } catch (InterruptedException e) {
                 return false;
             }
-
+            //S@C Code
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {

@@ -1,5 +1,6 @@
 package com.example.sauca.project_fc;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,37 +10,35 @@ import android.widget.Toast;
 
 import com.example.sauca.project_fc.Login.Login;
 
-public class Splash extends AppCompatActivity {
+import java.util.logging.Handler;
+
+public class Splash extends AppCompatActivity implements  View.OnClickListener{
 
     Intent intent;
+    ImageButton bts;
+    View vi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         getSupportActionBar().hide();
 
-        ImageButton bts = (ImageButton) findViewById(R.id.BT_Splash);
+        bts = (ImageButton) findViewById(R.id.BT_Splash);
+        bts.setOnClickListener(this);
 
-        bts.setOnClickListener(new View.OnClickListener() {
+        bts.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                intent = new Intent(Splash.this, Login.class);
-                startActivity(intent);
+            public void run() {
+                bts.performClick();
             }
-        });
+        }, 1000); // DELAY
     }
 
-
     public void  onClick(View v){
-        if(v.getId()==R.id.BT_Splash){
-            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_LONG).show();
-            intent=new Intent(this, com.example.sauca.project_fc.Menu.class);
+        if(v==findViewById(R.id.BT_Splash)){
+            intent=new Intent(this,Login.class);
             startActivity(intent);
-
         }
     }
 }

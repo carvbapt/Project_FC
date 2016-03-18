@@ -64,30 +64,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/SP_Empresa"
-                android:layout_alignParentStart="true"
-                android:textSize='20sp'
-                android:spinnerMode="dropdown"
-                style="@style/Base.TextAppearance.AppCompat.Large" />
-
-            <!--<AutoCompleteTextView-->
-                <!--android:id="@+id/ET_Empresa"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:hint="@string/empresa"-->
-                <!--android:inputType="textEmailAddress"-->
-                <!--android:maxLines="1"-->
-                <!--android:singleLine="true" />-->
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <EditText
                 android:id="@+id/ET_Password"
                 android:layout_width="match_parent"
@@ -102,32 +78,56 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:id="@+id/SP_Empresa"
+                android:layout_alignParentStart="true"
+                android:textSize= "20dp"
+                android:spinnerMode="dropdown"
+                style="@style/Base.TextAppearance.AppCompat.Large" />
+
+        </android.support.design.widget.TextInputLayout>
+
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|center_horizontal"
             android:layout_marginTop="30dp">
 
-            <Button
-                android:layout_width="100dp"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add"
-                android:id="@+id/BT_Add" />
+                android:id="@+id/BTI_Ladd"
+                android:src="@android:drawable/ic_menu_add" />
 
-            <Button
-                android:layout_width="110dp"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/list"
-                android:id="@+id/BT_List" />
+                android:id="@+id/BTI_Lupd"
+                android:src="@android:drawable/ic_menu_save" />
 
-            <Button
-                android:layout_width="110dp"
+            <ImageButton
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/elim"
-                android:id="@+id/BT_Eli" />
+                android:id="@+id/BTI_Llis"
+                android:src="@android:drawable/ic_menu_search" />
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BTI_Ldel"
+                android:src="@android:drawable/ic_menu_delete" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/BTI_Lcle"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
         </LinearLayout>
 
     </LinearLayout>

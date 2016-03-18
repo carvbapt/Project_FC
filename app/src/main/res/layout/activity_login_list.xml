@@ -3,54 +3,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Login.Login_List">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="25dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="ID"
-            android:id="@+id/textView"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_marginLeft="50dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp">
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Nome"
-            android:id="@+id/textView2"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:layout_marginLeft="25dp" />
+            <EditText
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Search" />
 
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Apelido"
-            android:id="@+id/textView5"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:password="false"
-            android:textColor="#000000"
-            android:layout_marginLeft="10dp" />
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/BTI_Reset"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true">
+
+            <TextView
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="ID"
+                android:id="@+id/textView"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="50dp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:id="@+id/textView2"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginLeft="25dp" />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Apelido"
+                android:id="@+id/textView5"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:password="false"
+                android:textColor="#000000"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/LV_Util"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:transitionGroup="true" />
 
     </LinearLayout>
-
-    <ListView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/LV_Util"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp" />
 
 </RelativeLayout>

@@ -31,6 +31,8 @@ public class Funcionario {
                 + Funcionario.COL_EMP5 + " TEXT, " + Funcionario.COL_EMP6 + " TEXT )";
     }
 
+
+
     public int getF_id() {
         return f_id;
     }
