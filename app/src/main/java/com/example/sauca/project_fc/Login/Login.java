@@ -32,6 +32,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sauca.project_fc.DB.Model.Funcionario;
+import com.example.sauca.project_fc.DB.RepoQuery.FuncionarioRepo;
 import com.example.sauca.project_fc.Menu;
 import com.example.sauca.project_fc.R;
 
@@ -79,7 +81,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -414,13 +415,24 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 return false;
             }
             //S@C Code
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
+            Funcionario func=new Funcionario();
+            FuncionarioRepo  repofunc= new FuncionarioRepo(getBaseContext());
+
+            func= repofunc.searchDataSingle("EMAIL",mEmail);
+
+            if (func.f_email.equals(mEmail)) {
+                // Account exists, return true if the password matches.
+                return func.f_password.equals(mPassword);
             }
+
+//            for (String credential : DUMMY_CREDENTIALS) {
+//
+//                String[] pieces = credential.split(":");
+//                if (pieces[0].equals(mEmail)) {
+//                    // Account exists, return true if the password matches.
+//                    return pieces[1].equals(mPassword);
+//                }
+//            }
 
             // TODO: register the new account here.
             return true;
