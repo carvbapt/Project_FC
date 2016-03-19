@@ -4,8 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.sauca.project_fc.DB.DataBaseFC;
 import com.example.sauca.project_fc.DB.Model.Funcionario;
@@ -21,48 +19,58 @@ public class FuncionarioRepo {
         databasefc= new DataBaseFC(context);
     }
 
-    public int insert(Funcionario funcionario) {
-
+    public int insert(Funcionario func) {
         SQLiteDatabase db =  databasefc.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(Funcionario.COL_EMP2,funcionario.getF_nome());
-        values.put(Funcionario.COL_EMP3,funcionario.getF_apelido());
-        values.put(Funcionario.COL_EMP4,funcionario.getF_password());
-        values.put(Funcionario.COL_EMP5,funcionario.getF_email());
-        values.put(Funcionario.COL_EMP6, funcionario.getF_empresa());
+        ContentValues val=upDate(func);
 
         // Inserting Row
-        long result=db.insert(Funcionario.TABLE, null, values);
+        long result=db.insert(Funcionario.TABLE, null, val);
         db.close();
         return (int) result;
     }
 
-    public Cursor getAllData(){
+    public int updateData(Funcionario func){
+        SQLiteDatabase db=databasefc.getWritableDatabase();
+        ContentValues val=upDate(func);
 
+        // Update Row
+        long result=db.update(Funcionario.TABLE,val,Funcionario.COL_EMP1+"=?",new String[]{String.valueOf(func.f_id)});
+        db.close();
+        return (int) result;
+    }
+
+    public int delete(int id ) {
+        SQLiteDatabase db = databasefc.getWritableDatabase();
+
+        // Delete Row
+        long result=db.delete(Funcionario.TABLE, Funcionario.COL_EMP1 + "=?", new String[]{String.valueOf(id)});
+        db.close();
+        return (int) result;
+    }
+
+/*********************************************************************************************************************************************************************
+     FUNÇÕES PROCURA
+/********************************************************************************************************************************************************************/
+
+    public Cursor getAllData(){
         SQLiteDatabase db= databasefc.getWritableDatabase();
-//        Cursor res=db.rawQuery("select * from "+ Funcionario.TABLE,null);
+
+        // List All
         return db.rawQuery("select * from "+ Funcionario.TABLE,null);
     }
 
-    public boolean updateData(String nome, String apelido,String password,String email,String empresa){
-        SQLiteDatabase db=databasefc.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(Funcionario.COL_EMP2,nome);
-        values.put(Funcionario.COL_EMP3,apelido);
-        values.put(Funcionario.COL_EMP4,password);
-        values.put(Funcionario.COL_EMP5,email);
-        values.put(Funcionario.COL_EMP6,empresa);
-//        db.update(Funcionario.TABLE, values, "ID=?",)
-        return true;
-    }
-
-    public  Funcionario searchDataID(int id){
-
+    public  Funcionario searchDataSingle(String field, String value){
         SQLiteDatabase db= databasefc.getReadableDatabase();
         Funcionario func=new Funcionario();
-        Cursor res = db.rawQuery("select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP1+"=?",new String[]{String.valueOf(id)});
+        String str=null;
+
+        if(field.equals("ID"))
+            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP1+"=?";
+        else if(field.equals("EMAIL"))
+            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP5+"=?";
+
+        // Get Single by Gender
+        Cursor res = db.rawQuery(str,new String[]{value});
 
         if(res.moveToFirst()){
             do{
@@ -75,14 +83,14 @@ public class FuncionarioRepo {
             }while (res.moveToNext());
         }
         res.close();
-        db.close();
         return  func;
     }
 
-    public Cursor searchDataLogin(String field,String txt){
+    public Cursor searchData(String field,String txt){
         SQLiteDatabase db= databasefc.getReadableDatabase();
-        Cursor res=db.rawQuery("select * from "+ Funcionario.TABLE,null);
+        Cursor res=db.rawQuery("select * from " + Funcionario.TABLE, null);
 
+        // Get All by Gender
         if(field.toUpperCase().equals("NOMEAPELIDO"))
             res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP2+" LIKE "+"'%"+txt+"%' or "+Funcionario.COL_EMP3+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("EMAIL"))
@@ -93,10 +101,19 @@ public class FuncionarioRepo {
         return res;
     }
 
-    public int delete(int id ) {
-        SQLiteDatabase db = databasefc.getWritableDatabase();
-        int res=db.delete(Funcionario.TABLE,Funcionario.COL_EMP1+"=?",new String[]{String.valueOf(id)});
-        db.close();
-        return res;
+/*********************************************************************************************************************************************************************
+         FUNÇÕES AUXILIARES
+/********************************************************************************************************************************************************************/
+
+    public ContentValues upDate(Funcionario funcionario) {
+
+        ContentValues values = new ContentValues();
+        values.put(Funcionario.COL_EMP2, funcionario.getF_nome());
+        values.put(Funcionario.COL_EMP3, funcionario.getF_apelido());
+        values.put(Funcionario.COL_EMP4, funcionario.getF_password());
+        values.put(Funcionario.COL_EMP5, funcionario.getF_email());
+        values.put(Funcionario.COL_EMP6, funcionario.getF_empresa());
+
+        return values;
     }
 }

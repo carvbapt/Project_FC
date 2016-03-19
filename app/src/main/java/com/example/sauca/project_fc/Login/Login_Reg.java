@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -24,9 +23,7 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
 
     public final static String EXTRA_MSG = "com.example.sauca.project_fc.MSG_UPD";
     Intent it;
-    String  nom;
     int ind=0;
-
 
     FuncionarioRepo repofunc;
     Funcionario func;
@@ -34,7 +31,6 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
     Spinner spEmpresa;
     ArrayAdapter spadapter;
 
-    Button btnAdd,btnList;
     ImageButton btiAdd,btiSave,btiList,btiDel,btiCle;
 
     @Override
@@ -42,19 +38,12 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_reg);
 
+        // Definitions
         btiAdd=(ImageButton)findViewById(R.id.BTI_Ladd);
         btiSave=(ImageButton)findViewById(R.id.BTI_Lupd);
         btiList=(ImageButton)findViewById(R.id.BTI_Llis);
         btiCle=(ImageButton)findViewById(R.id.BTI_Lcle);
         btiDel=(ImageButton)findViewById(R.id.BTI_Ldel);
-
-        // Get the message from the intent
-        it = getIntent();
-        ind=it .getIntExtra(EXTRA_MSG, ind);
-        Log.i("Login_Reg", "MSG-" + ind);
-
-        func=new Funcionario();
-        repofunc= new FuncionarioRepo(this);
 
         etNome=(EditText)findViewById(R.id.ET_Nome);
         etApelido=(EditText)findViewById(R.id.ET_Apelido);
@@ -66,6 +55,15 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         spadapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spEmpresa.setAdapter(spadapter);
 
+        func=new Funcionario();
+        repofunc= new FuncionarioRepo(this);
+
+        // Get the message from the intent
+        it = getIntent();
+        ind=it .getIntExtra(EXTRA_MSG, ind);
+        Log.i("Login_Reg", "MSG-" + ind);
+
+        // Add
         if(ind==0) {
             btiSave.setVisibility(View.GONE);
             btiDel.setVisibility(View.GONE);
@@ -75,20 +73,21 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                    ((TextView) parent.getChildAt(0)).setTextColor(Color.BLUE);
                     ((TextView) parent.getChildAt(0)).setTextSize(20);
-                    func.f_empresa = getResources().getStringArray(R.array.empresa)[position].toString();
+                    func.f_empresa = getResources().getStringArray(R.array.empresa)[position];
                 }
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-                    func.f_empresa = getResources().getStringArray(R.array.empresa)[0].toString();
+                    func.f_empresa = getResources().getStringArray(R.array.empresa)[0];
                 }
             });
         }else
         {
+            // Update
             btiAdd.setVisibility(View.GONE);
             btiCle.setVisibility(View.GONE);
 
-            func = repofunc.searchDataID(ind);
+            func = repofunc.searchDataSingle("ID",String.valueOf(ind));
             etNome.setText(func.f_nome);
             etApelido.setText(func.f_apelido);
             etPassword.setText(func.f_password);
@@ -99,6 +98,8 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
                 spEmpresa.setSelection(1);
 //            Toast.makeText(this, "MSG - "+ind+"  ->"+curs.getString(1)+" - "+curs.getString(2), Toast.LENGTH_SHORT).show();
         }
+
+        // Listeners
         btiAdd.setOnClickListener(this);
         btiCle.setOnClickListener(this);
         btiList.setOnClickListener(this);
@@ -106,15 +107,18 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         btiDel.setOnClickListener(this);
     }
 
+/*********************************************************************************************************************************************************************
+     FUNÇÕES REGISTOS
+/********************************************************************************************************************************************************************/
+
     @Override
     public void onClick(View v){
         if(v==findViewById(R.id.BTI_Ladd)) {
-            addData();
+            adupData("add");
         }else if(v==findViewById(R.id.BTI_Lcle)){
             resetCampos();
         }else if(v==findViewById(R.id.BTI_Lupd)){
-            Log.i("Login_Reg","CLICK - "+ind);
-            Toast.makeText(this, " ACTUALIZAR EM FALTA ", Toast.LENGTH_SHORT).show();
+            adupData("upd");
             ind=0;
         }else if(v==findViewById(R.id.BTI_Ldel)){
             showConfirm(ind, etNome.getText().toString());
@@ -124,19 +128,39 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         }
     }
 
-    public void addData(){
-                Toast.makeText(Login_Reg.this, "Botão Clicado", Toast.LENGTH_LONG).show();
+    public  void resetCampos(){
+        etNome.setText(null);
+        etNome.requestFocus();
+        etApelido.setText(null);
+        etEmail.setText(null);
+        etPassword.setText(null);
+        spEmpresa.setAdapter(spadapter);
+
+        btiAdd.setVisibility(View.VISIBLE);
+        btiCle.setVisibility(View.VISIBLE);
+
+        btiSave.setVisibility(View.GONE);
+        btiDel.setVisibility(View.GONE);
+    }
+
+    public void adupData(String op){
+
+                int isInserted =0;
+
                 func.f_nome=etNome.getText().toString();
                 func.f_apelido=etApelido.getText().toString();
                 func.f_password=etPassword.getText().toString();
                 func.f_email=etEmail.getText().toString();
 
-                int isInserted = repofunc.insert(func);
+                if(op.equals("add"))
+                        isInserted=repofunc.insert(func);
+                else if(op.equals("upd"))
+                        isInserted=repofunc.updateData(func);
 
                 if (isInserted>0)
-                    Toast.makeText(Login_Reg.this, "Registro Gravado na BD", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_Reg.this, "Gravado com Sucesso", Toast.LENGTH_LONG).show();
                 else
-                    showMessage("Base de Dados", "Registro Não Gravado na BD");
+                    showMessage("Base de Dados", "Registro Não Gravado");
 
                 resetCampos();
     }
@@ -146,14 +170,9 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
                 startActivity(intent);
     }
 
-    public  void resetCampos(){
-        etNome.setText(null);
-        etNome.requestFocus();
-        etApelido.setText(null);
-        etEmail.setText(null);
-        etPassword.setText(null);
-        spEmpresa.setAdapter(spadapter);
-    }
+/*********************************************************************************************************************************************************************
+     FUNÇÕES AUXILIARES
+/********************************************************************************************************************************************************************/
 
     public void showMessage(String title, String message){
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
@@ -170,11 +189,13 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         bld.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                int res=repofunc.delete(pos);
-                if(res==1)
-                    Toast.makeText(getApplicationContext(), "Registo eliminado com sucesso", Toast.LENGTH_LONG).show();
+                int res = repofunc.delete(pos);
+                if (res == 1)
+                    Toast.makeText(getApplicationContext(), "Eliminado com sucesso", Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getApplicationContext(), "Registo eliminado sem sucesso", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Eliminado sem sucesso", Toast.LENGTH_LONG).show();
+
+                resetCampos();
             }
         });
         bld.setPositiveButton("Não", null);

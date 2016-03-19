@@ -8,19 +8,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.sauca.project_fc.DB.Model.Funcionario;
 import com.example.sauca.project_fc.R;
 
 import java.util.ArrayList;
 
-
 /**
- * Created by Sauca on 15-03-2016.
+ * Created by Sauca on 19-03-2016.
  */
-public class LogAdapter extends ArrayAdapter{
+public class FuncAdapter extends ArrayAdapter {
+    private ArrayList list = new ArrayList();
 
-   private ArrayList list = new ArrayList();
-
-   public LogAdapter(Context context, int resource) {
+    public FuncAdapter(Context context, int resource) {
         super(context, resource);
     }
 
@@ -49,32 +48,31 @@ public class LogAdapter extends ArrayAdapter{
             LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.activity_login_list_row, parent, false);
             handler = new DataHandler();
-            handler.emp_logo = (ImageView) row.findViewById(R.id.rlogo);
-            handler.emp_id = (TextView) row.findViewById(R.id.rid);
-            handler.emp_nome = (TextView) row.findViewById(R.id.rnome);
-            handler.emp_apelido = (TextView) row.findViewById(R.id.rapelido);
+            handler.func_logo = (ImageView) row.findViewById(R.id.rlogo);
+            handler.func_id = (TextView) row.findViewById(R.id.rid);
+            handler.func_nome = (TextView) row.findViewById(R.id.rnome);
+            handler.func_apelido = (TextView) row.findViewById(R.id.rapelido);
             row.setTag(handler);
         } else {
             handler = (DataHandler) row.getTag();
         }
 
-        LogDataProvider dataProvider;
-        dataProvider = (LogDataProvider) this.getItem(position);
+        Funcionario dataProvider;
+        dataProvider=(Funcionario) this.getItem(position);
 
-        handler.emp_logo.setImageResource(dataProvider.getEmp_logo());
-        handler.emp_id.setText(dataProvider.getEmp_id());
-        handler.emp_nome.setText(dataProvider.getEmp_nome());
-        handler.emp_apelido.setText(dataProvider.getEmp_apelido());
+        handler.func_logo.setImageResource(dataProvider.getEmp_logo());
+        handler.func_id.setText(Integer.toString(dataProvider.getF_id()));
+        handler.func_nome.setText(dataProvider.getF_nome());
+        handler.func_apelido.setText(dataProvider.getF_apelido());
 
 //        System.out.println("getview:" + position + " " + convertView);
         return row;
     }
 
     static class DataHandler {
-        ImageView emp_logo;
-        TextView emp_id;
-        TextView emp_nome;
-        TextView emp_apelido;
+        ImageView func_logo;
+        TextView func_id;
+        TextView func_nome;
+        TextView func_apelido;
     }
-
 }

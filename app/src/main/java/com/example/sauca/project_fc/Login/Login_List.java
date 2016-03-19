@@ -17,39 +17,43 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.sauca.project_fc.DB.Adapter.LogAdapter;
-import com.example.sauca.project_fc.DB.Adapter.LogDataProvider;
+import com.example.sauca.project_fc.DB.Adapter.FuncAdapter;
+import com.example.sauca.project_fc.DB.Model.Funcionario;
 import com.example.sauca.project_fc.DB.RepoQuery.FuncionarioRepo;
 import com.example.sauca.project_fc.R;
 
 public class Login_List extends AppCompatActivity implements  View.OnClickListener {
 
     public final static String EXTRA_MSG = "com.example.sauca.project_fc.MSG_UPD";
+    Intent it;
 
     // LISTAR
     ListView listView;
     FuncionarioRepo myDB;
     TypedArray imgs;
     Cursor pnt;
-    LogAdapter adapter;
+    FuncAdapter adapter;
 
     // PROCURAR
     EditText etSearch;
     ImageButton btiReset;
-
-    // ALTERAR
-    Intent it;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_list);
 
+        // Definitions
+        btiReset=(ImageButton)findViewById(R.id.BTI_Reset);
         listView=(ListView)findViewById(R.id.LV_Util);
-        myDB= new FuncionarioRepo(this);
+        etSearch=(EditText)findViewById(R.id.ET_Search);
         imgs = getResources().obtainTypedArray(R.array.logo);
 
-        etSearch=(EditText)findViewById(R.id.ET_Search);
+        myDB= new FuncionarioRepo(this);
+
+        // Listeners
+        btiReset.setOnClickListener(this);
+
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,7 +61,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                pnt = myDB.searchDataLogin("nomeapelido", etSearch.getText().toString());
+                pnt = myDB.searchData("nomeapelido", etSearch.getText().toString());
                 outputData();
             }
 
@@ -65,9 +69,6 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             public void afterTextChanged(Editable s) {
             }
         });
-
-        btiReset=(ImageButton)findViewById(R.id.BTI_Reset);
-        btiReset.setOnClickListener(this);
 
         pnt= myDB.getAllData();
         outputData();
@@ -93,7 +94,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             return;
         }
 
-        adapter = new LogAdapter(getApplicationContext(), R.layout.activity_login_list_row);
+        adapter = new FuncAdapter(getApplicationContext(), R.layout.activity_login_list_row);
         listView.setAdapter(adapter);
 
         int i=0;
@@ -103,7 +104,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             if(pnt.getString(5).contains("Fieldservices"))
                 i=1;
 
-            LogDataProvider dtprovider= new LogDataProvider(imgs.getResourceId(i,-1),pnt.getString(0),pnt.getString(1),pnt.getString(2));
+            Funcionario dtprovider= new Funcionario(imgs.getResourceId(i,-1),Integer.parseInt(pnt.getString(0)),pnt.getString(1),pnt.getString(2));
             adapter.add(dtprovider);
         }
 
@@ -113,7 +114,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int lin=position+1;
                 pnt.moveToPosition(position);
-                showEdit(position, pnt.getString(1));
+                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(0) + " " + pnt.getString(1), Toast.LENGTH_LONG).show();
+                showEdit(Integer.parseInt(pnt.getString(0)), pnt.getString(1));
 //                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(1) + " " + pnt.getString(2), Toast.LEN/GTH_LONG).show();
             }
         });
@@ -138,10 +140,10 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
         builder.setNegativeButton("Editar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
                 // code to edit
                 it = new Intent(getBaseContext(), Login_Reg.class);
-                it.putExtra(EXTRA_MSG, pos + 1);
+                it.putExtra(EXTRA_MSG, pos);
                 startActivity(it);
             }
         });

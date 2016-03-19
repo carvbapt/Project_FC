@@ -33,6 +33,22 @@ public class Funcionario {
 
 
 
+
+    // Property Data for Adapter Provider
+    public int emp_logo;
+
+    // Adapter Provider
+
+    public Funcionario() {
+    }
+
+    public Funcionario(int emp_logo, int f_id, String f_nome, String f_apelido) {
+        this.emp_logo = emp_logo;
+        this.f_id = f_id;
+        this.f_nome = f_nome;
+        this.f_apelido = f_apelido;
+    }
+
     public int getF_id() {
         return f_id;
     }
@@ -79,5 +95,13 @@ public class Funcionario {
 
     public void setF_empresa(String f_empresa) {
         this.f_empresa = f_empresa;
+    }
+
+    public int getEmp_logo() {
+        return emp_logo;
+    }
+
+    public void setEmp_logo(int emp_logo) {
+        this.emp_logo = emp_logo;
     }
 }
