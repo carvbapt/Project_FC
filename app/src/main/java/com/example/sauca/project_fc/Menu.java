@@ -25,13 +25,10 @@ public class Menu extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView txt= (TextView) findViewById(R.id.email);
-
         // Get the message from the intent
         intent = getIntent();
-        message = intent.getStringExtra(Login.EXTRA_MESSAGE);
+//        message = intent.getStringExtra(Login.EXTRA_MESSAGE);
         Log.i("Menu", "MSG-" + message);
-        txt.setText(message);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.i.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +48,7 @@ public class Menu extends AppCompatActivity {
         if(v.getId()==R.id.BT_Frota){
             // Launching the login activity
             inte = new Intent(this, Frota.class);
-            inte.putExtra(Login.EXTRA_MESSAGE,message);
+//            inte.putExtra(Login.EXTRA_MESSAGE,message);
             startActivity(inte);
         }
     }

@@ -32,7 +32,7 @@ public class Splash extends AppCompatActivity implements  View.OnClickListener{
             public void run() {
                 bts.performClick();
             }
-        }, 1000); // DELAY
+        }, 5000); // DELAY
     }
 
     public void  onClick(View v){

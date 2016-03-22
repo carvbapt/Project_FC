@@ -114,7 +114,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int lin=position+1;
                 pnt.moveToPosition(position);
-                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(0) + " " + pnt.getString(1), Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(0) + " " + pnt.getString(1), Toast.LENGTH_LONG).show();
                 showEdit(Integer.parseInt(pnt.getString(0)), pnt.getString(1));
 //                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(1) + " " + pnt.getString(2), Toast.LEN/GTH_LONG).show();
             }
@@ -140,7 +140,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
         builder.setNegativeButton("Editar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
                 // code to edit
                 it = new Intent(getBaseContext(), Login_Reg.class);
                 it.putExtra(EXTRA_MSG, pos);

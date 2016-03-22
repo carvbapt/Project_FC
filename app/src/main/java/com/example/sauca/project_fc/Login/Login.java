@@ -60,8 +60,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "sandro.carvalho@fastcall.pt","s"};//  "foo@example.com:hello", "bar@example.com:world"
+//    private static final String[] DUMMY_CREDENTIALS = new String[]{
+//      "foo@example.com:hello", "bar@example.com:world"};
     /*
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -75,7 +75,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
     // My Code
     Intent intent;
-    public final static String EXTRA_MESSAGE = "com.example.sauca.project_fc.MESSAGE";
+    public final static String EXTRA_MESSAG = "com.example.sauca.project_fc.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             public void onClick(View view) {
                 intent = new Intent(Login.this, Menu.class);
                 attemptLogin();
-                Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
+//                Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -252,7 +252,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            Toast.makeText(this,"E-"+email +" P-"+password,Toast.LENGTH_LONG).show();
+//            Toast.makeText(this,"E-"+email +" P-"+password,Toast.LENGTH_LONG).show();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
         }
@@ -266,7 +266,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         Log.i("","MAIL-" + mEmailView.getText());
-        intent.putExtra(EXTRA_MESSAGE, mEmailView.getText().toString());
+        intent.putExtra(EXTRA_MESSAG, mEmailView.getText().toString());
         startActivity(intent);
         return password.length() > 4;
     }
