@@ -74,8 +74,9 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     private View mLoginFormView;
 
     // My Code
+    Boolean mp=false;
     Intent intent;
-    public final static String EXTRA_MESSAG = "com.example.sauca.project_fc.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.example.sauca.project_fc.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,10 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             public void onClick(View view) {
                 intent = new Intent(Login.this, Menu.class);
                 attemptLogin();
-//                Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
+                if (mp) {
+                    startActivity(intent);
+                    Toast.makeText(Login.this, "LOGIN YES", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -230,6 +234,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
+            mPasswordView.setText(null);
             cancel = true;
         }
 
@@ -247,10 +252,12 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
+            mp=false;
             focusView.requestFocus();
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
+            mp=true;
             showProgress(true);
 //            Toast.makeText(this,"E-"+email +" P-"+password,Toast.LENGTH_LONG).show();
             mAuthTask = new UserLoginTask(email, password);
@@ -265,9 +272,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        Log.i("","MAIL-" + mEmailView.getText());
-        intent.putExtra(EXTRA_MESSAG, mEmailView.getText().toString());
-        startActivity(intent);
         return password.length() > 4;
     }
 
@@ -422,6 +426,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
             if (func.f_email.equals(mEmail)) {
                 // Account exists, return true if the password matches.
+                intent.putExtra(EXTRA_MESSAGE, mEmail);
                 return func.f_password.equals(mPassword);
             }
 

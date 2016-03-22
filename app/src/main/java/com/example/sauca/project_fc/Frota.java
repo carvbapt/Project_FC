@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 
 public class Frota extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAG = "com.example.sauca.project_fc.MESSAGE";
+    public final static String EXTRA_MESSAGE = "com.example.sauca.project_fc.MESSAGE";
     StringTokenizer st;
 
 
@@ -26,7 +26,7 @@ public class Frota extends AppCompatActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String  msg = intent.getStringExtra(Login.EXTRA_MESSAG);
+        String  msg = intent.getStringExtra(EXTRA_MESSAGE);
         showMessage("DATA",msg);
 //        st= new StringTokenizer(msg,".@");
 //        String s[]=new String[2];

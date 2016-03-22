@@ -33,7 +33,6 @@
     <string name="elim">Eliminar</string>
 
 
-
     // LISTA UTILIZADORES
     <string-array name="logo">
         <item>@drawable/fc_icon </item>
@@ -44,5 +43,6 @@
         <item>Fastcall</item>
         <item>Fieldservices</item>
     </string-array>
+    <string name="title_activity_register">Register</string>
 
 </resources>

@@ -21,7 +21,7 @@ import com.example.sauca.project_fc.R;
 
 public class Login_Reg extends AppCompatActivity implements View.OnClickListener {
 
-    public final static String EXTRA_MSG = "com.example.sauca.project_fc.MSG_UPD";
+    public final static String EXTRA_MSG = "com.example.sauca.project_fc.MESSAGE";
     Intent it;
     int ind=0;
 

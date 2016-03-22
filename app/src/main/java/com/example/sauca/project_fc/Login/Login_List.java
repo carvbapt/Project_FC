@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import com.example.sauca.project_fc.R;
 
 public class Login_List extends AppCompatActivity implements  View.OnClickListener {
 
-    public final static String EXTRA_MSG = "com.example.sauca.project_fc.MSG_UPD";
+    public final static String EXTRA_MSG = "com.example.sauca.project_fc.MESSAGE";
     Intent it;
 
     // LISTAR
@@ -37,6 +38,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
     // PROCURAR
     EditText etSearch;
     ImageButton btiReset;
+    LinearLayout lllist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +91,14 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
         if(pnt.getCount()==0){
             // show message
-            showMessage("Base de Dados", "Não existe");
-            etSearch.setText("");
+            if(etSearch.getText().equals(null)) {
+                showMessage("Base de Dados", "Não existe Funcionário");
+                etSearch.setText("");
+            }
+            else {
+                findViewById(R.id.Ll_Search).setVisibility(LinearLayout.GONE);
+                showMessage("Base de Dados", "Não existe");
+            }
             return;
         }
 
