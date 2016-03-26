@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.sauca.project_fc.DB.DataBaseFC;
 import com.example.sauca.project_fc.DB.Model.Funcionario;
 
+import java.io.File;
+
 /**
  * Created by Sauca on 16-03-2016.
  */
@@ -17,6 +19,11 @@ public class FuncionarioRepo {
 
     public FuncionarioRepo(Context context){
         databasefc= new DataBaseFC(context);
+    }
+
+    public static boolean DatabaseExist(Context context, String dbName) {
+        File dbFile = context.getDatabasePath(dbName);
+        return dbFile.exists();
     }
 
     public int insert(Funcionario func) {
@@ -34,7 +41,7 @@ public class FuncionarioRepo {
         ContentValues val=upDate(func);
 
         // Update Row
-        long result=db.update(Funcionario.TABLE,val,Funcionario.COL_EMP1+"=?",new String[]{String.valueOf(func.f_id)});
+        long result=db.update(Funcionario.TABLE, val, Funcionario.COL_EMP1 + "=?", new String[]{String.valueOf(func.f_id)});
         db.close();
         return (int) result;
     }
@@ -56,7 +63,7 @@ public class FuncionarioRepo {
         SQLiteDatabase db= databasefc.getWritableDatabase();
 
         // List All
-        return db.rawQuery("select * from "+ Funcionario.TABLE,null);
+        return db.rawQuery("select * from " + Funcionario.TABLE, null);
     }
 
     public  Funcionario searchDataSingle(String field, String value){

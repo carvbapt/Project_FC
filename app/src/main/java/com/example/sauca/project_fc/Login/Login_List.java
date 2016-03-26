@@ -1,6 +1,7 @@
 package com.example.sauca.project_fc.Login;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -23,10 +24,11 @@ import com.example.sauca.project_fc.DB.Model.Funcionario;
 import com.example.sauca.project_fc.DB.RepoQuery.FuncionarioRepo;
 import com.example.sauca.project_fc.R;
 
+import java.io.File;
+
 public class Login_List extends AppCompatActivity implements  View.OnClickListener {
 
     public final static String EXTRA_MSG = "com.example.sauca.project_fc.MESSAGE";
-    Intent it;
 
     // LISTAR
     ListView listView;
@@ -37,8 +39,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
     // PROCURAR
     EditText etSearch;
-    ImageButton btiReset;
-    LinearLayout lllist;
+    ImageButton ibtLlback,ibtReset;
+    Intent it;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
         setContentView(R.layout.activity_login_list);
 
         // Definitions
-        btiReset=(ImageButton)findViewById(R.id.BTI_Reset);
+        ibtReset=(ImageButton)findViewById(R.id.BTI_Reset);
+        ibtLlback=(ImageButton)findViewById(R.id.BTI_Back);
         listView=(ListView)findViewById(R.id.LV_Util);
         etSearch=(EditText)findViewById(R.id.ET_Search);
         imgs = getResources().obtainTypedArray(R.array.logo);
@@ -54,7 +57,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
         myDB= new FuncionarioRepo(this);
 
         // Listeners
-        btiReset.setOnClickListener(this);
+        ibtReset.setOnClickListener(this);
+        ibtLlback.setOnClickListener(this);
 
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -78,7 +82,11 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
     @Override
     public void onClick(View v) {
-            etSearch.setText("");
+        if(v==findViewById(R.id.BTI_Back)) {
+           finish();
+        }else if(v==findViewById(R.id.BTI_Reset)){
+           etSearch.setText("");
+        }
     }
 
     @Override
@@ -87,17 +95,18 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
         return true;
     }
 
+
+
     public  void outputData(){
 
         if(pnt.getCount()==0){
             // show message
-            if(etSearch.getText().equals(null)) {
-                showMessage("Base de Dados", "Não existe Funcionário");
-                etSearch.setText("");
-            }
-            else {
+            if(!myDB.DatabaseExist(getBaseContext(),"DBFastcall.db")) {
                 findViewById(R.id.Ll_Search).setVisibility(LinearLayout.GONE);
                 showMessage("Base de Dados", "Não existe");
+            }else{
+                showMessage("Base de Dados", "Não existe Funcionário");
+                etSearch.setText("");
             }
             return;
         }

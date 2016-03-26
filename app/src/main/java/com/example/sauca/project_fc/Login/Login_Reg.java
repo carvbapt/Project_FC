@@ -31,7 +31,7 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
     Spinner spEmpresa;
     ArrayAdapter spadapter;
 
-    ImageButton btiAdd,btiSave,btiList,btiDel,btiCle;
+    ImageButton btiAdd,btiSave,btiList,btiDel,btiCle,btiBac  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         btiList=(ImageButton)findViewById(R.id.BTI_Llis);
         btiCle=(ImageButton)findViewById(R.id.BTI_Lcle);
         btiDel=(ImageButton)findViewById(R.id.BTI_Ldel);
+        btiBac=(ImageButton)findViewById(R.id.BTI_Back);
 
         etNome=(EditText)findViewById(R.id.ET_Nome);
         etApelido=(EditText)findViewById(R.id.ET_Apelido);
@@ -105,6 +106,7 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
         btiList.setOnClickListener(this);
         btiSave.setOnClickListener(this);
         btiDel.setOnClickListener(this);
+        btiBac.setOnClickListener(this);
     }
 
 /*********************************************************************************************************************************************************************
@@ -125,6 +127,8 @@ public class Login_Reg extends AppCompatActivity implements View.OnClickListener
             ind=0;
         }else if(v==findViewById(R.id.BTI_Llis)) {
             viewAll();
+        }else if(v==findViewById(R.id.BTI_Back)) {
+            finish();
         }
     }
 
