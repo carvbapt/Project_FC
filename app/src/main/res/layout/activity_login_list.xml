@@ -17,8 +17,8 @@
         android:layout_alignParentTop="true">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
             android:id="@+id/BTI_Back"
             android:src="@drawable/fc_icon"
             android:background="#00ffffff"
@@ -36,19 +36,18 @@
 
             <EditText
                 android:layout_width="240dp"
-                android:layout_height="match_parent"
+                android:layout_height="fill_parent"
                 android:id="@+id/ET_Search"
                 android:layout_marginLeft="10dp" />
 
             <ImageButton
                 android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_height="fill_parent"
                 android:id="@+id/BTI_Reset"
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
                 android:layout_gravity="center_vertical|right" />
 
         </LinearLayout>
-
 
     </android.support.v7.widget.Toolbar>
 

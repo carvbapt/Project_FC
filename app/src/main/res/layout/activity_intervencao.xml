@@ -16,8 +16,8 @@
         android:layout_alignParentTop="true">
 
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
             android:id="@+id/BTI_Back"
             android:src="@drawable/fc_icon"
             android:background="#00ffffff"
@@ -25,5 +25,109 @@
             android:contentDescription="@string/logo" />
 
     </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="60dp">
+
+
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/TB_Intervencao">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TabWidget>
+
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:id="@+id/ll_tab1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/tv1"
+                            android:gravity="center_vertical|center_horizontal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_tab2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:id="@+id/tv2"
+                            android:gravity="center_vertical|center_horizontal" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_tab3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView android:text="Camera Example"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textview"
+                            android:textSize="35dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tutorials point"
+                            android:id="@+id/textView"
+                            android:layout_below="@+id/textview"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="#ff7aff24"
+                            android:textSize="35dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView"
+                            android:src="@drawable/fs_icon"
+                            android:layout_below="@+id/textView"
+                            android:layout_centerHorizontal="true" />
+
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="camera"
+                            android:id="@+id/button"
+                            android:layout_below="@+id/imageView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="86dp" />
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
 
 </RelativeLayout>

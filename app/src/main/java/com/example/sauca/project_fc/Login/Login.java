@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -44,6 +45,8 @@ import com.example.sauca.project_fc.Registo;
 import com.example.sauca.project_fc.Splash;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import android.view.inputmethod.InputMethodManager;
+
 
 /**
  * A login screen that offers login via email/password.
@@ -84,6 +87,12 @@ public class Login extends AppCompatActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
 
         if(v==findViewById(R.id.BT_Login)) {
             if (attemptLogin()) {

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.sauca.project_fc.Login.Login;
+
 public class Menu extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ibtBack;
@@ -31,7 +33,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
 
         if(v==findViewById(R.id.BTI_Back))
-         finish();
+            startActivity(new Intent(this,Login.class));
         else if(v==findViewById(R.id.BT_Intervencao))
             startActivity(new Intent(this,Intervencao.class));
         else if(v==findViewById(R.id.BT_Frota))
