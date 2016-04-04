@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import com.example.sauca.project_fc.Intervencao.Intervencao;
 import com.example.sauca.project_fc.Login.Login;
 
-public class Menu extends AppCompatActivity implements View.OnClickListener{
+public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ibtBack;
     Button btInterv,btFrota;

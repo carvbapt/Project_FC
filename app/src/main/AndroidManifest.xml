@@ -8,16 +8,16 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <uses-feature android:name="android.hardware.camera" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|keyboardHidden"
         android:icon="@drawable/fc_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:configChanges="orientation|keyboardHidden">
-
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Splash">
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -27,13 +27,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".Frota" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".Login.Login" />
         <activity android:name=".Login.Login_Reg" />
         <activity android:name=".Login.Login_List" />
-        <activity android:name=".Registo" />
-        <activity android:name=".Menu" />
-        <activity android:name=".Login.Login" />
+        <activity android:name=".Registo.Registo" />
+        <activity android:name=".Registo.Material" />
         <activity android:name=".Intervencao.Intervencao" />
-        <activity android:name=".Material"></activity>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.example.sauca.project_fc;
+package com.example.sauca.project_fc.Registo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.sauca.project_fc.Login.Login;
 import com.example.sauca.project_fc.Login.Login_List;
 import com.example.sauca.project_fc.Login.Login_Reg;
+import com.example.sauca.project_fc.R;
 
 public class Registo extends AppCompatActivity implements View.OnClickListener{
 
@@ -21,7 +22,6 @@ public class Registo extends AppCompatActivity implements View.OnClickListener{
     ImageButton ibtBack;
     private RadioGroup rgbtGen;
     RadioButton rbtFunc,rbtCar,rbtMat;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

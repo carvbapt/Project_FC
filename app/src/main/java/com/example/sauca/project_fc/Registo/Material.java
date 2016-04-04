@@ -1,4 +1,4 @@
-package com.example.sauca.project_fc;
+package com.example.sauca.project_fc.Registo;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 
+import com.example.sauca.project_fc.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import android.content.Intent;
-import android.view.View.OnClickListener;
+
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;

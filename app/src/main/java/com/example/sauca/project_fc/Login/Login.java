@@ -1,50 +1,26 @@
 package com.example.sauca.project_fc.Login;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.example.sauca.project_fc.DB.Model.Funcionario;
 import com.example.sauca.project_fc.DB.RepoQuery.FuncionarioRepo;
-import com.example.sauca.project_fc.Menu;
+import com.example.sauca.project_fc.MainMenu;
 import com.example.sauca.project_fc.R;
-import com.example.sauca.project_fc.Registo;
+import com.example.sauca.project_fc.Registo.Registo;
 import com.example.sauca.project_fc.Splash;
 
-import static android.Manifest.permission.READ_CONTACTS;
 import android.view.inputmethod.InputMethodManager;
 
 
@@ -80,6 +56,9 @@ public class Login extends AppCompatActivity implements OnClickListener {
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
         ibtConf=(ImageButton)findViewById(R.id.BTI_Regist);
 
+        mEmailView.setText("s.s@ss.pt");
+        mPasswordView.setText("sandro");
+
         btLogin.setOnClickListener(this);
         btQuit.setOnClickListener(this);
         ibtBack.setOnClickListener(this);
@@ -99,7 +78,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
             if (attemptLogin()) {
                 it=new Intent(this,Login.class);
                 it.putExtra("EXTRA_MESSAGE",mEmailView.toString());
-                startActivity(new Intent(this, Menu.class));
+                startActivity(new Intent(this, MainMenu.class));
 //                final ProgressDialog dialog = new ProgressDialog(this);
 //                dialog.setMessage("Loading...");
 //                dialog.show();
