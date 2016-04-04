@@ -23,8 +23,8 @@ public class Frota extends AppCompatActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String  msg = intent.getStringExtra(EXTRA_MESSAGE);
-        showMessage("DATA",msg);
+        String  str = intent.getStringExtra(EXTRA_MESSAGE);
+        showMessage("DATA",str);
 //        st= new StringTokenizer(msg,".@");
 //        String s[]=new String[2];
 ////        s[]=msg.split(".|@");
