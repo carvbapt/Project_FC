@@ -64,6 +64,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
     Funcionario func;
     FuncionarioRepo myDB;
     Intent it;
+    public final static String EXTRA_MESSAGE = "com.example.sauca.project_fc.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class Login extends AppCompatActivity implements OnClickListener {
 
         if(v==findViewById(R.id.BT_Login)) {
             if (attemptLogin()) {
+                it=new Intent(this,Login.class);
+                it.putExtra("EXTRA_MESSAGE",mEmailView.toString());
                 startActivity(new Intent(this, Menu.class));
 //                final ProgressDialog dialog = new ProgressDialog(this);
 //                dialog.setMessage("Loading...");

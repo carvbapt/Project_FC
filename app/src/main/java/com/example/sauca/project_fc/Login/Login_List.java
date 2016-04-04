@@ -32,7 +32,7 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
     // LISTAR
     ListView listView;
-    FuncionarioRepo myDB;
+
     TypedArray imgs;
     Cursor pnt;
     FuncAdapter adapter;
@@ -41,6 +41,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
     EditText etSearch;
     ImageButton ibtLlback,ibtReset;
     Intent it;
+
+    FuncionarioRepo myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
