@@ -32,7 +32,7 @@
         <activity android:name=".Registo" />
         <activity android:name=".Menu" />
         <activity android:name=".Login.Login" />
-        <activity android:name=".Intervencao" />
+        <activity android:name=".Intervencao.Intervencao" />
         <activity android:name=".Material"></activity>
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.sauca.project_fc;
+package com.example.sauca.project_fc.Intervencao;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,8 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import android.view.Menu;
+
+import com.example.sauca.project_fc.R;
 
 public class Intervencao extends AppCompatActivity implements View.OnClickListener,TabHost.OnTabChangeListener {
 
