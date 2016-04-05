@@ -5,9 +5,18 @@
     tools:context="com.example.sauca.project_fc.Intervencao.FragCliente">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CLIENTE" />
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CLIENTE"
+            android:id="@+id/btCli"
+            android:layout_below="@+id/imageView"
+            android:layout_centerHorizontal="true" />
+    </LinearLayout>
 
 </FrameLayout>

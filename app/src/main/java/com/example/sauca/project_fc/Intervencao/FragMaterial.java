@@ -20,10 +20,8 @@ import com.example.sauca.project_fc.R;
 public class FragMaterial extends Fragment implements View.OnClickListener {
 
     View vi;
-    ImageView iv;
-    Button btCam;
-    Bitmap bp;
     Intent it;
+    Button btMat;
 
     public FragMaterial() {
         // Required empty public constructor
@@ -34,28 +32,16 @@ public class FragMaterial extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vi=inflater.inflate(R.layout.fragment_material, container, false);
-        btCam=(Button)vi.findViewById(R.id.btCam);
-        iv=(ImageView)vi.findViewById(R.id.IVCam);
-
-        btCam.setOnClickListener(this);
+        btMat=(Button)vi.findViewById(R.id.btMat);
+        btMat.setOnClickListener(this);
         return vi;
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v== vi.findViewById(R.id.btCam)){
-            Toast.makeText(getContext(),"YEEESSSSSS",Toast.LENGTH_LONG).show();
-            it = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(it, 0);
+        if(v== vi.findViewById(R.id.btMat)){
+            Toast.makeText(getContext(),"Material",Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
-
-        bp = (Bitmap) data.getExtras().get("data");
-        iv.setImageBitmap(bp);
     }
 }

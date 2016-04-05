@@ -5,9 +5,41 @@
     tools:context="com.example.sauca.project_fc.Intervencao.FragTecnico">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="TÉCNICO" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Cam"
+                android:id="@+id/btCam"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Pdf"
+                android:id="@+id/btPdf"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/IVCam"
+            android:src="@mipmap/ic_launcher"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
 
 </FrameLayout>

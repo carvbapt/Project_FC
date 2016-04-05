@@ -15,19 +15,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="camera"
-            android:id="@+id/btCam"
+            android:text="MATERIAL"
+            android:id="@+id/btMat"
             android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/IVCam"
-            android:src="@mipmap/ic_launcher"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true" />
-
     </LinearLayout>
 
 </FrameLayout>
