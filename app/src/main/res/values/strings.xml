@@ -93,5 +93,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="Cam">Camera</string>
     <string name="Pdf">Pdf</string>
+    <string name="VPdf">Ver</string>
+    <string name="label_email">Email</string>
+    <string name="label_preview">Pré-visualização</string>
+    <string name="label_cancel">Cancelar</string>
 
 </resources>
