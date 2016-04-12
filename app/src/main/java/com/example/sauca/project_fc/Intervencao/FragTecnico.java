@@ -1,20 +1,23 @@
 package com.example.sauca.project_fc.Intervencao;
 
 import android.content.ActivityNotFoundException;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,16 +29,12 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,13 +43,19 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
 
     View vi;
     ImageView iv;
-    Button btCam,btPdf,btVPdf;
-    ImageButton ibEmail;
+    Button btVPdf;
+    ImageButton ibCam,ibGal,ibPdf,ibEmail;
     Bitmap bp;
     Intent it;
 
-    File myFile;
-    String mypath;
+    File myPathFile,myPathPDF;
+    String myFile=null,myFileGal=null;
+
+    File rootpath;
+
+
+    public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 100;
+    public static final int IMAGE_FULLSIZE_FROM_GALLERY = 200;
 
     public FragTecnico() {
         // Required empty public constructor
@@ -61,32 +66,45 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vi=inflater.inflate(R.layout.fragment_tecnico, container, false);
-        btCam=(Button)vi.findViewById(R.id.btCam);
-        btPdf=(Button)vi.findViewById(R.id.btPdf);
+        ibCam=(ImageButton)vi.findViewById(R.id.ibCamera);
+        ibGal=(ImageButton)vi.findViewById(R.id.ibGaleria);
+        ibPdf=(ImageButton)vi.findViewById(R.id.ibPdf);
         btVPdf=(Button)vi.findViewById(R.id.btVPdf);
         ibEmail=(ImageButton)vi.findViewById(R.id.ibEmail);
         iv=(ImageView)vi.findViewById(R.id.IVCam);
 
-        btCam.setOnClickListener(this);
-        btPdf.setOnClickListener(this);
-        btVPdf.setOnClickListener(this);
+        ibCam.setOnClickListener(this);
+        ibGal.setOnClickListener(this);
+        ibPdf.setOnClickListener(this);
         ibEmail.setOnClickListener(this);
+        btVPdf.setOnClickListener(this);
         return vi;
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v== vi.findViewById(R.id.btCam)){
-            it = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(it, 0);
+        // Criar directorio
+        rootpath = new File(Environment.getExternalStorageDirectory(),"Fastcall");
+        if (!rootpath.exists()){
+            rootpath.mkdir();
         }
-        if(v== vi.findViewById(R.id.btPdf)) {
+        if(v== vi.findViewById(R.id.ibCamera)){
+            showInputDialog();
+        }else if(v== vi.findViewById(R.id.ibGaleria)) {
+            Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, IMAGE_FULLSIZE_FROM_GALLERY);
+        }else if(v== vi.findViewById(R.id.ibPdf)) {
             if (bp==null)
                 Toast.makeText(getContext(), "Não Existe Imagem", Toast.LENGTH_SHORT).show();
             else {
                 try {
-                    createPDF();
+                    if(myFileGal==null)
+                        createPDF(String.valueOf(myPathFile));
+                    else {
+                        createPDF(String.valueOf(myFileGal));
+                        myFileGal=null;
+                    }
                     promptForMessage();
                     Toast.makeText(getContext(), "Imagem convertida para PDF com sucesso", Toast.LENGTH_SHORT).show();
                 } catch (FileNotFoundException e) {
@@ -95,15 +113,12 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
                     e.printStackTrace();
                 }
             }
-            bp=null;
-        }
-        if(v==vi.findViewById(R.id.btVPdf)){
-            Toast.makeText(getContext(), "Visualizar PDF", Toast.LENGTH_SHORT).show();
-            promptForNextAction();
-        }
-        if(v==vi.findViewById(R.id.ibEmail)){
+        }else if(v==vi.findViewById(R.id.ibEmail)){
             Toast.makeText(getContext(), "Enviar EMAIL", Toast.LENGTH_SHORT).show();
             emailNote();
+        }else if(v==vi.findViewById(R.id.btVPdf)) {
+            Toast.makeText(getContext(), "Visualizar PDF", Toast.LENGTH_SHORT).show();
+            promptForNextAction();
         }
     }
 
@@ -115,78 +130,96 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
 
-        bp = (Bitmap) data.getExtras().get("data");
-        bp= getResizedBitmap(bp,600,800);
-        iv.setImageBitmap(bp);
+        if (requestCode == CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE)
+        {
+            bp = decodeSampledBitmapFromFile(myPathFile.getAbsolutePath(), 1000, 700);
+            iv.setImageBitmap(bp);
+        }else if (requestCode == IMAGE_FULLSIZE_FROM_GALLERY ) {
+            Uri selectedImage = data.getData();
+            String[] filePath = { MediaStore.Images.Media.DATA };
+            Cursor c = getActivity().getContentResolver().query(selectedImage,filePath, null, null, null);
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            String picturePath = c.getString(columnIndex);
+            c.close();
+            Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
+            Log.w("ImageGallery", picturePath+"");
+            myFileGal=picturePath;
+            iv.setImageBitmap(thumbnail);
+        }
     }
 
-    // Resize Imagem
-    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
+    public static Bitmap decodeSampledBitmapFromFile(String path, int reqWidth, int reqHeight)
+    { // BEST QUALITY MATCH
 
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
-        bm.recycle();
-        return resizedBitmap;
+        //First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+
+        // Calculate inSampleSize, Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        int inSampleSize = 1;
+
+        if (height > reqHeight)
+        {
+            inSampleSize = Math.round((float)height / (float)reqHeight);
+        }
+        int expectedWidth = width / inSampleSize;
+
+        if (expectedWidth > reqWidth)
+        {
+            //if(Math.round((float)width / (float)reqWidth) > inSampleSize) // If bigger SampSize..
+            inSampleSize = Math.round((float)width / (float)reqWidth);
+        }
+
+        options.inSampleSize = inSampleSize;
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeFile(path, options);
     }
+
 
 // **********************************************************************************************************************************
 //          PDF
 // **********************************************************************************************************************************
 
     // Criar PDF
-    private void createPDF() throws FileNotFoundException, DocumentException {
+    private void createPDF(String jpgFilePath) throws FileNotFoundException, DocumentException {
 
         // Criar directorio
-        //Create a directory for your PDF
-        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOCUMENTS), "Fastcall");
-        if (!pdfDir.exists()){
-            pdfDir.mkdir();
+        File rootpath = new File(Environment.getExternalStorageDirectory(),"Fastcall");
+        if (!rootpath.exists()){
+            rootpath.mkdir();
         }
-
-//        File path=new  getFilesDir();
-//        OutputStreamWriter out;
-//        try {
-//            File f = new File(path.getCanonicalPath() + "/myfile.txt");
-//            out = new OutputStreamWriter(openFileOutput( f.getPath(), MODE_PRIVATE));
-//            out.write("test");
-//            out.close();
-//        }
-
-
-
         // Criar nome ficheiro
-        ContextWrapper pdfFolder = new ContextWrapper(getContext());
-        Date date = new Date() ;
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
-        mypath=pdfFolder.getFilesDir().getPath();
-        myFile = new File(mypath, timeStamp + ".pdf");
-        mypath=mypath+myFile;
-        Toast.makeText(getContext(), "PATH - "+myFile, Toast.LENGTH_SHORT).show();
+        myPathPDF=new File(rootpath,myFile+".pdf");
+        Toast.makeText(getContext(), "PATH - "+myPathPDF, Toast.LENGTH_SHORT).show();
 
-        OutputStream output= new FileOutputStream(myFile);
+        OutputStream output= new FileOutputStream(myPathPDF);
 
         try {
             Document  document = new Document();
 
             PdfWriter.getInstance(document, output);
+            Image image = Image.getInstance(jpgFilePath);
+            image.scaleAbsolute(480,800);
             document.open();
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            byte[] byteArray = stream.toByteArray();
-            addImage(document,byteArray);
-//            document.add(new Paragraph("Sandro Augusto Carvalho"));
-//            document.add(new Paragraph("Av. Republica nº 100"));
+            document.add(image);
             document.close();
+            promptForMessage();
+            Toast.makeText(getContext(), "Imagem convertida para PDF com sucesso", Toast.LENGTH_SHORT).show();
+//            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//            bp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//            byte[] byteArray = stream.toByteArray();
+//            addImage(document,byteArray);
+////            document.add(new Paragraph("Sandro Augusto Carvalho"));
+////            document.add(new Paragraph("Av. Republica nº 100"));
+//            document.close();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -228,7 +261,7 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
     // Visualizar PDF
     private void viewPDF(){
         it= new Intent(Intent.ACTION_VIEW);
-        it.setDataAndType(Uri.fromFile(myFile), "application/pdf");
+        it.setDataAndType(Uri.fromFile(myPathPDF), "application/pdf");
         it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
         try {
@@ -248,7 +281,7 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
         Intent email = new Intent(Intent.ACTION_SEND);
         email.putExtra(Intent.EXTRA_SUBJECT,"Titulo");
         email.putExtra(Intent.EXTRA_TEXT, "Texto a escrever");
-        Uri uri = Uri.parse(String.valueOf(myFile));
+        Uri uri =Uri.fromFile(myPathPDF);
         email.putExtra(Intent.EXTRA_STREAM, uri);
         email.setType("message/rfc822");
         startActivity(email);
@@ -262,7 +295,7 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(" Directorio");
-        builder.setMessage(mypath);
+        builder.setMessage("PATH - "+myPathFile);
         builder.setCancelable(false);
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -294,4 +327,38 @@ public class FragTecnico extends Fragment implements View.OnClickListener {
         });
         builder.show();
     }
+
+
+    protected void showInputDialog(){
+
+        // get prompts.xml view
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
+        View promptView = layoutInflater.inflate(R.layout.dialog_input, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setView(promptView);
+
+        final EditText editText = (EditText) promptView.findViewById(R.id.ET_ficheiro);
+        // setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        myFile= String.valueOf(editText.getText());//+ ".pdf";
+                        it = new Intent("android.media.action.IMAGE_CAPTURE");
+                        myPathFile = new File(rootpath, myFile +".jpg");
+                        it.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(myPathFile));
+                        startActivityForResult(it, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+    }
+
 }

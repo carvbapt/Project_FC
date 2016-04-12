@@ -97,5 +97,6 @@
     <string name="label_email">Email</string>
     <string name="label_preview">Pré-visualização</string>
     <string name="label_cancel">Cancelar</string>
+    <string name="Gallery">Galeria</string>
 
 </resources>

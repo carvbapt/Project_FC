@@ -1,5 +1,6 @@
 package com.example.sauca.project_fc.Intervencao;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +15,19 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sauca.project_fc.MainMenu;
 import com.example.sauca.project_fc.R;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 public class Intervencao extends AppCompatActivity implements  View.OnClickListener {
 
     //S@C
     private ImageButton ibtBack;
-
+    FragMaterial fragMat;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -58,6 +63,8 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
         ibtBack.setOnClickListener(this);
 
+//        fragMat = (FragMaterial)getSupportFragmentManager().findFragmentById(R.id.FragMaterial);
+//        Toast.makeText(this, "Frag - "+,Toast.LENGTH_LONG).show();
 
     }
 
@@ -136,4 +143,23 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
             return null;
         }
     }
+
+//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+//        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
+//
+//        if (resultCode == 0x0000c0de02) {
+//            if (scanningResult != null) {
+//                String scanContent = scanningResult.getContents();
+//                String scanFormat = scanningResult.getFormatName();
+//                Toast.makeText(this, " Codigo - " + scanFormat + " - " + scanContent, Toast.LENGTH_LONG).show();
+//                if (fragMat != null) {
+//                    fragMat.doSomething(scanFormat, scanContent);
+//                }
+////
+//            } else {
+//                Toast toast = Toast.makeText(this, "No scan data received!", Toast.LENGTH_SHORT);
+//                toast.show();
+//            }
+//        }
+//    }
 }

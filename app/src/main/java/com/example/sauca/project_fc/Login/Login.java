@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,9 @@ public class Login extends AppCompatActivity implements OnClickListener {
         btQuit.setOnClickListener(this);
         ibtBack.setOnClickListener(this);
         ibtConf.setOnClickListener(this);
+
+        // esconder teclado
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
@@ -175,7 +179,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
         return email.contains("@");
     }
 
-    private boolean isPasswordValid(String password) {
+    boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
     }

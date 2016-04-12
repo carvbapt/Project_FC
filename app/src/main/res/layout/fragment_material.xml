@@ -2,23 +2,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.example.sauca.project_fc.Intervencao.FragMaterial">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-        <Button
-            android:layout_width="match_parent"
+        <Button android:id="@+id/scan_butt"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="MATERIAL"
-            android:id="@+id/btMat"
-            android:layout_below="@+id/imageView"
-            android:layout_centerHorizontal="true" />
+            android:text="@string/scan" />
+
+        <TextView
+            android:id="@+id/scan_form"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/scan_cont"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:textSize="20sp" />
+
     </LinearLayout>
+
+
 
 </FrameLayout>
