@@ -5,7 +5,7 @@
     tools:context="com.example.sauca.project_fc.Intervencao.FragCliente">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,8 +15,52 @@
             android:layout_height="wrap_content"
             android:text="CLIENTE"
             android:id="@+id/btCli"
-            android:layout_below="@+id/imageView"
             android:layout_centerHorizontal="true" />
-    </LinearLayout>
+
+        <TextView
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/TV_Phone"
+            android:maxLength="25"
+            android:textSize="30sp"
+            android:layout_below="@+id/btCli"
+            android:layout_marginLeft="15sp"
+            android:layout_centerVertical="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IB_Phone"
+            android:layout_gravity="center_horizontal"
+            android:src="@android:drawable/stat_sys_phone_call"
+            android:layout_below="@+id/btCli"
+            android:layout_toRightOf="@+id/TV_Phone" />
+
+        <TextView
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/TV_Morada"
+            android:maxLength="15"
+            android:textSize="30sp"
+            android:layout_marginLeft="15sp"
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/IB_Phone" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IB_Mapa"
+            android:layout_gravity="center_horizontal"
+            android:src="@android:drawable/ic_dialog_map"
+            android:layout_below="@+id/IB_Phone"
+            android:layout_toRightOf="@+id/TV_Morada"
+            android:layout_centerVertical="true" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>
