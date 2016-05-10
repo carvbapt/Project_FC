@@ -1,6 +1,5 @@
 package com.example.sauca.project_fc.Agenda;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.sauca.project_fc.Diario;
+import com.example.sauca.project_fc.Intervencao.Diario;
 import com.example.sauca.project_fc.R;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;

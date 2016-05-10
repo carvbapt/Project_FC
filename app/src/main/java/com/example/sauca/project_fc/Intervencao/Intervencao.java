@@ -95,7 +95,7 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
     public void onClick(View v) {
 
         if (v == findViewById(R.id.BTI_Back)) {
-            startActivity(new Intent(this, MainMenu.class));
+            onBackPressed();
         }
     }
 

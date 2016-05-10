@@ -40,7 +40,7 @@ public class Material extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if(v==findViewById(R.id.BTI_Back)) {
-            startActivity(new Intent(this,Registo.class));
+            onBackPressed();
         }else if(v==findViewById(R.id.scan_button)){
             IntentIntegrator scanIntegrator = new IntentIntegrator(this);
             scanIntegrator.initiateScan();

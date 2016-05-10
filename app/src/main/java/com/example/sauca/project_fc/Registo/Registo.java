@@ -60,7 +60,7 @@ public class Registo extends AppCompatActivity implements View.OnClickListener{
         }else if(v==findViewById(R.id.BT_List) && rbtMat.isChecked()){
             Toast.makeText(this," ACTIVIDADE LISTAGEM MATERIAL",Toast.LENGTH_LONG).show();
         }else if(v==findViewById(R.id.BT_Back)){
-            it= new Intent(this,  Login.class);
+            onBackPressed();
         }
 
         if(it != null)

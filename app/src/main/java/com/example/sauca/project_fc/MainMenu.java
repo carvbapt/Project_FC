@@ -8,10 +8,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.sauca.project_fc.Agenda.Agenda;
-import com.example.sauca.project_fc.Intervencao.Intervencao;
+import com.example.sauca.project_fc.Intervencao.Diario;
 import com.example.sauca.project_fc.Login.Login;
-
-import java.text.SimpleDateFormat;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 

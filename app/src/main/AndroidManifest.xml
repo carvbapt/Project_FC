@@ -40,7 +40,7 @@
         <activity android:name=".Intervencao.Intervencao" />
         <activity android:name=".Agenda.Agenda" />
         <activity android:name=".Configurar" />
-        <activity android:name=".Diario"></activity>
+        <activity android:name=".Intervencao.Diario"></activity>
     </application>
 
 </manifest>
