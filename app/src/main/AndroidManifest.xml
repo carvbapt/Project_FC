@@ -16,6 +16,7 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:configChanges="orientation|keyboardHidden"
         android:icon="@drawable/fc_icon"
         android:label="@string/app_name"
@@ -38,7 +39,8 @@
         <activity android:name=".Registo.Material" />
         <activity android:name=".Intervencao.Intervencao" />
         <activity android:name=".Agenda.Agenda" />
-        <activity android:name=".Agenda.AgendaDetalhe"></activity>
+        <activity android:name=".Configurar" />
+        <activity android:name=".Diario"></activity>
     </application>
 
 </manifest>

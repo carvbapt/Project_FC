@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.sauca.project_fc.Configurar">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentTop="true">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/BTI_Back"
+            android:src="@drawable/fc_icon"
+            android:background="#00ffffff"
+            android:layout_gravity="left|center_vertical"
+            android:contentDescription="@string/logo" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="CONFIGURAR"
+        android:id="@+id/textView6"
+        android:layout_centerHorizontal="true"
+        android:height="40dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/toolbar"
+        android:textAlignment="center"
+        android:singleLine="false"
+        android:gravity="center_vertical" />
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/colorPrimary"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VIATURA"
+            android:id="@+id/textView14"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="MARCA"
+            android:id="@+id/textView15"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_alignStart="@+id/textView14"
+            android:layout_alignLeft="@+id/textView14"
+            android:layout_below="@+id/textView14"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="RENAULT"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:layout_below="@+id/textView14"
+            android:layout_toEndOf="@+id/textView16"
+            android:layout_toRightOf="@+id/textView16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="MATRICULA"
+            android:id="@+id/textView16"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_alignStart="@+id/textView14"
+            android:layout_alignLeft="@+id/textView14"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView15" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText5"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="32-94-VN"
+            android:textAlignment="center"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:layout_toEndOf="@+id/textView14"
+            android:layout_toRightOf="@+id/textView14"
+            android:layout_below="@+id/textView15"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_alignStart="@+id/editText2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="EMAIL"
+            android:id="@+id/textView17"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_alignStart="@+id/textView14"
+            android:layout_alignLeft="@+id/textView14"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView16" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText6"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="frota@fastcall.pt"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:layout_toEndOf="@+id/textView15"
+            android:layout_below="@+id/textView16"
+            android:layout_toRightOf="@+id/textView15"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="CC"
+            android:id="@+id/textView18"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_alignStart="@+id/textView14"
+            android:layout_alignLeft="@+id/textView14"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView17" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText7"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="ricardo.dias@fastcall.pt"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:layout_below="@+id/textView17"
+            android:layout_toRightOf="@+id/textView18"
+            android:layout_toLeftOf="@+id/imageButton2"
+            android:paddingLeft="10dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageButton2"
+            android:src="@android:drawable/ic_menu_add"
+            android:layout_alignTop="@+id/editText7"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/rl"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText10"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="frota@fastcall.pt"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:paddingLeft="10dp"
+            android:layout_below="@+id/textView19"
+            android:layout_toRightOf="@+id/textView22"
+            android:text="helpdesk@fastcall.pt" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText11"
+            android:layout_weight="0.51"
+            android:inputType="text"
+            android:hint="ricardo.dias@fastcall.pt"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="#ffffff"
+            android:textStyle="bold"
+            android:textIsSelectable="true"
+            android:backgroundTint="#ffffff"
+            android:layout_below="@+id/textView22"
+            android:layout_toRightOf="@+id/textView23"
+            android:layout_toLeftOf="@+id/imageButton3"
+            android:paddingLeft="10dp"
+            android:text="jose.fernandes@fastcall.pt" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INTERVENÇÃO"
+            android:id="@+id/textView19"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="EMAIL"
+            android:id="@+id/textView22"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView19"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="CC"
+            android:id="@+id/textView23"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView22"
+            android:layout_marginLeft="10dp" />
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageButton3"
+            android:src="@android:drawable/ic_menu_add"
+            android:layout_alignTop="@+id/editText11"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ANEXO"
+            android:id="@+id/textView20"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textView23"
+            android:layout_marginLeft="10dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PDF"
+            android:id="@+id/radioButton"
+            android:textColor="#FFFFFF"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:foregroundTint="#ffffff"
+            android:drawableTint="#FFFFFF"
+            android:buttonTint="#FFFFFF"
+            android:checked="true"
+            android:layout_alignTop="@+id/textView20"
+            android:layout_alignRight="@+id/textView19"
+            android:layout_alignEnd="@+id/textView19" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JPG"
+            android:id="@+id/radioButton2"
+            android:textColor="#FFFFFF"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:foregroundTint="#ffffff"
+            android:drawableTint="#FFFFFF"
+            android:buttonTint="#FFFFFF"
+            android:checked="false"
+            android:layout_alignTop="@+id/radioButton"
+            android:layout_toLeftOf="@+id/imageButton3"
+            android:layout_toStartOf="@+id/imageButton3"
+            android:layout_marginRight="24dp"
+            android:layout_marginEnd="24dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

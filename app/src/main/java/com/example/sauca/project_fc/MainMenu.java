@@ -11,6 +11,8 @@ import com.example.sauca.project_fc.Agenda.Agenda;
 import com.example.sauca.project_fc.Intervencao.Intervencao;
 import com.example.sauca.project_fc.Login.Login;
 
+import java.text.SimpleDateFormat;
+
 public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ibtBack,ibtConf;
@@ -22,8 +24,8 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_menu);
 
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
-        ibtConf=(ImageButton)findViewById(R.id.BTI_Back);
-        btInterv=(Button)findViewById(R.id.BT_Intervencao);
+        ibtConf=(ImageButton)findViewById(R.id.BTI_Conf);
+        btInterv=(Button)findViewById(R.id.BT_Diario);
         btFrota=(Button)findViewById(R.id.BT_Frota);
         btAgenda=(Button)findViewById(R.id.BT_Agenda);
         btSair=(Button)findViewById(R.id.BT_Sair);
@@ -44,9 +46,12 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         if(v==findViewById(R.id.BTI_Back))
             startActivity(new Intent(this,Login.class));
         else if(v==findViewById(R.id.BTI_Conf))
-            startActivity(new Intent(this,Intervencao.class));
-        else if(v==findViewById(R.id.BT_Intervencao))
-            startActivity(new Intent(this,Intervencao.class));
+            startActivity(new Intent(this,Configurar.class));
+        else if(v==findViewById(R.id.BT_Diario)){
+            Intent intent = new Intent(this, Diario.class);
+            intent.putExtra("activity","main");
+            startActivity(intent);
+        }
         else if(v==findViewById(R.id.BT_Frota))
             startActivity(new Intent(this,Frota.class));
         else if(v==findViewById(R.id.BT_Agenda))

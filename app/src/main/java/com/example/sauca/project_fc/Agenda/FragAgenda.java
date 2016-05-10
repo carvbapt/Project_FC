@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.sauca.project_fc.Diario;
 import com.example.sauca.project_fc.R;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
@@ -92,7 +94,7 @@ public class FragAgenda extends android.support.v4.app.Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_agenda, container, false);
 
-        final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+
 
         // Setup caldroid fragment
         // **** If you want normal CaldroidFragment, use below line ****
@@ -148,10 +150,12 @@ public class FragAgenda extends android.support.v4.app.Fragment {
             public void onSelectDate(Date date, View view) {
 //                Toast.makeText(getActivity().getBaseContext(), formatter.format(date),
 //                        Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), AgendaDetalhe.class);
+                Intent intent = new Intent(getActivity(), Diario.class);
+                final SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
                 final SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy.MM.dd");
                 intent.putExtra("dia", formatter.format(date));
                 intent.putExtra("data", formatter2.format(date));
+                intent.putExtra("activity","agenda");
                 startActivity(intent);
             }
 
@@ -173,9 +177,9 @@ public class FragAgenda extends android.support.v4.app.Fragment {
             @Override
             public void onCaldroidViewCreated() {
                 if (caldroidFragment.getLeftArrowButton() != null) {
-//                    Toast.makeText(getActivity().getBaseContext(),
-//                            "Caldroid view is created", Toast.LENGTH_SHORT)
-//                            .show();
+                    Toast.makeText(getActivity().getBaseContext(),
+                            "Caldroid view is created", Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
 
