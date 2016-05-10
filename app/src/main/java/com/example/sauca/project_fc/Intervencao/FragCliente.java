@@ -34,7 +34,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         vi=inflater.inflate(R.layout.fragment_cliente, container, false);
 
-        btCli=(Button)vi.findViewById(R.id.btCli);
+        btCli=(Button)vi.findViewById(R.id.btSalvar);
 
         tvTlf=(TextView)vi.findViewById(R.id.TV_Phone);
         tvTlf.setText("918814212");
@@ -54,7 +54,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-        if(v== vi.findViewById(R.id.btCli)){
+        if(v== vi.findViewById(R.id.btSalvar)){
             Toast.makeText(getContext(), "Cliente", Toast.LENGTH_LONG).show();
         }else if(v==vi.findViewById(R.id.IB_Phone)){
             it=new Intent(Intent.ACTION_CALL);

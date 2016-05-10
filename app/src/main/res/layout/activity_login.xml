@@ -26,7 +26,7 @@
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="fill_parent"
-            android:id="@+id/BTI_Regist"
+            android:id="@+id/BTI_Conf"
             android:src="@android:drawable/ic_menu_preferences"
             android:background="#00ffffff"
             android:layout_gravity="center_vertical|right" />

@@ -98,5 +98,10 @@
     <string name="label_preview">Pré-visualização</string>
     <string name="label_cancel">Cancelar</string>
     <string name="Gallery">Galeria</string>
+    <string name="agenda">Agenda</string>
+    <string name="sair">Sair</string>
+
+
+    <string name="L_manutencao">Prazos de Manutenção Expirados:</string>
 
 </resources>

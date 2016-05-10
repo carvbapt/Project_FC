@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
         btLogin = (Button) findViewById(R.id.BT_Login);
         btQuit=(Button)findViewById(R.id.BT_Quit);
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
-        ibtConf=(ImageButton)findViewById(R.id.BTI_Regist);
+        ibtConf=(ImageButton)findViewById(R.id.BTI_Conf);
 
         mEmailView.setText("s.s@ss.pt");
         mPasswordView.setText("sandro");
@@ -97,7 +97,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
         }else if(v==findViewById(R.id.BTI_Back)){
             finish();
             startActivity(new Intent(this, Splash.class));
-        }else if(v==findViewById(R.id.BTI_Regist)){
+        }else if(v==findViewById(R.id.BTI_Conf)){
             startActivity(new Intent(this, Registo.class));
         }
     }

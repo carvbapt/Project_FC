@@ -13,8 +13,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CLIENTE"
-            android:id="@+id/btCli"
+            android:text="Salvar"
+            android:id="@+id/btSalvar"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -25,7 +25,7 @@
             android:id="@+id/TV_Phone"
             android:maxLength="25"
             android:textSize="30sp"
-            android:layout_below="@+id/btCli"
+            android:layout_below="@+id/btSalvar"
             android:layout_marginLeft="15sp"
             android:layout_centerVertical="true" />
 
@@ -35,7 +35,7 @@
             android:id="@+id/IB_Phone"
             android:layout_gravity="center_horizontal"
             android:src="@android:drawable/stat_sys_phone_call"
-            android:layout_below="@+id/btCli"
+            android:layout_below="@+id/btSalvar"
             android:layout_toRightOf="@+id/TV_Phone" />
 
         <TextView
