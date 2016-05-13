@@ -213,7 +213,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageButton"
-                android:src="@android:drawable/ic_menu_send" />
+                android:src="@android:drawable/ic_menu_send"
+                android:layout_gravity="right" />
 
         </TableRow>
 
@@ -273,7 +274,8 @@
                 android:drawableTintMode="screen"
                 android:foregroundTint="#FFFFFF"
                 android:backgroundTintMode="src_in"
-                android:backgroundTint="#ffffff" />
+                android:backgroundTint="#ffffff"
+                android:checked="true" />
 
             <EditText
                 android:layout_width="150dp"
@@ -338,7 +340,8 @@
                 android:layout_alignStart="@+id/checkBox2"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:buttonTint="#ffffff" />
+                android:buttonTint="#ffffff"
+                android:checked="true" />
 
             <EditText
                 android:layout_width="150dp"

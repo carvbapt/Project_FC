@@ -8,47 +8,30 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Salvar"
-            android:id="@+id/btSalvar"
-            android:layout_centerHorizontal="true" />
+        android:layout_height="match_parent"
+        android:scrollIndicators="bottom|top">
 
         <TextView
-            android:layout_width="300sp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
-            android:id="@+id/TV_Phone"
-            android:maxLength="25"
-            android:textSize="30sp"
-            android:layout_below="@+id/btSalvar"
-            android:layout_marginLeft="15sp"
-            android:layout_centerVertical="true" />
-
-        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/IB_Phone"
-            android:layout_gravity="center_horizontal"
-            android:src="@android:drawable/stat_sys_phone_call"
-            android:layout_below="@+id/btSalvar"
-            android:layout_toRightOf="@+id/TV_Phone" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Empresa"
+            android:id="@+id/TV_Empresa"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="25dp" />
 
         <TextView
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
+            android:text="Morada"
             android:id="@+id/TV_Morada"
-            android:maxLength="15"
-            android:textSize="30sp"
-            android:layout_marginLeft="15sp"
-            android:layout_centerVertical="true"
-            android:layout_below="@+id/IB_Phone" />
+            android:textSize="20dp"
+            android:lines="2"
+            android:gravity="center_vertical"
+            android:layout_alignTop="@+id/IB_Mapa"
+            android:layout_marginLeft="15dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -56,9 +39,78 @@
             android:id="@+id/IB_Mapa"
             android:layout_gravity="center_horizontal"
             android:src="@android:drawable/ic_dialog_map"
-            android:layout_below="@+id/IB_Phone"
-            android:layout_toRightOf="@+id/TV_Morada"
-            android:layout_centerVertical="true" />
+            android:layout_below="@+id/TV_Empresa"
+            android:layout_alignParentRight="true"
+            android:layout_alignWithParentIfMissing="false"
+            android:layout_toRightOf="@+id/TV_Morada" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Local"
+            android:id="@+id/TV_Local"
+            android:maxLength="15"
+            android:textSize="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/TV_Morada"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Contacto"
+            android:id="@+id/TV_Phone"
+            android:maxLength="25"
+            android:textSize="20dp"
+            android:inputType="phone"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_alignTop="@+id/IB_Phone"
+            android:layout_alignBottom="@+id/IB_Phone" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/IB_Phone"
+            android:layout_gravity="center_horizontal"
+            android:src="@android:drawable/stat_sys_phone_call"
+            android:layout_below="@+id/TV_Local"
+            android:layout_alignParentRight="true"
+            android:textAlignment="gravity"
+            android:foregroundGravity="center_vertical"
+            android:layout_alignParentEnd="false"
+            android:layout_toRightOf="@+id/TV_Phone" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inicio"
+            android:id="@+id/BT_Inicio"
+            android:textColor="#00FF00"
+            android:textStyle="bold"
+            android:layout_alignTop="@+id/BT_Fim"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true"
+            android:layout_alignWithParentIfMissing="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fim"
+            android:id="@+id/BT_Fim"
+            android:textStyle="bold"
+            android:textColor="#ff0000"
+            android:layout_gravity="right"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_centerVertical="true"
+            android:layout_alignRight="@+id/IB_Phone"
+            android:layout_alignEnd="@+id/IB_Phone" />
 
 
     </RelativeLayout>

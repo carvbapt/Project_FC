@@ -13,13 +13,6 @@ public class Dados {
             "saucarv@gmail.com", "carvbapt@gmail.com", "sauca@iol.pt", "carvbapt@gmail.com",
             "saucarv@gmail.com", "carvbapt@gmail.com"};
 
-    //    {Empresas, "Morada","Localidade","Contacto","Representante","Data_manutenção"}
-    public static String[][] det_empresa = {
-            {"0", "Rua das Laranjeiras, Nº 33 Conceição", "8005-446 FARO", "289289289", "Sr. Eurico", "2015.05.05"},
-            {"3", "Dr José de Matos, 1 - 3", "8000-000 FARO", "282282282", "Sr. Daniel", "2015.10.10"},
-            {"6", "Zona Ind Lt 41", "8100-000 LOULÉ", "289888888", "Sr. José", "2015.06.12"}};
-
-
     //    {Empresas,Comerciais,data_comercial}
     public static String[][] com_empresa = {
             {"0", "1", "2016.06.12"},
@@ -47,6 +40,8 @@ public class Dados {
 
     };
 
+    //Dados a funcionar
+
     public static String[] Empresas = {
             "TU, Unipessoal, Lda.", "A Industrial Farense, Lda.", "A. Pontes & N. Mealha, Lda.", "Acabe com o Vicio, Lda.",
             "ACL - Algarve Comércio e Prestação de Serviços, Lda.", "Acral - Supermercados do Algarve S A", "ADMC - Electromecânica, Lda.",
@@ -66,16 +61,28 @@ public class Dados {
             "Seltra - Serviços, Línguas e Traduções Lda", "Serigra - Companhia Indústrial e Comerc"
     };
 
+    //    {Empresas, "Morada","Localidade","Contacto","Representante","Data_manutenção"}
+    public static String[][] det_empresa = {
+            {"0", "Rua das Laranjeiras, Nº 33 Conceição", "8005-446 FARO", "289289289", "Sr. Eurico", "2015.05.05"},
+            {"1", "Av. 25 Abril, Nº 10", "8500-446 PORTIMÃO", "282345992", "Sr. Jorge", "2015.05.05"},
+            {"2", "Praça dos Pescadores, nº 20", "8200-099 ALBUFEIRA", "289541225", "Sra. Ana", "2015.05.05"},
+            {"3", "Dr José de Matos, 1 - 3", "8000-000 FARO", "282282282", "Sr. Daniel", "2015.10.10"},
+            {"4", "Rua Liberdade nº5", "8400-100 LAGOA", "282705455", "Sr. Vasco", "2015.05.05"},
+            {"5", "Rua Gil Eanes, Nº 60", "8700-123 OLLHÂO", "289899254", "Sra. Manuela", "2015.05.05"},
+            {"6", "Zona Ind Lt 41", "8100-000 LOULÉ", "289888888", "Sr. José", "2015.06.12"}};
+
     public static  String[] Ordens={"OT_23544","OT_24795","OT_27244","OT_56745","OT_59563","OT_12345","OT_21341"};
 
     public static String[][] Janela= {
-            {"0", "9:00","Fechado"},
-            {"1", "14:00","Aberto"},
-            {"2", "16:00","Aberto"},
-            {"3", "11:00","Aberto"},
-            {"4", "14:00","Aberto"},
-            {"5", "10:30","Fechado"},
-            {"6", "15:00","Fechado"}
+            {"0","2016.05.12","9:00","Fechado"},
+            {"1","2016.05.15","14:00","Aberto"},
+            {"2","2016.05.15","16:00","Aberto"},
+            {"3", "2016.05.12","11:00","Aberto"},
+            {"4", "2016.05.12","14:00","Aberto"},
+            {"5", "2016.05.10","10:30","Fechado"},
+            {"6", "2016.05.10","15:00","Fechado"}
+      //    {Empresas, Data, Hora, Estado};
     };
+
 
 }

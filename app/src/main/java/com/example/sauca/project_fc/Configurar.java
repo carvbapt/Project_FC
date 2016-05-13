@@ -35,7 +35,7 @@ public class Configurar extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-        if(v==this.findViewById(R.id.BT_Back)) {
+        if(v==this.findViewById(R.id.BTI_Back)) {
             onBackPressed();
         }else if(v==this.findViewById(R.id.BT_Mate)){
             startActivity(new Intent(this, Registo.class));

@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sauca.project_fc.DB.Dados;
 import com.example.sauca.project_fc.MainMenu;
 import com.example.sauca.project_fc.R;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -27,7 +28,13 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
 
     //S@C
     private ImageButton ibtBack;
+    TextView tvOt;
     FragMaterial fragMat;
+
+    public static Bundle ntab;
+
+    Intent it;
+    int r;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -49,6 +56,8 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intervencao);
 
+        ntab=new Bundle();
+        ntab.putString("TAB",null);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -60,8 +69,18 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
         ibtBack.setOnClickListener(this);
+
+//        it= getIntent();
+//        r=it.getIntExtra("pos",0);
+//        it.getExtras().remove("pos");
+//        Toast.makeText(getBaseContext(),"Linha - "+ r,Toast.LENGTH_LONG).show();
+
+        tvOt=(TextView)findViewById(R.id.TV_Ot);
+        tvOt.setText(getIntent().getStringExtra("ot"));
+
 
 //        fragMat = (FragMaterial)getSupportFragmentManager().findFragmentById(R.id.FragMaterial);
 //        Toast.makeText(this, "Frag - "+,Toast.LENGTH_LONG).show();
@@ -95,7 +114,7 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
     public void onClick(View v) {
 
         if (v == findViewById(R.id.BTI_Back)) {
-            onBackPressed();
+            finish();
         }
     }
 
@@ -120,14 +139,14 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
                     return new FragTecnico();
                 default:
                     return new FragMaterial();
-
             }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+                return 3;
+
         }
 
         @Override

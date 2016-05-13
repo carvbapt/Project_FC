@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
+        android:animateLayoutChanges="true"
         android:theme="@style/AppTheme.NoActionBar.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -32,12 +33,24 @@
                 android:layout_gravity="left|center_vertical"
                 android:contentDescription="@string/logo" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/TV_Ot"
+                android:textColor="#FFFFFF"
+                android:hint="OT_123456"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="30dp" />
+
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            />
 
     </android.support.design.widget.AppBarLayout>
 

@@ -9,7 +9,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:id="@+id/LL_Material"
+        android:visibility="gone">
 
         <Button android:id="@+id/scan_butt"
             android:layout_width="fill_parent"

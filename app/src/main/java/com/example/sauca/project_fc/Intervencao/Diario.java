@@ -27,6 +27,8 @@ public class Diario extends AppCompatActivity implements View.OnClickListener{
 
     ListView lvDiario;
     DiarAdapter adptDiario;
+    String dt;
+    String[] str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,34 +47,47 @@ public class Diario extends AppCompatActivity implements View.OnClickListener{
 
         if(it.getExtras().getString("activity").equals("agenda")){
             tvData.setText(it.getExtras().getString("dia"));
+            dt=it.getExtras().getString("data");
         }else{
             final SimpleDateFormat formatDate = new SimpleDateFormat("dd MMM yyyy");
             tvData.setText(formatDate.format(new Date()));
+            dt = new SimpleDateFormat("yyyy.MM.dd").format(new Date());
         }
 
         lvDiario=(ListView)findViewById(R.id.LV_Diario);
-
 
         loadData();
     }
 
     private void loadData() {
 
-
         adptDiario=new DiarAdapter(getBaseContext(),R.layout.activity_diario_row);
         lvDiario.setAdapter(adptDiario);
 
+//        Toast.makeText(getBaseContext(),"Data - "+ dt,Toast.LENGTH_LONG).show();
+        str=new  String[Dados.Ordens.length];
+
+        int i=0;
+
         for(int r=0;r< Dados.Ordens.length;r++){
-            Diaria dtprov= new Diaria(Dados.Ordens[r],Dados.Janela[r][1],Dados.Janela[r][2]);
-            adptDiario.add(dtprov);
+            if(Dados.Janela[r][1].toString().contentEquals(dt.toString())) {
+                Diaria dtprov = new Diaria(Dados.Ordens[r], Dados.Janela[r][2], Dados.Janela[r][3]);
+                adptDiario.add(dtprov);
+                str[i]=Dados.Ordens[r];
+                i++;
+            }
         }
 
         lvDiario.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                position=position+1;
-                Toast.makeText(getBaseContext(),"Linha - "+ position,Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getBaseContext(),Intervencao.class));
+//                position=position+1;
+//                Toast.makeText(getBaseContext(),"Linha - "+ position,Toast.LENGTH_LONG).show();
+//                intent.putExtra(EXTRA_MESSAGE, dados.Empresas[position]);
+                //    Toast.makeText(EmpresaActivity.this, Dados.Empresas[position], Toast.LENGTH_SHORT).show
+                it=new Intent(getBaseContext(),Intervencao.class);
+                it.putExtra("ot",str[position]);
+                startActivity(it);
             }
         });
 
