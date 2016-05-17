@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.sauca.project_fc.Login.Login">
+    tools:context="com.example.sauca.appfc.Login.Login">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -107,6 +107,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_quit"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                style="?android:textAppearanceSmall"
+                android:id="@+id/BT_Load"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:text="@string/action_load"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
 

@@ -104,5 +104,6 @@
 
     <string name="L_manutencao">Prazos de Manutenção Expirados:</string>
     <string name="diario">Diário</string>
+    <string name="action_load">Load</string>
 
 </resources>

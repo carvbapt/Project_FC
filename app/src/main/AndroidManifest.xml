@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sauca.project_fc">
+    package="com.example.sauca.appfc">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -8,11 +8,11 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:allowBackup="true"
@@ -22,25 +22,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".Splash">
-            android:theme="@style/AppTheme">
+
+        <activity android:name="com.example.sauca.appfc.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Frota" />
-        <activity android:name=".MainMenu" />
-        <activity android:name=".Login.Login" />
-        <activity android:name=".Login.Login_Reg" />
-        <activity android:name=".Login.Login_List" />
-        <activity android:name=".Registo.Registo" />
-        <activity android:name=".Registo.Material" />
-        <activity android:name=".Intervencao.Intervencao" />
-        <activity android:name=".Agenda.Agenda" />
-        <activity android:name=".Configurar" />
-        <activity android:name=".Intervencao.Diario"></activity>
+        <activity android:name="com.example.sauca.appfc.Frota" />
+        <activity android:name="com.example.sauca.appfc.MainMenu" />
+        <activity android:name="com.example.sauca.appfc.Login.Login" />
+        <activity android:name="com.example.sauca.appfc.Login.Login_Reg" />
+        <activity android:name="com.example.sauca.appfc.Login.Login_List" />
+        <activity android:name="com.example.sauca.appfc.Registo.Registo" />
+        <activity android:name="com.example.sauca.appfc.Registo.Material" />
+        <activity android:name="com.example.sauca.appfc.Intervencao.Intervencao" />
+        <activity android:name="com.example.sauca.appfc.Agenda.Agenda" />
+        <activity android:name="com.example.sauca.appfc.Configurar" />
+        <activity android:name="com.example.sauca.appfc.Intervencao.Diario"/>
+
     </application>
 
 </manifest>
