@@ -41,6 +41,9 @@ public class FragCliente extends Fragment implements View.OnClickListener {
 
     LinearLayout fMat,fTec;
 
+    Calendar c;
+    SimpleDateFormat df,hf;
+
     DiarioRepo myDB;
     Diaria diar;
 
@@ -53,6 +56,10 @@ public class FragCliente extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vi=inflater.inflate(R.layout.fragment_cliente, container, false);
+
+        c = Calendar.getInstance();
+        df = new SimpleDateFormat("yyyy.MM.dd");
+        hf = new SimpleDateFormat("HH:mm");
 
         fMat=(LinearLayout)vi.findViewById(R.id.LL_Material);
         fTec=(LinearLayout)vi.findViewById(R.id.LL_Tecnico);
@@ -87,41 +94,49 @@ public class FragCliente extends Fragment implements View.OnClickListener {
     private void loadData(Diaria dia) {
 
         TextView tv;
-        int ind=dia.d_id;
+        int ind=Integer.parseInt(dia.d_empresa);// dia.d_id;
 
 //                Toast.makeText(getActivity(),"Indice - "+ r,Toast.LENGTH_LONG).show();
-                tvEmpresa.setText(Dados.Empresas[Integer.parseInt(dia.d_empresa)]);
+                tvEmpresa.setText(Dados.Empresas[ind]);
                 tvMorada.setText(Dados.det_empresa[ind][1]);
                 tvLocal.setText(Dados.det_empresa[ind][2]);
                 tvTlfnome.setText(Dados.det_empresa[ind][4]);
                 tvTlf.setText(Dados.det_empresa[ind][3]);
 
-                if(dia.getD_estado().contains("Fechado")){
-                    btInicio.setText(dia.getD_inicio());
-                    btInicio.setBackgroundColor(Color.GREEN);
-                    btInicio.setTextColor(Color.WHITE);
+                Log.i("DATA- ",""+dia.d_data.compareTo(df.format(c.getTime())));
+
+                if(dia.d_data.compareTo(df.format(c.getTime()))>0) {
+                    btInicio.setTextColor(Color.GRAY);
                     btInicio.setEnabled(false);
-                    btFim.setText(dia.getD_fim());
-                    btFim.setBackgroundColor(Color.RED);
-                    btFim.setTextColor(Color.WHITE);
+                    btFim.setTextColor(Color.GRAY);
                     btFim.setEnabled(false);
-                }
-                if(!dia.getD_inicio().contentEquals("") ){
-                    btInicio.setText(dia.getD_inicio());
-                    btInicio.setBackgroundColor(Color.GREEN);
-                    btInicio.setTextColor(Color.WHITE);
-                    btInicio.setEnabled(false);
+                }else {
+                    if(dia.getD_estado().contains("Fechado")){
+                        btInicio.setText(dia.getD_inicio());
+                        btInicio.setBackgroundColor(Color.GREEN);
+                        btInicio.setTextColor(Color.WHITE);
+                        btInicio.setEnabled(false);
+                        btFim.setText(dia.getD_fim());
+                        btFim.setBackgroundColor(Color.RED);
+                        btFim.setTextColor(Color.WHITE);
+                        btFim.setEnabled(false);
+                    }
+                    if(!dia.getD_inicio().contentEquals("") ){
+                        btInicio.setText(dia.getD_inicio());
+                        btInicio.setBackgroundColor(Color.GREEN);
+                        btInicio.setTextColor(Color.WHITE);
+                        btInicio.setEnabled(false);
+                    }
                 }
     }
 
     @Override
     public void onClick(View v) {
 
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+
 
         if(v== vi.findViewById(R.id.BT_Inicio)) {
-            btInicio.setText(df.format(c.getTime()));
+            btInicio.setText(hf.format(c.getTime()));
             diar.d_inicio=btInicio.getText().toString();
             myDB.updateData(diar);
             btInicio.setBackgroundColor(Color.GREEN);
@@ -132,7 +147,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
 //            Toast.makeText(getActivity(),btInicio.getBackground().toString(),Toast.LENGTH_LONG).show();
             Log.i("CORI",""+btInicio.getSolidColor());
             if(!btInicio.getText().toString().contains("Inicio")) {
-                btFim.setText(df.format(c.getTime()));
+                btFim.setText(hf.format(c.getTime()));
                 diar.d_fim=btFim.getText().toString();
                 diar.d_estado="Fechado";
                 myDB.updateData(diar);
