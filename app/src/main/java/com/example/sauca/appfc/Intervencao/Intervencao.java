@@ -16,19 +16,20 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.sauca.appfc.DB.Model.Diaria;
+import com.example.sauca.appfc.DB.RepoQuery.DiarioRepo;
 import com.example.sauca.appfc.R;
 
 public class Intervencao extends AppCompatActivity implements  View.OnClickListener {
 
     //S@C
     private ImageButton ibtBack;
+
     TextView tvOt;
-    FragMaterial fragMat;
+    DiarioRepo myDB;
+    Diaria diar;
+    int nPag;
 
-    public static Bundle ntab;
-
-    Intent it;
-    int r;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -50,8 +51,14 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intervencao);
 
-        ntab=new Bundle();
-        ntab.putString("TAB",null);
+        myDB= new DiarioRepo(this);
+        diar= myDB.searchDataSingle("OT",getIntent().getStringExtra("ot"));
+
+        if(diar.getD_inicio().contentEquals(""))
+            nPag=1;
+        else
+            nPag=3;
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -67,18 +74,8 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
         ibtBack.setOnClickListener(this);
 
-//        it= getIntent();
-//        r=it.getIntExtra("pos",0);
-//        it.getExtras().remove("pos");
-//        Toast.makeText(getBaseContext(),"Linha - "+ r,Toast.LENGTH_LONG).show();
-
         tvOt=(TextView)findViewById(R.id.TV_Ot);
         tvOt.setText(getIntent().getStringExtra("ot"));
-
-
-//        fragMat = (FragMaterial)getSupportFragmentManager().findFragmentById(R.id.FragMaterial);
-//        Toast.makeText(this, "Frag - "+,Toast.LENGTH_LONG).show();
-
     }
 
 
@@ -140,7 +137,7 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
         @Override
         public int getCount() {
             // Show 3 total pages.
-                return 3;
+                return nPag;
 
         }
 
@@ -157,23 +154,4 @@ public class Intervencao extends AppCompatActivity implements  View.OnClickListe
             return null;
         }
     }
-
-//    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-//        IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
-//
-//        if (resultCode == 0x0000c0de02) {
-//            if (scanningResult != null) {
-//                String scanContent = scanningResult.getContents();
-//                String scanFormat = scanningResult.getFormatName();
-//                Toast.makeText(this, " Codigo - " + scanFormat + " - " + scanContent, Toast.LENGTH_LONG).show();
-//                if (fragMat != null) {
-//                    fragMat.doSomething(scanFormat, scanContent);
-//                }
-////
-//            } else {
-//                Toast toast = Toast.makeText(this, "No scan data received!", Toast.LENGTH_SHORT);
-//                toast.show();
-//            }
-//        }
-//    }
 }

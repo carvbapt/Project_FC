@@ -133,8 +133,6 @@ public class FragCliente extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
-
         if(v== vi.findViewById(R.id.BT_Inicio)) {
             btInicio.setText(hf.format(c.getTime()));
             diar.d_inicio=btInicio.getText().toString();
@@ -142,6 +140,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
             btInicio.setBackgroundColor(Color.GREEN);
             btInicio.setTextColor(Color.WHITE);
             btInicio.setEnabled(false);
+            loadActivity();
 //            Toast.makeText(getContext(), "Inicio", Toast.LENGTH_LONG).show();
         }else if(v== vi.findViewById(R.id.BT_Fim)){
 //            Toast.makeText(getActivity(),btInicio.getBackground().toString(),Toast.LENGTH_LONG).show();
@@ -166,6 +165,18 @@ public class FragCliente extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "MAPA", Toast.LENGTH_LONG).show();
             startActivity(new Intent(getContext(), MainMenu.class));
         }
+    }
+
+
+    // Refresh Activity
+    private void loadActivity() {
+        Intent intent = getActivity().getIntent();
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        getActivity().overridePendingTransition(0, 0);
+        getActivity().finish();
+        getActivity().overridePendingTransition(0, 0);
+        startActivity(intent);
     }
 
 

@@ -62,8 +62,14 @@
         <item>Fieldservices</item>
     </string-array>
 
+    <string-array name="estado">
+        <item>Instalado</item>
+        <item>Substituido</item>
+        <item>Recolhido</item>
+    </string-array>
+
     <!-- Strings related to barcode -->
-    <string name="scan">Scan</string>
+    <string name="scan">Leitor</string>
 
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
@@ -105,5 +111,8 @@
     <string name="L_manutencao">Prazos de Manutenção Expirados:</string>
     <string name="diario">Diário</string>
     <string name="action_load">Load</string>
+    <string name="adic">Adicionar</string>
+    <string name="dig">Digitar</string>
+    <string name="Equi">Equipa. :</string>
 
 </resources>

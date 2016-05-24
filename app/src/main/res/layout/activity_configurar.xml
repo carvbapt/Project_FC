@@ -305,52 +305,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="ANEXO"
-            android:id="@+id/textView20"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/textView23"
-            android:layout_marginLeft="10dp" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="PDF"
-            android:id="@+id/radioButton"
-            android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:foregroundTint="#ffffff"
-            android:drawableTint="#FFFFFF"
-            android:buttonTint="#FFFFFF"
-            android:checked="true"
-            android:layout_alignTop="@+id/textView20"
-            android:layout_alignRight="@+id/textView19"
-            android:layout_alignEnd="@+id/textView19" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="JPG"
-            android:id="@+id/radioButton2"
-            android:textColor="#FFFFFF"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textStyle="bold"
-            android:foregroundTint="#ffffff"
-            android:drawableTint="#FFFFFF"
-            android:buttonTint="#FFFFFF"
-            android:checked="false"
-            android:layout_alignTop="@+id/radioButton"
-            android:layout_toLeftOf="@+id/imageButton3"
-            android:layout_toStartOf="@+id/imageButton3"
-            android:layout_marginRight="24dp"
-            android:layout_marginEnd="24dp" />
     </RelativeLayout>
 
     <Button

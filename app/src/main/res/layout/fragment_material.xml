@@ -4,34 +4,71 @@
     android:layout_height="match_parent"
     tools:context="com.example.sauca.appfc.Intervencao.FragMaterial">
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/LL_Material"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <Button android:id="@+id/scan_butt"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/scan" />
+            android:text="@string/add"
+            android:textStyle="bold"
+            android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/scan_form"
-            android:layout_width="fill_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/scan_cont"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:textSize="20sp" />
+            android:background="?attr/colorPrimary"
+            android:id="@+id/relativeLayout3"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Material"
+                android:id="@+id/textView27"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Modelo"
+                android:id="@+id/textView28"
+                android:layout_gravity="right"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Estado"
+                android:id="@+id/textView29"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:paddingRight="30dp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/LV_Material"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp" />
 
     </LinearLayout>
-
-
 
 </FrameLayout>

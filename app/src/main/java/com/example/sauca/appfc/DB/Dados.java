@@ -76,11 +76,11 @@ public class Dados {
 
     //    {Empresas, Data, Hora, Estado, Inicio, Fim};
     public static String[][] Janela= {
-            {"3","2016.05.18","9:00","Fechado","9:15","10:50"},
+            {"3","2016.05.24","9:00","Fechado","9:15","10:50"},
             {"1","2016.05.25","14:00","Aberto","",""},
             {"2","2016.05.25","16:00","Aberto","",""},
-            {"0", "2016.05.18","11:00","Aberto","",""},
-            {"4", "2016.05.18","14:00","Aberto","",""},
+            {"0", "2016.05.24","11:00","Aberto","",""},
+            {"4", "2016.05.24","14:00","Aberto","",""},
             {"5", "2016.05.15","10:30","Fechado","10:40","11:00"},
             {"6", "2016.05.15","15:00","Fechado","15:00","16:00"}
 
@@ -90,6 +90,16 @@ public class Dados {
     public static String[][] Utilizador={
             {"0","Sandro","Carvalho","sandro","sandro.carvalho@fastcall.pt","Fastcall"},
             {"1","Zé","Teste","teste","ze.teste@fastcall.pt","Fieldservices"}
+    };
+
+
+    //      {OT,Material,Modelo,Serial,Estado}
+    public static String[][] Material= {
+            {"0","Router","B593S","123456789","Instalado"},
+            {"5","Iad","PB6Plug","098765432","Stock"},
+            {"3","Acta","MP4X","098765432","Tecnico"},
+            {"0", "IAD","PB6Plug","57532108231","Instalado"},
+            {"0","Router", "TG585","4824762984","Recolhido"}
     };
 
 }

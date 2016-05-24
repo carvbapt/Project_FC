@@ -25,40 +25,296 @@
             android:layout_gravity="left|center_vertical"
             android:contentDescription="@string/logo" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/TV_Ot"
+            android:textColor="#FFFFFF"
+            android:hint="OT_123456"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="30dp" />
+
+
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true">
+        android:layout_alignParentBottom="false">
 
-        <Button android:id="@+id/scan_button"
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/scan" />
+            android:id="@+id/linearLayout"
+            android:layout_marginBottom="10dp">
+
+            <Button android:id="@+id/BT_Leitor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/scan"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentStart="false" />
+
+            <Button
+                android:id="@+id/BT_Digita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dig"
+                android:layout_alignParentRight="true" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/scan_format"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/Equi"
+            android:id="@+id/TV_Equi"
+            android:layout_below="@+id/linearLayout"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="false"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/TV_Equipamento"
+            android:layout_width="333dp"
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/scan_button"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Equi"
+            android:layout_marginLeft="10dp"
+            android:hint="Router"
+            android:layout_below="@+id/linearLayout" />
+
         <TextView
-            android:id="@+id/scan_content"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Marca :"
+            android:id="@+id/TV_Mar"
+            android:layout_below="@+id/TV_Equi"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentLeft="false"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:id="@+id/TV_Marca"
+            android:layout_width="333dp"
             android:layout_height="wrap_content"
             android:textIsSelectable="true"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/scan_format"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Mar"
+            android:layout_marginLeft="10dp"
+            android:hint="Huawey"
+            android:text="Huawey"
+            android:layout_alignTop="@+id/TV_Mar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Modelo :"
+            android:id="@+id/TV_Mod"
+            android:layout_below="@+id/TV_Mar"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
             android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/TV_Modelo"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Mod"
+            android:layout_marginLeft="10dp"
+            android:hint="Router"
+            android:text="B593S"
+            android:layout_alignTop="@+id/TV_Mod" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="S/N :"
+            android:id="@+id/TV_Sn"
+            android:layout_below="@+id/TV_Mod"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <TextView
+            android:id="@+id/TV_Serial"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Sn"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/TV_Sn"
+            android:hint="2344874029478209424" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="MAC :"
+            android:id="@+id/TV_Ma"
+            android:layout_below="@+id/TV_Sn"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <TextView
+            android:id="@+id/TV_Mac"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Sn"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/TV_Ma"
+            android:hint="2344874029478209424"
+            android:text="02D34EF56A09" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Imei :"
+            android:id="@+id/TV_Ime"
+            android:layout_below="@+id/TV_Ma"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <TextView
+            android:id="@+id/TV_Imei"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/TV_Sn"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/TV_Ime"
+            android:hint="2344874029478209424" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Iccid :"
+            android:id="@+id/TV_Icc"
+            android:layout_below="@+id/TV_Ime"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <TextView
+            android:id="@+id/TV_Iccid"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/TV_Icc"
+            android:hint="2344874029478209424"
+            android:text="213oih4529234242"
+            android:layout_toRightOf="@+id/TV_Icc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Cartão :"
+            android:id="@+id/TV_Cart"
+            android:layout_below="@+id/TV_Icc"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <TextView
+            android:id="@+id/TV_Cartao"
+            android:layout_width="333dp"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@+id/TV_Cart"
+            android:hint="2344874029478209424"
+            android:text="932781860"
+            android:layout_toRightOf="@+id/TV_Cart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="Estado :"
+            android:id="@+id/TV_Estado"
+            android:layout_below="@+id/TV_Cart"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_alignEnd="@id/TV_Mod"
+            android:layout_alignRight="@id/TV_Mod" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/SP_Estado"
+            android:layout_alignStart="@+id/TV_Cartao"
+            android:layout_alignTop="@+id/TV_Estado"
+            android:layout_alignBottom="@+id/TV_Estado"
+            android:spinnerMode="dropdown"
+            android:gravity="center_vertical"
+            android:layout_alignLeft="@+id/TV_Cartao" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_centerHorizontal="true"
+        android:gravity="bottom">
 
     </LinearLayout>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BT_Salvar"
+        android:layout_weight="1"
+        android:src="@drawable/abc_btn_check_to_on_mtrl_015"
+        android:background="#00ff00"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>
