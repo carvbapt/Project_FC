@@ -36,7 +36,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
     Intent it;
     Button btInicio,btFim;
 
-    TextView tvTlf,tvTlfnome,tvMorada,tvEmpresa,tvLocal;
+    TextView tvTlf,tvTlfnome,tvMorada,tvEmpresa,tvLocal,tvTarefa;
     ImageButton ibMap,ibPho;
 
     LinearLayout fMat,fTec;
@@ -72,6 +72,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
         tvTlfnome=(TextView)vi.findViewById(R.id.TV_PhoneName);
         tvMorada=(TextView)vi.findViewById(R.id.TV_Morada);
         tvLocal=(TextView)vi.findViewById(R.id.TV_Local);
+        tvTarefa=(TextView)vi.findViewById(R.id.TV_Tarefa);
 
         ibPho=(ImageButton)vi.findViewById(R.id.IB_Phone);
         ibMap=(ImageButton)vi.findViewById(R.id.IB_Mapa);
@@ -102,6 +103,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
                 tvLocal.setText(Dados.det_empresa[ind][2]);
                 tvTlfnome.setText(Dados.det_empresa[ind][4]);
                 tvTlf.setText(Dados.det_empresa[ind][3]);
+                tvTarefa.setText(dia.d_tarefa);
 
                 Log.i("DATA- ",""+dia.d_data.compareTo(df.format(c.getTime())));
 
@@ -113,7 +115,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
                 }else {
                     if(dia.getD_estado().contains("Fechado")){
                         btInicio.setText(dia.getD_inicio());
-                        btInicio.setBackgroundColor(Color.GREEN);
+                        btInicio.setBackgroundColor(Color.parseColor("#038f03"));
                         btInicio.setTextColor(Color.WHITE);
                         btInicio.setEnabled(false);
                         btFim.setText(dia.getD_fim());
@@ -123,7 +125,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
                     }
                     if(!dia.getD_inicio().contentEquals("") ){
                         btInicio.setText(dia.getD_inicio());
-                        btInicio.setBackgroundColor(Color.GREEN);
+                        btInicio.setBackgroundColor(Color.parseColor("#038f03"));
                         btInicio.setTextColor(Color.WHITE);
                         btInicio.setEnabled(false);
                     }
@@ -137,7 +139,7 @@ public class FragCliente extends Fragment implements View.OnClickListener {
             btInicio.setText(hf.format(c.getTime()));
             diar.d_inicio=btInicio.getText().toString();
             myDB.updateData(diar);
-            btInicio.setBackgroundColor(Color.GREEN);
+            btInicio.setBackgroundColor(Color.parseColor("#038f03"));
             btInicio.setTextColor(Color.WHITE);
             btInicio.setEnabled(false);
             loadActivity();

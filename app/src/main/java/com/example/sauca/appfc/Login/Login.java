@@ -72,7 +72,13 @@ public class Login extends AppCompatActivity implements OnClickListener {
         ibtBack.setOnClickListener(this);
         ibtConf.setOnClickListener(this);
 
-        btLoad.setOnClickListener(this);
+        if(this.getDatabasePath("DBFastcall.db").exists())
+            btLoad.setVisibility(View.INVISIBLE);
+        else
+            btLoad.setOnClickListener(this);
+
+        Log.i("DTBASE",""+getBaseContext().getDatabasePath("DBFastcall.db").exists());
+
 
         // esconder teclado
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -237,9 +243,10 @@ public class Login extends AppCompatActivity implements OnClickListener {
             diar.d_estado = Dados.Janela[r][3];
             diar.d_inicio=Dados.Janela[r][4];
             diar.d_fim=Dados.Janela[r][5];
+            diar.d_tarefa=Dados.Janela[r][6];
             isInserted=repodia.insert(diar);
             count=r+1;
-            Log.i("IND- "," Dados "+ diar.d_ot+" " +diar.d_estado+ " "+diar.d_data + " "+Dados.Ordens[Integer.parseInt(diar.d_empresa)]);
+            Log.i("IND- "," Dados "+ diar.d_ot+" " +diar.d_estado+ " "+diar.d_data + " "+Dados.Ordens[Integer.parseInt(diar.d_empresa)]+" "+diar.d_tarefa);
         }
 
         if (isInserted>0) {

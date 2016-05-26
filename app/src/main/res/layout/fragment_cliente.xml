@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.sauca.appfc.Intervencao.FragCliente">
 
     <!-- TODO: Update blank fragment layout -->
@@ -9,7 +9,10 @@
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:scrollIndicators="bottom|top">
 
         <LinearLayout
@@ -22,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="Inicio"
                 android:id="@+id/BT_Inicio"
-                android:textColor="#00FF00"
+                android:textColor="#038f03"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
@@ -55,7 +58,6 @@
             android:text="Empresa"
             android:id="@+id/TV_Empresa"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
             android:textSize="25dp"
             android:layout_alignParentBottom="false"
             android:layout_alignParentTop="false"
@@ -70,8 +72,7 @@
             android:textSize="20dp"
             android:lines="2"
             android:gravity="center_vertical"
-            android:layout_alignTop="@+id/IB_Mapa"
-            android:layout_marginLeft="15dp" />
+            android:layout_alignTop="@+id/IB_Mapa" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -94,7 +95,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
             android:layout_below="@+id/TV_Morada"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:longClickable="true" />
@@ -103,14 +103,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Nome"
+            android:text="@string/nome"
             android:id="@+id/TV_PhoneName"
             android:layout_below="@+id/TV_Local"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="false"
             android:textSize="20sp"
             android:layout_alignParentEnd="false"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp" />
 
         <TextView
@@ -123,10 +122,10 @@
             android:inputType="phone"
             android:textAlignment="gravity"
             android:gravity="center_vertical"
-            android:layout_marginLeft="15dp"
             android:layout_alignTop="@+id/IB_Phone"
             android:layout_alignBottom="@+id/IB_Phone"
-            android:layout_below="@+id/TV_PhoneName" />
+            android:layout_below="@+id/TV_PhoneName"
+            android:layout_marginTop="10dp" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -140,6 +139,37 @@
             android:foregroundGravity="center_vertical"
             android:layout_alignParentEnd="false"
             android:layout_toRightOf="@+id/TV_Phone" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/tarefa"
+            android:id="@+id/TV_Tar"
+            android:textSize="20dp"
+            android:inputType="phone"
+            android:textAlignment="gravity"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/IB_Phone"
+            android:layout_gravity="left|center_vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/TV_Tarefa"
+            android:layout_gravity="left|center_vertical"
+            android:layout_below="@+id/TV_Tar"
+            android:background="@color/design_fab_stroke_end_inner_color"
+            android:layout_marginTop="5dp"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
 
     </RelativeLayout>
 

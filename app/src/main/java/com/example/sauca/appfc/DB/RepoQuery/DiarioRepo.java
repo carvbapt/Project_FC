@@ -76,11 +76,11 @@ public class DiarioRepo {
         String str=null;
 
         if(field.equals("ID"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP1+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP1+"=?";
         else if(field.equals("OT"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP2+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP2+"=?";
         else if(field.equals("ESTADO"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP5+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP5+"=?";
 
         // Get Single by Gender
         Cursor res = db.rawQuery(str,new String[]{value});
@@ -95,6 +95,8 @@ public class DiarioRepo {
                 diar.d_inicio=res.getString(res.getColumnIndex(Diaria.DIA_EMP6));
                 diar.d_fim=res.getString(res.getColumnIndex(Diaria.DIA_EMP7));
                 diar.d_empresa=res.getString(res.getColumnIndex(Diaria.DIA_EMP8));
+                diar.d_tarefa=res.getString(res.getColumnIndex(Diaria.DIA_EMP9));
+
             }while (res.moveToNext());
         }
         res.close();
@@ -130,6 +132,7 @@ public class DiarioRepo {
         values.put(Diaria.DIA_EMP6, diar.getD_inicio());
         values.put(Diaria.DIA_EMP7, diar.getD_fim());
         values.put(Diaria.DIA_EMP8, diar.getD_empresa());
+        values.put(Diaria.DIA_EMP9, diar.getD_tarefa());
 
         return values;
     }

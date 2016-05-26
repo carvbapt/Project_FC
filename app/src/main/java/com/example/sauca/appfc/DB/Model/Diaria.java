@@ -16,7 +16,8 @@ public class Diaria {
     public static final String DIA_EMP5="ESTADO";
     public static final String DIA_EMP6="INICIO";
     public static final String DIA_EMP7="FIM";
-    public static final String DIA_EMP8="EMPRESA"        ;
+    public static final String DIA_EMP8="EMPRESA";
+    public static final String DIA_EMP9="TAREFA";
 
     // Property Data
     public int d_id;
@@ -27,12 +28,13 @@ public class Diaria {
     public String d_inicio;
     public String d_fim;
     public String d_empresa;
+    public String d_tarefa;
 
     public static String createTable(){
         return "CREATE TABLE " + Diaria.TABLE  + "("
                 + Diaria.DIA_EMP1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + Diaria.DIA_EMP2 + " TEXT, " + Diaria.DIA_EMP3 + " TEXT, " + Diaria.DIA_EMP4 + " TEXT, "
-                + Diaria.DIA_EMP5 + " TEXT, " + Diaria.DIA_EMP6 + " TEXT, " + Diaria.DIA_EMP7 + " TEXT, " + Diaria.DIA_EMP8 + " TEXT )";
+                + Diaria.DIA_EMP5 + " TEXT, " + Diaria.DIA_EMP6 + " TEXT, " + Diaria.DIA_EMP7 + " TEXT, " + Diaria.DIA_EMP8 + " TEXT,  " + Diaria.DIA_EMP9 + " TEXT )";
     }
 
     public Diaria() {
@@ -44,7 +46,7 @@ public class Diaria {
         this.d_estado=d_estado;
     }
 
-    public Diaria(String d_ot, String d_data, String d_hora, String d_estado, String d_inicio, String d_fim, String d_empresa) {
+    public Diaria(String d_ot, String d_data, String d_hora, String d_estado, String d_inicio, String d_fim, String d_empresa, String d_tarefa) {
         this.d_ot = d_ot;
         this.d_data=d_data;
         this.d_hora = d_hora;
@@ -52,6 +54,7 @@ public class Diaria {
         this.d_inicio =d_inicio;
         this.d_fim = d_fim;
         this.d_empresa=d_empresa;
+        this.d_tarefa=d_tarefa;
     }
 
     public int getD_id() {
@@ -116,5 +119,11 @@ public class Diaria {
         this.d_empresa = d_empresa;
     }
 
+    public String getD_tarefa() {
+        return d_tarefa;
+    }
 
+    public void setD_tarefa(String d_tarefa) {
+        this.d_tarefa = d_tarefa;
+    }
 }

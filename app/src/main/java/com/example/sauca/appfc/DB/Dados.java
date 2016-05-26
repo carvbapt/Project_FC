@@ -76,13 +76,13 @@ public class Dados {
 
     //    {Empresas, Data, Hora, Estado, Inicio, Fim};
     public static String[][] Janela= {
-            {"3","2016.05.24","9:00","Fechado","9:15","10:50"},
-            {"1","2016.05.25","14:00","Aberto","",""},
-            {"2","2016.05.25","16:00","Aberto","",""},
-            {"0", "2016.05.24","11:00","Aberto","",""},
-            {"4", "2016.05.24","14:00","Aberto","",""},
-            {"5", "2016.05.15","10:30","Fechado","10:40","11:00"},
-            {"6", "2016.05.15","15:00","Fechado","15:00","16:00"}
+            {"3","2016.05.26","9:00","Fechado","9:15","10:50","Avaria linha POTS"},
+            {"1","2016.05.31","14:00","Aberto","","","Instalar Router"},
+            {"2","2016.05.31","16:00","Aberto","","","Manutenção Central Siemens HI-PATH"},
+            {"0", "2016.05.26","11:00","Aberto","","","Instalar IAD"},
+            {"4", "2016.05.26","14:00","Aberto","","","Avaria Router B593S"},
+            {"5", "2016.05.15","10:30","Fechado","10:40","11:00","Recolha equipamento:CISCO 887VA-K9 ID:23099 S/N:FCZ1540C03F"},
+            {"6", "2016.05.15","15:00","Fechado","15:00","16:00","Testes acesso Basico"}
 
     };
 
