@@ -43,7 +43,7 @@ public class DiarioRepo {
         ContentValues val=upDate(diar);
 
         // Update Row
-        long result=db.update(Diaria.TABLE, val, Diaria.DIA_EMP1 + "=?", new String[]{String.valueOf(diar.d_id)});
+        long result=db.update(Diaria.TABLE, val, Diaria.DIA_CAMP1 + "=?", new String[]{String.valueOf(diar.d_id)});
         db.close();
         return (int) result;
     }
@@ -52,7 +52,7 @@ public class DiarioRepo {
         SQLiteDatabase db = databasefc.getWritableDatabase();
 
         // Delete Row
-        long result=db.delete(Diaria.TABLE, Diaria.DIA_EMP1 + "=?", new String[]{String.valueOf(id)});
+        long result=db.delete(Diaria.TABLE, Diaria.DIA_CAMP1 + "=?", new String[]{String.valueOf(id)});
         db.close();
         return (int) result;
     }
@@ -76,26 +76,26 @@ public class DiarioRepo {
         String str=null;
 
         if(field.equals("ID"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP1+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP1+"=?";
         else if(field.equals("OT"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP2+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP2+"=?";
         else if(field.equals("ESTADO"))
-            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP5+"=?";
+            str="select ID,OT,DATA,HORA,ESTADO,INICIO,FIM,EMPRESA,TAREFA FROM "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP5+"=?";
 
         // Get Single by Gender
         Cursor res = db.rawQuery(str,new String[]{value});
 
         if(res.moveToFirst()){
             do{
-                diar.d_id=res.getInt(res.getColumnIndex(Diaria.DIA_EMP1));
-                diar.d_ot=res.getString(res.getColumnIndex(Diaria.DIA_EMP2));
-                diar.d_data=res.getString(res.getColumnIndex(Diaria.DIA_EMP3));
-                diar.d_hora=res.getString(res.getColumnIndex(Diaria.DIA_EMP4));
-                diar.d_estado=res.getString(res.getColumnIndex(Diaria.DIA_EMP5));
-                diar.d_inicio=res.getString(res.getColumnIndex(Diaria.DIA_EMP6));
-                diar.d_fim=res.getString(res.getColumnIndex(Diaria.DIA_EMP7));
-                diar.d_empresa=res.getString(res.getColumnIndex(Diaria.DIA_EMP8));
-                diar.d_tarefa=res.getString(res.getColumnIndex(Diaria.DIA_EMP9));
+                diar.d_id=res.getInt(res.getColumnIndex(Diaria.DIA_CAMP1));
+                diar.d_ot=res.getString(res.getColumnIndex(Diaria.DIA_CAMP2));
+                diar.d_data=res.getString(res.getColumnIndex(Diaria.DIA_CAMP3));
+                diar.d_hora=res.getString(res.getColumnIndex(Diaria.DIA_CAMP4));
+                diar.d_estado=res.getString(res.getColumnIndex(Diaria.DIA_CAMP5));
+                diar.d_inicio=res.getString(res.getColumnIndex(Diaria.DIA_CAMP6));
+                diar.d_fim=res.getString(res.getColumnIndex(Diaria.DIA_CAMP7));
+                diar.d_empresa=res.getString(res.getColumnIndex(Diaria.DIA_CAMP8));
+                diar.d_tarefa=res.getString(res.getColumnIndex(Diaria.DIA_CAMP9));
 
             }while (res.moveToNext());
         }
@@ -109,11 +109,11 @@ public class DiarioRepo {
 
         // Get All by Gender
         if(field.toUpperCase().equals("OT"))
-            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP2+" LIKE "+"'%"+txt+"%'",null);
+            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP2+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("DATA"))
-            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP3+" LIKE "+"'%"+txt+"%'",null);
+            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP3+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("ESTADO"))
-            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_EMP5+" LIKE "+"'%"+txt+"%'",null);
+            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP5+" LIKE "+"'%"+txt+"%'",null);
 
         return res;
     }
@@ -125,14 +125,14 @@ public class DiarioRepo {
     public ContentValues upDate(Diaria diar) {
 
         ContentValues values = new ContentValues();
-        values.put(Diaria.DIA_EMP2, diar.getD_ot());
-        values.put(Diaria.DIA_EMP3, diar.getD_data());
-        values.put(Diaria.DIA_EMP4, diar.getD_hora());
-        values.put(Diaria.DIA_EMP5, diar.getD_estado());
-        values.put(Diaria.DIA_EMP6, diar.getD_inicio());
-        values.put(Diaria.DIA_EMP7, diar.getD_fim());
-        values.put(Diaria.DIA_EMP8, diar.getD_empresa());
-        values.put(Diaria.DIA_EMP9, diar.getD_tarefa());
+        values.put(Diaria.DIA_CAMP2, diar.getD_ot());
+        values.put(Diaria.DIA_CAMP3, diar.getD_data());
+        values.put(Diaria.DIA_CAMP4, diar.getD_hora());
+        values.put(Diaria.DIA_CAMP5, diar.getD_estado());
+        values.put(Diaria.DIA_CAMP6, diar.getD_inicio());
+        values.put(Diaria.DIA_CAMP7, diar.getD_fim());
+        values.put(Diaria.DIA_CAMP8, diar.getD_empresa());
+        values.put(Diaria.DIA_CAMP9, diar.getD_tarefa());
 
         return values;
     }

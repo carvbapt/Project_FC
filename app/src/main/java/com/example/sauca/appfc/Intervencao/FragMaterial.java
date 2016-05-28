@@ -17,7 +17,9 @@ import android.widget.Toast;
 
 import com.example.sauca.appfc.DB.Adapter.MateAdapter;
 import com.example.sauca.appfc.DB.Dados;
+import com.example.sauca.appfc.DB.Model.Diaria;
 import com.example.sauca.appfc.DB.Model.Materia;
+import com.example.sauca.appfc.DB.RepoQuery.DiarioRepo;
 import com.example.sauca.appfc.R;
 import com.example.sauca.appfc.Registo.Material;
 import com.example.sauca.appfc.zxing.android.IntentIntegrator;
@@ -29,8 +31,10 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
 
     View vi;
     Intent it;
-    private Button scanBtn;
-    private TextView formatTxt, contentTxt;
+    private Button btAdic;
+
+    private DiarioRepo myDB;
+    private Diaria diar;
 
     private ListView lvMaterial;
     private MateAdapter adptMaterial;
@@ -47,16 +51,20 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
         // Inflate the layout for this fragment
         vi=inflater.inflate(R.layout.fragment_material, container, false);
 
-        scanBtn = (Button)vi.findViewById(R.id.scan_butt);
+        btAdic = (Button)vi.findViewById(R.id.BT_Adic);
 
         mOt=getActivity().getIntent().getStringExtra("ot");
+        myDB= new DiarioRepo(getActivity());
+        diar= myDB.searchDataSingle("OT",mOt);
+
+        if(diar.d_estado.contentEquals("Fechado"))
+            btAdic.setVisibility(View.GONE);
 
         lvMaterial=(ListView)vi.findViewById(R.id.LV_Material);
         loadMatData();
 
         lvMaterial.setOnItemClickListener(this);
-
-        scanBtn.setOnClickListener(this);
+        btAdic.setOnClickListener(this);
 
         return vi;
     }
@@ -66,7 +74,6 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
         int num=0;
 
         adptMaterial=new MateAdapter(getContext(),R.layout.fragment_material_row);
-//        loadMatData();
         num=0;
         for(int r=0;r< Dados.Material.length;r++) {
             if (Dados.Ordens[Integer.parseInt(Dados.Material[r][0])].contentEquals(mOt)) {
@@ -85,50 +92,23 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
     @Override
     public void onClick(View v) {
 
-        if(v== vi.findViewById(R.id.scan_butt)){
+        if(v== vi.findViewById(R.id.BT_Adic)){
             it=new Intent(getContext(), Material.class);
             it.putExtra("otM",mOt);
             startActivity(it);
         }
     }
 
-
-    public void doSomething(String form, String cont) {
-        // do something in fragment
-        formatTxt.setText("FORMAT: " +form);
-        contentTxt.setText("CONTENT: " + cont);
-    }
-
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Toast.makeText(getContext(),"Posição "+position, Toast.LENGTH_LONG).show();
-        showConfirm(position);
-    }
 
-    /*********************************************************************************************************************************************************************
-     FUNÇÕES AUXILIARES
-     /********************************************************************************************************************************************************************/
+        // selected item
+        String selected = ((TextView) view.findViewById(R.id.TV_RMat)).getText().toString();
+//        Toast.makeText(getContext(), selected, Toast.LENGTH_SHORT).show();
 
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.setNeutralButton("OK", null);
-        builder.show();
-    }
-
-    public void showConfirm(final int pos){
-        AlertDialog.Builder bld = new AlertDialog.Builder(getContext());
-        bld.setTitle("Eliminar registo " + pos);
-        bld.setMessage("Confirma Eliminação?");
-        bld.setNegativeButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(getContext(),"Reg - "+pos+" Eliminado com sucesso" , Toast.LENGTH_LONG).show();
-            }
-        });
-        bld.setPositiveButton("Não",null);
-        bld.show();
+        it=new Intent(getContext(),Material.class);
+        it.putExtra("otM",mOt);
+        it.putExtra("Material",selected);
+        startActivity(it);
     }
 }

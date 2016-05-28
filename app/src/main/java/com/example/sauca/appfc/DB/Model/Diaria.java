@@ -9,15 +9,15 @@ public class Diaria {
     public static final String TABLE="Diario";
 
     // Columns Labels
-    public static final String DIA_EMP1="ID";
-    public static final String DIA_EMP2="OT";
-    public static final String DIA_EMP3="DATA";
-    public static final String DIA_EMP4="HORA";
-    public static final String DIA_EMP5="ESTADO";
-    public static final String DIA_EMP6="INICIO";
-    public static final String DIA_EMP7="FIM";
-    public static final String DIA_EMP8="EMPRESA";
-    public static final String DIA_EMP9="TAREFA";
+    public static final String DIA_CAMP1="ID";
+    public static final String DIA_CAMP2="OT";
+    public static final String DIA_CAMP3="DATA";
+    public static final String DIA_CAMP4="HORA";
+    public static final String DIA_CAMP5="ESTADO";
+    public static final String DIA_CAMP6="INICIO";
+    public static final String DIA_CAMP7="FIM";
+    public static final String DIA_CAMP8="EMPRESA";
+    public static final String DIA_CAMP9="TAREFA";
 
     // Property Data
     public int d_id;
@@ -32,9 +32,10 @@ public class Diaria {
 
     public static String createTable(){
         return "CREATE TABLE " + Diaria.TABLE  + "("
-                + Diaria.DIA_EMP1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + Diaria.DIA_EMP2 + " TEXT, " + Diaria.DIA_EMP3 + " TEXT, " + Diaria.DIA_EMP4 + " TEXT, "
-                + Diaria.DIA_EMP5 + " TEXT, " + Diaria.DIA_EMP6 + " TEXT, " + Diaria.DIA_EMP7 + " TEXT, " + Diaria.DIA_EMP8 + " TEXT,  " + Diaria.DIA_EMP9 + " TEXT )";
+                + Diaria.DIA_CAMP1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Diaria.DIA_CAMP2 + " TEXT, " + Diaria.DIA_CAMP3 + " TEXT, " + Diaria.DIA_CAMP4 + " TEXT, "
+                + Diaria.DIA_CAMP5 + " TEXT, " + Diaria.DIA_CAMP6 + " TEXT, " + Diaria.DIA_CAMP7 + " TEXT, "
+                + Diaria.DIA_CAMP8 + " TEXT, " + Diaria.DIA_CAMP9 + " TEXT )";
     }
 
     public Diaria() {

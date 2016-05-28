@@ -48,273 +48,340 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linearLayout"
-            android:layout_marginBottom="10dp">
+            android:id="@+id/LL_Buttons"
+            android:layout_marginBottom="10dp"
+            android:background="@color/button_material_light"
+            android:weightSum="1.5">
 
-            <Button android:id="@+id/BT_Leitor"
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="0.5"
+                android:gravity="center_vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="Leitor"
+                android:id="@+id/RB_Leitor"
+                android:checked="true"
+                android:layout_weight=".25"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:buttonTint="#000000"
+                android:textStyle="bold"
+                android:backgroundTint="#000000" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="Digitar"
+                android:id="@+id/RB_Digitar"
+                android:checked="false"
+                android:layout_weight=".25"
+                android:gravity="center_vertical"
+                android:buttonTint="#000000"
+                android:textStyle="bold" />
+            </RadioGroup>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight=".5" />
+
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/scan"
-                android:layout_alignParentTop="false"
-                android:layout_alignParentLeft="false"
-                android:layout_alignParentStart="false" />
+                android:id="@+id/BT_Salvar"
+                android:layout_weight=".25"
+                android:src="@android:drawable/ic_menu_save"
+                android:tint="#000000"
+                android:backgroundTint="#ffffff" />
 
-            <Button
-                android:id="@+id/BT_Digita"
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dig"
-                android:layout_alignParentRight="true" />
+                android:id="@+id/BT_Elimina"
+                android:layout_weight=".25"
+                android:src="@android:drawable/ic_menu_delete"
+                android:tint="#000000"
+                android:backgroundTint="#ffffff"
+                android:layout_marginRight="5dp" />
+
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="@string/Equi"
-            android:id="@+id/TV_Equi"
-            android:layout_below="@+id/linearLayout"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentRight="false"
-            android:layout_marginLeft="10dp" />
-
-        <TextView
-            android:id="@+id/TV_Equipamento"
-            android:layout_width="333dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Equi"
-            android:layout_marginLeft="10dp"
-            android:hint="Router"
-            android:layout_below="@+id/linearLayout" />
+            android:layout_below="@+id/LL_Buttons"
+            android:id="@+id/LL_Material"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Marca :"
-            android:id="@+id/TV_Mar"
-            android:layout_below="@+id/TV_Equi"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentLeft="false"
-            android:layout_marginLeft="20dp" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="@string/mate"
+                android:id="@+id/TV_Mate"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:gravity="right" />
 
-        <TextView
-            android:id="@+id/TV_Marca"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Material"
+                android:text="Router"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Mar"
-            android:layout_marginLeft="10dp"
-            android:hint="Huawey"
-            android:text="Huawey"
-            android:layout_alignTop="@+id/TV_Mar" />
+            android:id="@+id/LL_Marca"
+            android:layout_below="@+id/LL_Material"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Modelo :"
-            android:id="@+id/TV_Mod"
-            android:layout_below="@+id/TV_Mar"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20dp" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Marca :"
+                android:id="@+id/TV_Marca"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Modelo"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Marca"
+                android:text="Huawey"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:layout_centerHorizontal="true"
+                android:layout_toEndOf="@id/TV_Mate"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Mod"
-            android:layout_marginLeft="10dp"
-            android:hint="Router"
-            android:text="B593S"
-            android:layout_alignTop="@+id/TV_Mod" />
+            android:id="@+id/LL_Modelo"
+            android:layout_below="@+id/LL_Marca"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="S/N :"
-            android:id="@+id/TV_Sn"
-            android:layout_below="@+id/TV_Mod"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20dp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Modelo :"
+                android:id="@+id/TV_Modelo"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Serial"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Modelo"
+                android:text="B593S"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Sn"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/TV_Sn"
-            android:hint="2344874029478209424" />
+            android:id="@+id/LL_Serial"
+            android:layout_below="@+id/LL_Modelo"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="MAC :"
-            android:id="@+id/TV_Ma"
-            android:layout_below="@+id/TV_Sn"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Serial :"
+                android:id="@+id/TV_Serial"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Mac"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Serial"
+                android:text="344saiu546sd44"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Sn"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/TV_Ma"
-            android:hint="2344874029478209424"
-            android:text="02D34EF56A09" />
+            android:id="@+id/LL_Mac"
+            android:layout_below="@+id/LL_Serial"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Imei :"
-            android:id="@+id/TV_Ime"
-            android:layout_below="@+id/TV_Ma"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Mac :"
+                android:id="@+id/textView20"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Imei"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Mac"
+                android:text="02D34EF56A09"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_toRightOf="@+id/TV_Sn"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/TV_Ime"
-            android:hint="2344874029478209424" />
+            android:id="@+id/LL_Imei"
+            android:layout_below="@+id/LL_Mac"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Iccid :"
-            android:id="@+id/TV_Icc"
-            android:layout_below="@+id/TV_Ime"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Imei :"
+                android:id="@+id/TV_Imei"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Iccid"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Imei"
+                android:text="B593S"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/TV_Icc"
-            android:hint="2344874029478209424"
-            android:text="213oih4529234242"
-            android:layout_toRightOf="@+id/TV_Icc" />
+            android:id="@+id/LL_Iccid"
+            android:layout_below="@+id/LL_Imei"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Cartão :"
-            android:id="@+id/TV_Cart"
-            android:layout_below="@+id/TV_Icc"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Iccid :"
+                android:id="@+id/TV_Iccid"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <TextView
-            android:id="@+id/TV_Cartao"
-            android:layout_width="333dp"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Iccid"
+                android:text="213oih4529234242"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_alignTop="@+id/TV_Cart"
-            android:hint="2344874029478209424"
-            android:text="932781860"
-            android:layout_toRightOf="@+id/TV_Cart" />
+            android:id="@+id/LL_Cartao"
+            android:layout_below="@+id/LL_Iccid"
+            android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:text="Estado :"
-            android:id="@+id/TV_Estado"
-            android:layout_below="@+id/TV_Cart"
-            android:layout_marginLeft="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:layout_alignEnd="@id/TV_Mod"
-            android:layout_alignRight="@id/TV_Mod" />
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Cartão :"
+                android:id="@+id/TV_Cartao"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:gravity="center_vertical|right" />
 
-        <Spinner
-            android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ET_Cartao"
+                android:text="932781860"
+                android:textSize="18dp"
+                android:textIsSelectable="false"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/SP_Estado"
-            android:layout_alignStart="@+id/TV_Cartao"
-            android:layout_alignTop="@+id/TV_Estado"
-            android:layout_alignBottom="@+id/TV_Estado"
-            android:spinnerMode="dropdown"
-            android:gravity="center_vertical"
-            android:layout_alignLeft="@+id/TV_Cartao" />
+            android:id="@+id/LL_Estado"
+            android:layout_below="@+id/LL_Cartao"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="Estado :"
+                android:id="@+id/TV_Estado"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:gravity="center_vertical|right" />
+
+            <Spinner
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/SP_Estado"
+                android:layout_alignTop="@+id/TV_Estado"
+                android:layout_alignBottom="@+id/TV_Estado"
+                android:spinnerMode="dropdown"
+                android:gravity="center_vertical"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:layout_marginRight="10dp"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                android:theme="@style/spinnerItemStyle"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000"
+            android:layout_below="@+id/LL_Estado"
+            android:layout_marginLeft="95dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="1dp">
+        </View>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
-        android:layout_centerHorizontal="true"
-        android:gravity="bottom">
-
-    </LinearLayout>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/BT_Salvar"
-        android:layout_weight="1"
-        android:src="@drawable/abc_btn_check_to_on_mtrl_015"
-        android:background="#00ff00"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

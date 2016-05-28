@@ -41,7 +41,7 @@ public class FuncionarioRepo {
         ContentValues val=upDate(func);
 
         // Update Row
-        long result=db.update(Funcionario.TABLE, val, Funcionario.COL_EMP1 + "=?", new String[]{String.valueOf(func.f_id)});
+        long result=db.update(Funcionario.TABLE, val, Funcionario.COL_CAMP1 + "=?", new String[]{String.valueOf(func.f_id)});
         db.close();
         return (int) result;
     }
@@ -50,7 +50,7 @@ public class FuncionarioRepo {
         SQLiteDatabase db = databasefc.getWritableDatabase();
 
         // Delete Row
-        long result=db.delete(Funcionario.TABLE, Funcionario.COL_EMP1 + "=?", new String[]{String.valueOf(id)});
+        long result=db.delete(Funcionario.TABLE, Funcionario.COL_CAMP1 + "=?", new String[]{String.valueOf(id)});
         db.close();
         return (int) result;
     }
@@ -72,21 +72,21 @@ public class FuncionarioRepo {
         String str=null;
 
         if(field.equals("ID"))
-            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP1+"=?";
+            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_CAMP1+"=?";
         else if(field.equals("EMAIL"))
-            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP5+"=?";
+            str="select ID,NOME,APELIDO,PASSWORD,EMAIL,EMPRESA FROM "+Funcionario.TABLE+" WHERE "+Funcionario.COL_CAMP5+"=?";
 
         // Get Single by Gender
         Cursor res = db.rawQuery(str,new String[]{value});
 
         if(res.moveToFirst()){
             do{
-                func.f_id=res.getInt(res.getColumnIndex(Funcionario.COL_EMP1));
-                func.f_nome=res.getString(res.getColumnIndex(Funcionario.COL_EMP2));
-                func.f_apelido=res.getString(res.getColumnIndex(Funcionario.COL_EMP3));
-                func.f_password=res.getString(res.getColumnIndex(Funcionario.COL_EMP4));
-                func.f_email=res.getString(res.getColumnIndex(Funcionario.COL_EMP5));
-                func.f_empresa=res.getString(res.getColumnIndex(Funcionario.COL_EMP6));
+                func.f_id=res.getInt(res.getColumnIndex(Funcionario.COL_CAMP1));
+                func.f_nome=res.getString(res.getColumnIndex(Funcionario.COL_CAMP2));
+                func.f_apelido=res.getString(res.getColumnIndex(Funcionario.COL_CAMP3));
+                func.f_password=res.getString(res.getColumnIndex(Funcionario.COL_CAMP4));
+                func.f_email=res.getString(res.getColumnIndex(Funcionario.COL_CAMP5));
+                func.f_empresa=res.getString(res.getColumnIndex(Funcionario.COL_CAMP6));
             }while (res.moveToNext());
         }
         res.close();
@@ -99,11 +99,11 @@ public class FuncionarioRepo {
 
         // Get All by Gender
         if(field.toUpperCase().equals("NOMEAPELIDO"))
-            res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP2+" LIKE "+"'%"+txt+"%' or "+Funcionario.COL_EMP3+" LIKE "+"'%"+txt+"%'",null);
+            res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_CAMP2+" LIKE "+"'%"+txt+"%' or "+Funcionario.COL_CAMP3+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("EMAIL"))
-           res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP5+" LIKE "+"'%"+txt+"%'",null);
+           res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_CAMP5+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("EMPRESA"))
-            res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_EMP6+" LIKE "+"'%"+txt+"%'",null);
+            res=db.rawQuery("select * from "+Funcionario.TABLE+" WHERE "+Funcionario.COL_CAMP6+" LIKE "+"'%"+txt+"%'",null);
 
         return res;
     }
@@ -115,11 +115,11 @@ public class FuncionarioRepo {
     public ContentValues upDate(Funcionario funcionario) {
 
         ContentValues values = new ContentValues();
-        values.put(Funcionario.COL_EMP2, funcionario.getF_nome());
-        values.put(Funcionario.COL_EMP3, funcionario.getF_apelido());
-        values.put(Funcionario.COL_EMP4, funcionario.getF_password());
-        values.put(Funcionario.COL_EMP5, funcionario.getF_email());
-        values.put(Funcionario.COL_EMP6, funcionario.getF_empresa());
+        values.put(Funcionario.COL_CAMP2, funcionario.getF_nome());
+        values.put(Funcionario.COL_CAMP3, funcionario.getF_apelido());
+        values.put(Funcionario.COL_CAMP4, funcionario.getF_password());
+        values.put(Funcionario.COL_CAMP5, funcionario.getF_email());
+        values.put(Funcionario.COL_CAMP6, funcionario.getF_empresa());
 
         return values;
     }

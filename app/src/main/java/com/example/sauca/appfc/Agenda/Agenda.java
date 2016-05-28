@@ -45,7 +45,6 @@ public class Agenda extends AppCompatActivity implements View.OnClickListener {
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
         ibtBack.setOnClickListener(this);
 
-
         //List
         for(i=0; i<Dados.det_empresa.length;i++){
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd"); // here set the pattern as you date in string was containing like date/month/year

@@ -9,12 +9,12 @@ public class Funcionario {
     public static final String TABLE="Funcionario";
 
     // Columns Labels
-    public static final String COL_EMP1="ID";
-    public static final String COL_EMP2="NOME";
-    public static final String COL_EMP3="APELIDO";
-    public static final String COL_EMP4="PASSWORD";
-    public static final String COL_EMP5="EMAIL";
-    public static final String COL_EMP6="EMPRESA";
+    public static final String COL_CAMP1="ID";
+    public static final String COL_CAMP2="NOME";
+    public static final String COL_CAMP3="APELIDO";
+    public static final String COL_CAMP4="PASSWORD";
+    public static final String COL_CAMP5="EMAIL";
+    public static final String COL_CAMP6="EMPRESA";
 
     // Property Data
     public int f_id;
@@ -26,9 +26,9 @@ public class Funcionario {
 
     public static String createTable(){
         return "CREATE TABLE " + Funcionario.TABLE  + "("
-                + Funcionario.COL_EMP1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + Funcionario.COL_EMP2 + " TEXT, " + Funcionario.COL_EMP3 + " TEXT, " + Funcionario.COL_EMP4 + " TEXT, "
-                + Funcionario.COL_EMP5 + " TEXT, " + Funcionario.COL_EMP6 + " TEXT )";
+                + Funcionario.COL_CAMP1 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Funcionario.COL_CAMP2 + " TEXT, " + Funcionario.COL_CAMP3 + " TEXT, " + Funcionario.COL_CAMP4 + " TEXT, "
+                + Funcionario.COL_CAMP5 + " TEXT, " + Funcionario.COL_CAMP6 + " TEXT )";
     }
 
     // Property Data for Adapter Provider
