@@ -76,11 +76,11 @@ public class Dados {
 
     //    {Empresas, Data, Hora, Estado, Inicio, Fim};
     public static String[][] Janela= {
-            {"3","2016.05.28","9:00","Fechado","9:15","10:50","Avaria linha POTS"},
-            {"1","2016.05.31","14:00","Aberto","","","Instalar Router"},
-            {"2","2016.05.31","16:00","Aberto","","","Manutenção Central Siemens HI-PATH"},
-            {"0", "2016.05.28","11:00","Aberto","","","Instalar IAD"},
-            {"4", "2016.05.28","14:00","Aberto","","","Avaria Router B593S"},
+            {"3","2016.06.01","9:00","Fechado","9:15","10:50","Avaria linha POTS"},
+            {"1","2016.06.05","14:00","Aberto","","","Instalar Router"},
+            {"2","2016.06.05","16:00","Aberto","","","Manutenção Central Siemens HI-PATH"},
+            {"0", "2016.06.01","11:00","Aberto","","","Instalar IAD"},
+            {"4", "2016.06.01","14:00","Aberto","","","Avaria Router B593S"},
             {"5", "2016.05.15","10:30","Fechado","10:40","11:00","Recolha equipamento:CISCO 887VA-K9 ID:23099 S/N:FCZ1540C03F"},
             {"6", "2016.05.15","15:00","Fechado","15:00","16:00","Testes acesso Basico"}
 
@@ -93,13 +93,16 @@ public class Dados {
     };
 
 
-    //      {OT,Material,Modelo,Serial,Estado}
+    //      {OT,Material,Marca,Modelo,Serial,Estado}
     public static String[][] Material= {
-            {"0","Router","B593S","123456789","Instalado"},
-            {"5","Iad","PB6Plug","098765432","Stock"},
-            {"3","Acta","MP4X","098765432","Tecnico"},
-            {"0", "IAD","PB6Plug","57532108231","Instalado"},
-            {"0","Router", "TG585","4824762984","Recolhido"}
+            {"0","Router","Huawei","B593S","123456789","Instalado"},
+            {"5","Iad","OneAccess","PB6Plug","098765432","Stock"},
+            {"3","Acta","Huawei","MP4X","098765432","Tecnico"},
+            {"0","IAD","OneAccess","PB6Plug","57532108231","Instalado"},
+            {"0","Router","Thomson","TG585","18568332","Recolhido"},
+            {"","Router","Thomson","TG585","18564518","Stock"},
+            {"","IAD","OneAccess","PB6Plug","18565556","Tecnico"}
+
     };
 
 }

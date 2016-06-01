@@ -93,7 +93,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BT_Salvar"
+                android:id="@+id/IB_Salvar"
                 android:layout_weight=".25"
                 android:src="@android:drawable/ic_menu_save"
                 android:tint="#000000"
@@ -102,7 +102,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/BT_Elimina"
+                android:id="@+id/IB_Elimina"
                 android:layout_weight=".25"
                 android:src="@android:drawable/ic_menu_delete"
                 android:tint="#000000"
@@ -218,6 +218,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/ET_Serial"
+                android:inputType="none"
                 android:text="344saiu546sd44"
                 android:textSize="18dp"
                 android:textIsSelectable="false"

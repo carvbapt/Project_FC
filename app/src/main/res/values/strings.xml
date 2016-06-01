@@ -63,9 +63,12 @@
     </string-array>
 
     <string-array name="estado">
+        <item></item>
         <item>Instalado</item>
-        <item>Substituido</item>
         <item>Recolhido</item>
+        <item>Substituido</item>
+        <item>Stock</item>
+        <item>Tecnico</item>
     </string-array>
 
     <!-- Strings related to barcode -->

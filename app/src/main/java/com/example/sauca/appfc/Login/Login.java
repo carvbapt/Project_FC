@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.sauca.appfc.Configurar;
 import com.example.sauca.appfc.DB.Dados;
 import com.example.sauca.appfc.DB.Model.Diaria;
 import com.example.sauca.appfc.DB.Model.Funcionario;
@@ -113,7 +114,8 @@ public class Login extends AppCompatActivity implements OnClickListener {
             finish();
             startActivity(new Intent(this, Splash.class));
         }else if(v==findViewById(R.id.BTI_Conf)){
-            startActivity(new Intent(this, Registo.class));
+            startActivity(new Intent(this, Configurar.class));
+//            startActivity(new Intent(this, Registo.class));
         }else if(v==findViewById(R.id.BT_Load))
             loadData();
     }
