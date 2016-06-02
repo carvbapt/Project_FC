@@ -4,6 +4,7 @@ package com.example.sauca.appfc.Intervencao;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ import com.example.sauca.appfc.DB.Dados;
 import com.example.sauca.appfc.DB.Model.Diaria;
 import com.example.sauca.appfc.DB.Model.Materia;
 import com.example.sauca.appfc.DB.RepoQuery.DiarioRepo;
+import com.example.sauca.appfc.DB.RepoQuery.MateriaRepo;
 import com.example.sauca.appfc.R;
 import com.example.sauca.appfc.Registo.Material;
 import com.example.sauca.appfc.zxing.android.IntentIntegrator;
@@ -72,21 +75,45 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
     private void loadMatData() {
 
         int num=0;
+        MateriaRepo myDB;
+        Cursor pnt;
+
+        myDB= new MateriaRepo(getContext());
+        pnt= myDB.getAllData();
+
+        if(pnt.getCount()==0){
+            // show message
+            if(!myDB.DatabaseExist(getContext(),"DBFastcall.db")) {
+                showMessage("Base de Dados", "Não existe");
+            }
+            return;
+        }
 
         adptMaterial=new MateAdapter(getContext(),R.layout.fragment_material_row);
+        lvMaterial.setAdapter(adptMaterial);
         num=0;
-        for(int r=0;r< Dados.Material.length;r++) {
-            if (Dados.Ordens[Integer.parseInt(Dados.Material[r][0])].contentEquals(mOt)) {
-                Materia dtprov = new Materia();
-                dtprov.setM_material(Dados.Material[r][1]);
-                dtprov.setM_modelo(Dados.Material[r][2]);
-                dtprov.setM_estado(Dados.Material[r][4]);
-                num = num + 1;
-//                Toast.makeText(getActivity(), "Linhas - " + num, Toast.LENGTH_LONG).show();
+
+        while(pnt.moveToNext()){
+            if(pnt.getString(1).contentEquals(mOt)) {
+                Materia dtprov = new Materia(pnt.getString(2),pnt.getString(4),pnt.getString(10));
                 adptMaterial.add(dtprov);
+                num=num+1;
+                Toast.makeText(getContext(), "Linhas - " + num, Toast.LENGTH_LONG).show();
             }
         }
-        lvMaterial.setAdapter(adptMaterial);
+
+//        for(int r=0;r< Dados.Material.length;r++) {
+//            if (Dados.Ordens[Integer.parseInt(Dados.Material[r][0])].contentEquals(mOt)) {
+//                Materia dtprov = new Materia();
+//                dtprov.setM_material(Dados.Material[r][1]);
+//                dtprov.setM_modelo(Dados.Material[r][3]);
+//                dtprov.setM_estado(Dados.Material[r][9]);
+//                num = num + 1;
+////                Toast.makeText(getActivity(), "Linhas - " + num, Toast.LENGTH_LONG).show();
+//                adptMaterial.add(dtprov);
+//            }
+//        }
+
     }
 
     @Override
@@ -110,5 +137,17 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
         it.putExtra("otM",mOt);
         it.putExtra("Material",selected);
         startActivity(it);
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*     MENSAGENS  ALERT DIALOG   */
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }

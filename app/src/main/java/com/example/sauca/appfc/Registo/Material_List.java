@@ -1,15 +1,13 @@
-package com.example.sauca.appfc.Login;
+package com.example.sauca.appfc.Registo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -17,43 +15,44 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
 
-import com.example.sauca.appfc.DB.Adapter.FuncAdapter;
-import com.example.sauca.appfc.DB.Model.Funcionario;
-import com.example.sauca.appfc.DB.RepoQuery.FuncionarioRepo;
+import com.example.sauca.appfc.DB.Adapter.MateAdapter;
+import com.example.sauca.appfc.DB.Model.Materia;
+import com.example.sauca.appfc.DB.RepoQuery.MateriaRepo;
 import com.example.sauca.appfc.R;
 
-public class Login_List extends AppCompatActivity implements  View.OnClickListener, TextWatcher {
-
-    public final static String EXTRA_MSG = "com.example.sauca.project_fc.MESSAGE";
+public class Material_List extends AppCompatActivity implements View.OnClickListener,TextWatcher {
 
     // LISTAR
     ListView listView;
 
-    TypedArray imgs;
     Cursor pnt;
-    FuncAdapter adapter;
+    MateAdapter adapter;
+    MateriaRepo myDB;
 
     // PROCURAR
     EditText etSearch;
     ImageButton ibtLlback,ibtReset;
     Intent it;
 
-    FuncionarioRepo myDB;
+    RadioButton rbtMate,rbtMode,rbtEsta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_list);
+        setContentView(R.layout.activity_material_list);
 
         // Definitions
         ibtReset=(ImageButton)findViewById(R.id.BTI_Reset);
         ibtLlback=(ImageButton)findViewById(R.id.BTI_Back);
-        listView=(ListView)findViewById(R.id.LV_Util);
-        etSearch=(EditText)findViewById(R.id.ET_fSearch);
-        imgs = getResources().obtainTypedArray(R.array.logo);
+        listView=(ListView)findViewById(R.id.LV_Matlist);
+        etSearch=(EditText)findViewById(R.id.ET_mSearch);
+        rbtMate=(RadioButton)findViewById(R.id.RBM_Material);
+        rbtMode=(RadioButton)findViewById(R.id.RBM_Modelo);
+        rbtEsta=(RadioButton)findViewById(R.id.RBM_Estado);
 
-        myDB= new FuncionarioRepo(this);
+        myDB= new MateriaRepo(this);
 
         // Listeners
         ibtReset.setOnClickListener(this);
@@ -73,13 +72,13 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v==findViewById(R.id.BTI_Back)) {
-           finish();
-        }else if(v==findViewById(R.id.ET_fSearch)){
+            finish();
+        }else if(v==findViewById(R.id.ET_mSearch)){
             etSearch.setFocusable(true);
             etSearch.setFocusableInTouchMode(true);
         }else if(v==findViewById(R.id.BTI_Reset)){
-           etSearch.setText("");
-           etSearch.setFocusable(false);
+            etSearch.setText("");
+            etSearch.setFocusable(false);
         }
     }
 
@@ -90,24 +89,22 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        pnt = myDB.searchData("nomeapelido", etSearch.getText().toString());
+        if(rbtMate.isChecked())
+            pnt = myDB.searchData("material", etSearch.getText().toString());
+        else if(rbtMode.isChecked())
+            pnt = myDB.searchData("modelo", etSearch.getText().toString());
+        else
+            pnt = myDB.searchData("estado", etSearch.getText().toString());
+
         outputData();
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
-        return true;
-    }
-
-
 
     public  void outputData(){
+
 
         if(pnt.getCount()==0){
             // show message
@@ -115,24 +112,25 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
                 findViewById(R.id.Ll_Search).setVisibility(LinearLayout.GONE);
                 showMessage("Base de Dados", "Não existe");
             }else{
-                showMessage("Base de Dados", "Não existe Funcionário");
+                if(rbtMate.isChecked())
+                    showMessage("Base de Dados", "Não existe Material");
+                else if(rbtMode.isChecked())
+                    showMessage("Base de Dados", "Não existe Modelo");
+                else
+                    showMessage("Base de Dados", "Não existe Estado");
+
                 etSearch.setText("");
             }
             return;
         }
 
-        adapter = new FuncAdapter(getApplicationContext(), R.layout.activity_login_list_row);
+        adapter = new MateAdapter(getApplicationContext(), R.layout.fragment_material_row);
         listView.setAdapter(adapter);
 
         int i=0;
         while(pnt.moveToNext()){
-            if(pnt.getString(5).contains("Fastcall"))
-                i=0;
-            if(pnt.getString(5).contains("Fieldservices"))
-                i=1;
-
-            Funcionario dtprovider= new Funcionario(imgs.getResourceId(i,-1),Integer.parseInt(pnt.getString(0)),pnt.getString(1),pnt.getString(2));
-            adapter.add(dtprovider);
+             Materia dtprovider= new Materia(pnt.getString(2),pnt.getString(4),pnt.getString(10));
+             adapter.add(dtprovider);
         }
 
         // Seleciona linha
@@ -153,7 +151,8 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void showMessage(String title, String message){
-        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+
+        final AlertDialog builder=new AlertDialog.Builder(Material_List.this).create();
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
@@ -169,14 +168,12 @@ public class Login_List extends AppCompatActivity implements  View.OnClickListen
             public void onClick(DialogInterface dialog, int which) {
 //                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
                 // code to edit
-                it = new Intent(getBaseContext(), Login_Reg.class);
-                it.putExtra(EXTRA_MSG, pos);
+                it = new Intent(getBaseContext(), Material.class);
+                it.putExtra("EXTRA_MSG", pos);
                 startActivity(it);
             }
         });
         builder.setPositiveButton("Cancelar", null);
         builder.show();
     }
-
-
 }

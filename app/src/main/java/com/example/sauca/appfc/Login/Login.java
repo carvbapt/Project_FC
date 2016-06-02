@@ -21,8 +21,10 @@ import com.example.sauca.appfc.Configurar;
 import com.example.sauca.appfc.DB.Dados;
 import com.example.sauca.appfc.DB.Model.Diaria;
 import com.example.sauca.appfc.DB.Model.Funcionario;
+import com.example.sauca.appfc.DB.Model.Materia;
 import com.example.sauca.appfc.DB.RepoQuery.DiarioRepo;
 import com.example.sauca.appfc.DB.RepoQuery.FuncionarioRepo;
+import com.example.sauca.appfc.DB.RepoQuery.MateriaRepo;
 import com.example.sauca.appfc.MainMenu;
 import com.example.sauca.appfc.R;
 import com.example.sauca.appfc.Registo.Registo;
@@ -211,13 +213,18 @@ public class Login extends AppCompatActivity implements OnClickListener {
         Funcionario func;
         DiarioRepo repodia;
         Diaria diar;
+        MateriaRepo repomat;
+        Materia mate;
         int isInserted =0;
         int count=0;
+        String str=null;
 
         func=new Funcionario();
         repofunc= new FuncionarioRepo(this);
         diar=new Diaria();
         repodia=new DiarioRepo(this);
+        mate=new Materia();
+        repomat= new MateriaRepo(this);
 
         for(int r=0;r<Dados.Utilizador.length;r++) {
             func.f_nome = Dados.Utilizador[r][1];
@@ -230,9 +237,10 @@ public class Login extends AppCompatActivity implements OnClickListener {
 //            Log.i("IN- ","\n"+isInserted +" "+func.f_nome);
         }
 
-        if (isInserted>0)
-            Toast.makeText(Login.this, "Sucesso de "+count+" utilizadores", Toast.LENGTH_LONG).show();
-        else
+        if (isInserted>0) {
+            str = "Users-"+count;
+//            Toast.makeText(Login.this, "Sucesso de " + count + " utilizadores", Toast.LENGTH_LONG).show();
+        }else
             showMessage("Base de Dados", "Users Não Gravados");
 
         isInserted=0;
@@ -252,13 +260,47 @@ public class Login extends AppCompatActivity implements OnClickListener {
         }
 
         if (isInserted>0) {
-            Toast.makeText(Login.this, "Sucesso de " + count + " OT", Toast.LENGTH_LONG).show();
+            str=str+" Ot´s-"+count;
+//            Toast.makeText(Login.this, "Sucesso de " + count + " OT", Toast.LENGTH_LONG).show();
             btLoad.setEnabled(false);
             btLoad.setVisibility(View.INVISIBLE);
         }
         else
-            showMessage("Base de Dados", "Janelas Não Gravados");
+            showMessage("Base de Dados", "Janelas Não Gravadas");
 
+        isInserted=0;
+
+        for(int r=0;r<Dados.Material.length;r++) {
+            if(Dados.Material[r][0]=="")
+                mate.m_ot=Dados.Material[r][0];
+            else
+                mate.m_ot = Dados.Ordens[r];
+            mate.m_material= Dados.Material[r][1];
+            mate.m_marca= Dados.Material[r][2];
+            mate.m_modelo = Dados.Material[r][3];
+            mate.m_serial=Dados.Material[r][4];
+            mate.m_mac=Dados.Material[r][5];
+            mate.m_imei=Dados.Material[r][6];
+            mate.m_iccid=Dados.Material[r][7];
+            mate.m_cartao=Dados.Material[r][8];
+            mate.m_estado=Dados.Material[r][9];
+
+            isInserted=repomat.insert(mate);
+            count=r+1;
+            Log.i("IND- "," Material "+ mate.m_material+" "+mate.m_ot +" "+mate.m_estado);
+        }
+
+        if (isInserted>0) {
+            str=str+" Materiais-"+count;
+//            Toast.makeText(Login.this, "Sucesso de " + count + " Materiais", Toast.LENGTH_LONG).show();
+            btLoad.setEnabled(false);
+            btLoad.setVisibility(View.INVISIBLE);
+        }
+        else
+            showMessage("Base de Dados", "Materiais Não Gravados");
+
+        if(str.contains("materiais"))
+            Toast.makeText(this,str,Toast.LENGTH_LONG).show();
     }
     /*********************************************************************************************************************************************************************
      FUNÇÕES AUXILIARES

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.sauca.appfc.DB.Model.Diaria;
 import com.example.sauca.appfc.DB.Model.Funcionario;
+import com.example.sauca.appfc.DB.Model.Materia;
 
 /**
  * Created by Sauca on 14-03-2016.
@@ -24,12 +25,15 @@ public class DataBaseFC extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Funcionario.createTable());
         db.execSQL(Diaria.createTable());
+        db.execSQL(Materia.createTable());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+Funcionario.TABLE);
         db.execSQL("DROP TABLE IF EXISTS "+Diaria.TABLE);
+        db.execSQL("DROP TABLE IF EXISTS "+Materia.TABLE);
+
         onCreate(db);
     }
 }

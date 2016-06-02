@@ -36,18 +36,21 @@
             android:gravity="center_vertical|left">
 
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/ET_fSearch"
+                android:layout_weight="0.8"
+                android:layout_gravity="left" />
+
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="fill_parent"
                 android:id="@+id/BTI_Reset"
+                android:layout_weight="0."
                 android:src="@android:drawable/ic_menu_close_clear_cancel"
-                android:layout_gravity="right" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/ET_Search"
-                android:layout_gravity="left" />
+                android:layout_gravity="right"
+                android:background="#00ffffff" />
 
         </LinearLayout>
 

@@ -310,8 +310,8 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Material"
-        android:id="@+id/BT_Mate"
+        android:text="@string/title_activity_registo"
+        android:id="@+id/BT_Registo"
         android:layout_below="@+id/rl2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

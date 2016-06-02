@@ -10,6 +10,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.sauca.appfc.Intervencao.Diario;
+import com.example.sauca.appfc.Intervencao.Diario_List;
 import com.example.sauca.appfc.Login.Login_List;
 import com.example.sauca.appfc.Login.Login_Reg;
 import com.example.sauca.appfc.R;
@@ -17,26 +19,33 @@ import com.example.sauca.appfc.R;
 public class Registo extends AppCompatActivity implements View.OnClickListener{
 
     Intent it;
-    Button btSign,btList;
+    Button btRegis,btList;
     ImageButton ibtBack;
     private RadioGroup rgbtGen;
-    RadioButton rbtFunc,rbtCar,rbtMat;
+    RadioButton rbtFunc,rbtJan,rbtMat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registo);
 
-        btSign = (Button) findViewById(R.id.BT_Reg);
+        btRegis = (Button) findViewById(R.id.BT_Reg);
         btList = (Button) findViewById(R.id.BT_List);
         ibtBack = (ImageButton)findViewById(R.id.BT_Back);
         rgbtGen = (RadioGroup)findViewById(R.id.rgbt);
         rbtFunc =(RadioButton)findViewById(R.id.RBT_Func);
-        rbtCar =(RadioButton)findViewById(R.id.RBT_Car);
+        rbtJan =(RadioButton)findViewById(R.id.RBT_Jane);
         rbtMat =(RadioButton)findViewById(R.id.RBT_Mater);
 
+        if(rbtFunc.isChecked()||rbtJan.isChecked()){
+            btRegis.setVisibility(View.GONE);
+        }
+
         // Set Listeners
-        btSign.setOnClickListener(this);
+        rbtFunc.setOnClickListener(this);
+        rbtJan.setOnClickListener(this);
+        rbtMat.setOnClickListener(this);
+        btRegis.setOnClickListener(this);
         btList.setOnClickListener(this);
         ibtBack.setOnClickListener(this);
     }
@@ -46,20 +55,32 @@ public class Registo extends AppCompatActivity implements View.OnClickListener{
 
         it =null;
 
-        if(v==findViewById(R.id.BT_Reg) && rbtFunc.isChecked()) {
-            it = new Intent(this, Login_Reg.class);
-        }else if(v==findViewById(R.id.BT_Reg) && rbtCar.isChecked()) {
-            Toast.makeText(Registo.this, "ACTIVIDADE REGISTO CARRO", Toast.LENGTH_SHORT).show();
-        }else if(v==findViewById(R.id.BT_Reg) && rbtMat.isChecked()){
-            it = new Intent(this, Material.class);
-        }else if(v==findViewById(R.id.BT_List) && rbtFunc.isChecked()) {
-            it = new Intent(this, Login_List.class);
-        }else if(v==findViewById(R.id.BT_List) && rbtCar.isChecked()) {
-            Toast.makeText(Registo.this, "ACTIVIDADE LISTAGEM CARRO", Toast.LENGTH_SHORT).show();
-        }else if(v==findViewById(R.id.BT_List) && rbtMat.isChecked()){
-            Toast.makeText(this," ACTIVIDADE LISTAGEM MATERIAL",Toast.LENGTH_LONG).show();
-        }else if(v==findViewById(R.id.BT_Back)){
+        if(v==findViewById(R.id.BT_Back))
             onBackPressed();
+        else if(rbtMat.isChecked()) {
+            btRegis.setVisibility(View.VISIBLE);
+            if(v==findViewById(R.id.BT_List))
+                it = new Intent(this, Material_List.class);
+//                Toast.makeText(this, " ACTIVIDADE LISTAGEM MATERIAL", Toast.LENGTH_LONG).show();
+            else if (v==findViewById(R.id.BT_Reg)){
+                it = new Intent(this, Material.class);
+                it.putExtra("otM","");
+            }
+        }else{
+            btRegis.setVisibility(View.GONE);
+            if(rbtFunc.isChecked()){
+                if(v==findViewById(R.id.BT_List))
+                    it = new Intent(this, Login_List.class);
+                else if(v==findViewById(R.id.BT_Reg))
+                    it = new Intent(this, Login_Reg.class);
+            }
+            if(rbtJan.isChecked()) {
+                if (v == findViewById(R.id.BT_List)) {
+                    it = new Intent(this, Diario_List.class);
+//                    it.putExtra("activity","registo");
+                }else if(v==findViewById(R.id.BT_Reg))
+                    it = new Intent(this, Login_Reg.class);
+            }
         }
 
         if(it != null)

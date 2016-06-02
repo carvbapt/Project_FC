@@ -72,10 +72,10 @@ public class MateriaRepo {
         Materia mate=new Materia();
         String str=null;
 
-        if(field.equals("ID"))
-            str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP1+"=?";
-        else if(field.equals("OT"))
+        if(field.equals("OT"))
             str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP2+"=?";
+        else if(field.equals("MATERIAL"))
+            str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP3+"=?";
         else if(field.equals("ESTADO"))
             str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP11+"=?";
 
@@ -107,8 +107,10 @@ public class MateriaRepo {
         Cursor res=db.rawQuery("select * from " + Materia.TABLE, null);
 
         // Get All by Gender
-        if(field.toUpperCase().equals("OT"))
-            res=db.rawQuery("select * from "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP1+" LIKE "+"'%"+txt+"%'",null);
+        if(field.toUpperCase().equals("MATERIAL"))
+            res=db.rawQuery("select * from "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP3+" LIKE "+"'%"+txt+"%'",null);
+        if(field.toUpperCase().equals("MODELO"))
+            res=db.rawQuery("select * from "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP5+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("ESTADO"))
             res=db.rawQuery("select * from "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP11+" LIKE "+"'%"+txt+"%'",null);
 

@@ -112,6 +112,8 @@ public class DiarioRepo {
             res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP2+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("DATA"))
             res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP3+" LIKE "+"'%"+txt+"%'",null);
+        if(field.toUpperCase().equals("HORA"))
+            res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP4+" LIKE "+"'%"+txt+"%'",null);
         if(field.toUpperCase().equals("ESTADO"))
             res=db.rawQuery("select * from "+Diaria.TABLE+" WHERE "+Diaria.DIA_CAMP5+" LIKE "+"'%"+txt+"%'",null);
 

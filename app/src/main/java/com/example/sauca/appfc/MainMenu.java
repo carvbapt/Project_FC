@@ -10,11 +10,13 @@ import android.widget.ImageButton;
 import com.example.sauca.appfc.Agenda.Agenda;
 import com.example.sauca.appfc.Intervencao.Diario;
 import com.example.sauca.appfc.Login.Login;
+import com.example.sauca.appfc.Registo.Registo;
 
 public class MainMenu extends AppCompatActivity implements View.OnClickListener{
 
+    Intent it;
     ImageButton ibtBack,ibtConf;
-    Button btInterv,btFrota,btAgenda,btSair;
+    Button btInterv,btFrota,btAgenda,btListagem,btSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         btInterv=(Button)findViewById(R.id.BT_Diario);
         btFrota=(Button)findViewById(R.id.BT_Frota);
         btAgenda=(Button)findViewById(R.id.BT_Agenda);
+        btListagem=(Button)findViewById(R.id.BT_List);
         btSair=(Button)findViewById(R.id.BT_Sair);
 
         ibtBack.setOnClickListener(this);
@@ -33,6 +36,7 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         btInterv.setOnClickListener(this);
         btFrota.setOnClickListener(this);
         btAgenda.setOnClickListener(this);
+        btListagem.setOnClickListener(this);
         btSair.setOnClickListener(this);
 
 
@@ -46,14 +50,16 @@ public class MainMenu extends AppCompatActivity implements View.OnClickListener{
         else if(v==findViewById(R.id.BTI_Conf))
             startActivity(new Intent(this,Configurar.class));
         else if(v==findViewById(R.id.BT_Diario)){
-            Intent intent = new Intent(this, Diario.class);
-            intent.putExtra("activity","main");
-            startActivity(intent);
+            it = new Intent(this, Diario.class);
+            it.putExtra("activity","main");
+            startActivity(it);
         }
         else if(v==findViewById(R.id.BT_Frota))
             startActivity(new Intent(this,Frota.class));
         else if(v==findViewById(R.id.BT_Agenda))
             startActivity(new Intent(this,Agenda.class));
+        else if(v==findViewById(R.id.BT_List))
+            startActivity(new Intent(this,Registo.class));
         else if(v==findViewById(R.id.BT_Sair)){
             moveTaskToBack(true);
             finish();

@@ -14,7 +14,7 @@ import com.example.sauca.appfc.Registo.Registo;
 public class Configurar extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton ibtBack;
-    Button btMaterial;
+    Button btRegisto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,10 @@ public class Configurar extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_configurar);
 
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
-        btMaterial=(Button)findViewById(R.id.BT_Mate);
+        btRegisto=(Button)findViewById(R.id.BT_Registo);
 
         ibtBack.setOnClickListener(this);
-        btMaterial.setOnClickListener(this);
-
+        btRegisto.setOnClickListener(this);
 
         // esconder teclado
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -35,11 +34,10 @@ public class Configurar extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
 
-        if(v==this.findViewById(R.id.BTI_Back)) {
+        if(v==findViewById(R.id.BTI_Back))
             onBackPressed();
-        }else if(v==this.findViewById(R.id.BT_Mate)){
-            startActivity(new Intent(this, Material.class));
-//            startActivity(new Intent(this, Registo.class));
-        }
+        else if(v==findViewById(R.id.BT_Registo))
+            startActivity(new Intent(this, Registo.class));
+
     }
 }

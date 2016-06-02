@@ -84,6 +84,17 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:text="@string/lista"
+            android:textSize="20sp"
+            android:id="@+id/BT_List"
+            android:onClick="onClick"
+            android:background="@drawable/custom_button"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/sair"
             android:textSize="20sp"
             android:id="@+id/BT_Sair"

@@ -56,8 +56,8 @@
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/rbt_carro"
-                        android:id="@+id/RBT_Car"
+                        android:text="@string/rbt_janela"
+                        android:id="@+id/RBT_Jane"
                         android:checked="false" />
 
                     <RadioButton
@@ -69,15 +69,6 @@
                 </RadioGroup>
 
             <Button
-                android:id="@+id/BT_Reg"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/action_register"
-                android:textStyle="bold" />
-
-            <Button
                 style="?android:textAppearanceSmall"
                 android:id="@+id/BT_List"
                 android:layout_width="fill_parent"
@@ -86,6 +77,15 @@
                 android:text="@string/action_list"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:id="@+id/BT_Reg"
+                style="?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/action_register"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
