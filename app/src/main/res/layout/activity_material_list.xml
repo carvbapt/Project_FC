@@ -112,11 +112,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="ID"
+                android:id="@+id/textView30"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Material"
                 android:id="@+id/textView27"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
-                android:paddingLeft="10dp" />
+                android:paddingLeft="20dp"
+                android:layout_marginLeft="15dp" />
 
             <TextView
                 android:layout_width="wrap_content"

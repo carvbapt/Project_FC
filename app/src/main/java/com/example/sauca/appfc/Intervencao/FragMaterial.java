@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ import com.example.sauca.appfc.R;
 import com.example.sauca.appfc.Registo.Material;
 import com.example.sauca.appfc.zxing.android.IntentIntegrator;
 
+import java.util.ArrayList;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -42,7 +45,7 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
     private ListView lvMaterial;
     private MateAdapter adptMaterial;
     String mOt;
-    int num;
+    ArrayList mId = new ArrayList();
 
     public FragMaterial() {
         // Required empty public constructor
@@ -66,6 +69,9 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
         lvMaterial=(ListView)vi.findViewById(R.id.LV_Material);
         loadMatData();
 
+        it=new Intent(getContext(), Material.class);
+        it.putExtra("otM",mOt);
+
         lvMaterial.setOnItemClickListener(this);
         btAdic.setOnClickListener(this);
 
@@ -75,15 +81,15 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
     private void loadMatData() {
 
         int num=0;
-        MateriaRepo myDB;
+        MateriaRepo myDBM;
         Cursor pnt;
 
-        myDB= new MateriaRepo(getContext());
-        pnt= myDB.getAllData();
+        myDBM= new MateriaRepo(getContext());
+        pnt= myDBM.getAllData();
 
         if(pnt.getCount()==0){
             // show message
-            if(!myDB.DatabaseExist(getContext(),"DBFastcall.db")) {
+            if(!myDBM.DatabaseExist(getContext(),"DBFastcall.db")) {
                 showMessage("Base de Dados", "Não existe");
             }
             return;
@@ -91,51 +97,31 @@ public class FragMaterial extends Fragment implements View.OnClickListener, Adap
 
         adptMaterial=new MateAdapter(getContext(),R.layout.fragment_material_row);
         lvMaterial.setAdapter(adptMaterial);
+
         num=0;
 
         while(pnt.moveToNext()){
             if(pnt.getString(1).contentEquals(mOt)) {
-                Materia dtprov = new Materia(pnt.getString(2),pnt.getString(4),pnt.getString(10));
+                Materia dtprov = new Materia(pnt.getInt(0),pnt.getString(2),pnt.getString(4),pnt.getString(10));
                 adptMaterial.add(dtprov);
-                num=num+1;
-                Toast.makeText(getContext(), "Linhas - " + num, Toast.LENGTH_LONG).show();
+                mId.add(pnt.getInt(0));
             }
         }
-
-//        for(int r=0;r< Dados.Material.length;r++) {
-//            if (Dados.Ordens[Integer.parseInt(Dados.Material[r][0])].contentEquals(mOt)) {
-//                Materia dtprov = new Materia();
-//                dtprov.setM_material(Dados.Material[r][1]);
-//                dtprov.setM_modelo(Dados.Material[r][3]);
-//                dtprov.setM_estado(Dados.Material[r][9]);
-//                num = num + 1;
-////                Toast.makeText(getActivity(), "Linhas - " + num, Toast.LENGTH_LONG).show();
-//                adptMaterial.add(dtprov);
-//            }
-//        }
-
     }
 
     @Override
     public void onClick(View v) {
 
-        if(v== vi.findViewById(R.id.BT_Adic)){
-            it=new Intent(getContext(), Material.class);
-            it.putExtra("otM",mOt);
+        if(v== vi.findViewById(R.id.BT_Adic))
+            it.putExtra("IndM","add");
             startActivity(it);
-        }
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         // selected item
-        String selected = ((TextView) view.findViewById(R.id.TV_RMat)).getText().toString();
-//        Toast.makeText(getContext(), selected, Toast.LENGTH_SHORT).show();
-
-        it=new Intent(getContext(),Material.class);
-        it.putExtra("otM",mOt);
-        it.putExtra("Material",selected);
+        it.putExtra("IndM",mId.get(position).toString());
         startActivity(it);
     }
 

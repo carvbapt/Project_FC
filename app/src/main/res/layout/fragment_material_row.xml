@@ -15,6 +15,7 @@
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:foregroundGravity="center_vertical"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp" />
 
     <TextView

@@ -54,6 +54,13 @@ public class Materia {
         this.m_estado = m_estado;
     }
 
+    public Materia(int m_id, String m_material, String m_modelo, String m_estado) {
+        this.m_id = m_id;
+        this.m_material = m_material;
+        this.m_modelo = m_modelo;
+        this.m_estado = m_estado;
+    }
+
     public Materia(String m_ot, String m_material, String m_marca, String m_modelo, String m_serial, String m_mac, String m_imei, String m_iccid, String m_cartao, String m_estado) {
         this.m_ot = m_ot;
         this.m_material = m_material;

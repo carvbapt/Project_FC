@@ -60,7 +60,6 @@ public class MateAdapter extends ArrayAdapter {
 
         Materia materia;
         materia=(Materia)this.getItem(position);
-
         handler.mat_material.setText(materia.getM_material());
         handler.mat_modelo.setText(materia.getM_modelo());
         handler.mat_estado.setText(materia.getM_estado());

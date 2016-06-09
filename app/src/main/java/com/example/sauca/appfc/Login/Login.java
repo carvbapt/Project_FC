@@ -274,7 +274,7 @@ public class Login extends AppCompatActivity implements OnClickListener {
             if(Dados.Material[r][0]=="")
                 mate.m_ot=Dados.Material[r][0];
             else
-                mate.m_ot = Dados.Ordens[r];
+                mate.m_ot = Dados.Ordens[Integer.parseInt(Dados.Material[r][0])];
             mate.m_material= Dados.Material[r][1];
             mate.m_marca= Dados.Material[r][2];
             mate.m_modelo = Dados.Material[r][3];

@@ -76,13 +76,13 @@ public class Dados {
 
     //    {Empresas, Data, Hora, Estado, Inicio, Fim};
     public static String[][] Janela= {
-            {"3","2016.06.02","9:00","Fechado","9:15","10:50","Avaria linha POTS"},
-            {"1","2016.06.05","14:00","Aberto","","","Instalar Router"},
-            {"2","2016.06.05","16:00","Aberto","","","Manutenção Central Siemens HI-PATH"},
-            {"0", "2016.06.02","11:00","Aberto","","","Instalar IAD"},
-            {"4", "2016.06.02","14:00","Aberto","","","Avaria Router B593S"},
-            {"5", "2016.05.15","10:30","Fechado","10:40","11:00","Recolha equipamento:CISCO 887VA-K9 ID:23099 S/N:FCZ1540C03F"},
-            {"6", "2016.05.15","15:00","Fechado","15:00","16:00","Testes acesso Basico"}
+            {"3","2016.06.09","9:00","Fechado","9:15","10:50","Avaria linha POTS"},
+            {"1","2016.06.15","14:00","Aberto","","","Instalar Router"},
+            {"2","2016.06.15","16:00","Aberto","","","Manutenção Central Siemens HI-PATH"},
+            {"0", "2016.06.09","11:00","Aberto","","","Instalar IAD"},
+            {"4", "2016.06.09","14:00","Aberto","","","Avaria Router B593S"},
+            {"5", "2016.06.01","10:30","Fechado","10:40","11:00","Recolha equipamento:CISCO 887VA-K9 ID:23099 S/N:FCZ1540C03F"},
+            {"6", "2016.06.01","15:00","Fechado","15:00","16:00","Testes acesso Basico"}
 
     };
 
@@ -95,15 +95,20 @@ public class Dados {
 
     //      {OT,Material,Marca,Modelo,Serial,Mac,Imei,Iccid,Cartao,Estado}
     public static String[][] Material= {
-            {"0","Router","Huawei","B593S","N4Y5TD92C2700306","","868031003122377","08935103226310580473","938765256","Instalado"},
-            {"5","Iad","OneAccess","PBXPLUG 6B L","T1432004830009702","0012EFE27929","","","","Stock"},
-            {"3","Acta","Huawei","MP202B/2FXS","D05953696","00908F5AD8A0","","","","Tecnico"},
+            {"0","Router","Huawei","B593S","N4Y5TD92C2700306","001D0F102DE3","868031003122377","08935103226310580473","938765256","Instalado"},
+            {"2","Iad","OneAccess","PBXPLUG 6B L","T1432004830009702","0012EFE27929","","","","Instalado"},
+            {"0","Acta","Huawei","MP202B/2FXS","D05953696","00908F5AD8A0","","","","Instalado"},
             {"0","IAD","OneAccess","PBXPLUG 6B L","T1449004824011893","0012EFE2FF85","","","","Instalado"},
-            {"0","Router","Thomson","TG589I","CP0914SF07V","0024177AEA46","","","","Recolhido"},
-            {"3","Router","Thomson","TG585","CP1220VF05N","589835CE27B6","","","","Instalado"},
-            {"","Router","Thomson","TG582n","CP1247VF7HB","A4B1E95D6CE4","","","","Stock"},
+            {"","Router","Thomson","TG589I","CP0914SF07V","0024177AEA46","","","","Stock"},
+            {"3","Router","Thomson","TG585","CP1220VF05N","589835CE27B6","","","","Recolhido"},
+            {"3","Router","Thomson","TG582n","CP1247VF7HB","A4B1E95D6CE4","","","","Instalado"},
             {"","IAD","OneAccess","PBXPLUG 6B L","T1449004824011907","0012EFE2FF93","","","","Tecnico"},
-            {"","Router","Huawei","B593S","S2Z7S15817000416","","866862021431685","08935103226310580473","938527777","Stock"}
+            {"","Router","Huawei","B593S","S2Z7S15817000416","","866862021425563","08935103216502494138","934232362","Stock"},
+            {"","Router","Thomson","TG589","CP0914SF07Z","0124177AEA46","","","","Stock"},
+            {"","Router","Thomson","TG585I","CP1220VF05Z","529835CE27B6","","","","Tecnico"},
+            {"","Router","Thomson","TG582n","CP1247VF7HB","A6B1E95D6CE4","","","","Stock"},
+            {"","IAD","OneAccess","PBXPLUG 6B L","T1449004823011907","0012EFEAFF93","","","","Tecnico"},
+            {"","Router","Huawei","B593S","S2X7S158170330416","001D0F102DD1","866862031425563","08935123216502494138","934232302","Stock"}
 
     };
 

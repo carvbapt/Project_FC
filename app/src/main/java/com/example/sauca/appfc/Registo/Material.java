@@ -2,6 +2,8 @@ package com.example.sauca.appfc.Registo;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,12 +18,18 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 
+import com.example.sauca.appfc.DB.Adapter.MateAdapter;
 import com.example.sauca.appfc.DB.Dados;
+import com.example.sauca.appfc.DB.Model.Diaria;
+import com.example.sauca.appfc.DB.Model.Materia;
+import com.example.sauca.appfc.DB.RepoQuery.DiarioRepo;
+import com.example.sauca.appfc.DB.RepoQuery.MateriaRepo;
 import com.example.sauca.appfc.R;
 import com.example.sauca.appfc.zxing.android.IntentIntegrator;
 import com.example.sauca.appfc.zxing.android.IntentResult;
 
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,9 +49,15 @@ public class Material extends AppCompatActivity implements View.OnClickListener,
     private ImageButton ibSav,ibDel;
 
     private EditText etMaterial,etMarca,etModelo,etSerial,etMac,etImei,etIccid,etCartao;
+    private LinearLayout llButtons;
 
     private Spinner spEstado;
     private ArrayAdapter spadapter;
+
+    private MateriaRepo myDB;
+    private Materia mate;
+    private int ind;
+    private String otM;
 
 
     @Override
@@ -52,12 +66,12 @@ public class Material extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_material);
 
         it=getIntent();
-        Toast.makeText(this,""+it.getStringExtra("otM")+" Material -"+ it.getStringExtra("Material"), Toast.LENGTH_SHORT).show();
 
         ibtBack=(ImageButton)findViewById(R.id.BTI_Back);
 
         tvOt=(TextView)findViewById(R.id.TV_Ot);
 
+        llButtons=(LinearLayout)findViewById(R.id.LL_Buttons);
         rbLeitor = (RadioButton)findViewById(R.id.RB_Leitor);
         ibSav=(ImageButton)findViewById(R.id.IB_Salvar);
         ibDel=(ImageButton)findViewById(R.id.IB_Elimina);
@@ -76,7 +90,17 @@ public class Material extends AppCompatActivity implements View.OnClickListener,
         spadapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spEstado.setAdapter(spadapter);
 
-        tvOt.setText(getIntent().getStringExtra("otM"));
+        Log.i("Dados", " OT-"+it.getStringExtra("otM")+" IndM-"+it.getStringExtra("IndM"));
+
+        if(it.getStringExtra("otM").contentEquals("novo"))
+            tvOt.setText("Novo");
+        else if (it.getStringExtra("otM").contentEquals(""))
+            tvOt.setText("Disponivel");
+        else {
+            tvOt.setText(it.getStringExtra("otM"));
+            loadData();
+        }
+        chkData(tvOt.getText().toString(),it.getStringExtra("IndM"));
 
         ibtBack.setOnClickListener(this);
 //        rbLeitor.setOnClickListener(this);
@@ -142,15 +166,15 @@ public class Material extends AppCompatActivity implements View.OnClickListener,
                 scanIntegrator.initiateScan();
             }else if(!rbLeitor.isChecked()&&!focus){
                 if (v == findViewById(R.id.ET_Serial))
-                    chkData(etSerial.getText().toString());
+                    chkData("serial",etSerial.getText().toString());
                 else if (v == findViewById(R.id.ET_Mac))
-                    chkData(etMac.getText().toString());
+                    chkData("mac",etMac.getText().toString());
                 else if (v == findViewById(R.id.ET_Imei))
-                    chkData(etImei.getText().toString());
+                    chkData("imei",etImei.getText().toString());
                 else if (v == findViewById(R.id.ET_Iccid))
-                    chkData(etIccid.getText().toString());
+                    chkData("iccid",etIccid.getText().toString());
                 else if (v == findViewById(R.id.ET_Cartao))
-                    chkData(etCartao.getText().toString());
+                    chkData("cartao",etCartao.getText().toString());
             }
         }
     }
@@ -186,30 +210,90 @@ public class Material extends AppCompatActivity implements View.OnClickListener,
                 etIccid.setText(scanningResult.getContents());
             else if(it.getStringExtra("Campo").contentEquals("Cartao"))
                 etCartao.setText(scanningResult.getContents());
-            chkData(scanningResult.getContents());
+
+            chkData(it.getStringExtra("Campo"),scanningResult.getContents());
 //            Toast.makeText(this," Codigo - "+it.getStringExtra("Campo"),Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "No scan data received!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void chkData(String content) {
-        String res=null;
+    private void chkData(String campo,String content) {
 
-        Log.i("Codigo-",content);
+        mate=new Materia();
 
-        for(int c=4;c<5;c++){
-            for(int r=0;r< Dados.Material.length;r++){
-                if(content.contentEquals(Dados.Material[r][c]))
-                    res="Existe";
-            }
+
+
+//        Toast.makeText(this," Cont-"+content+"  ->"+it.getStringExtra("IndM"),Toast.LENGTH_LONG ).show();
+
+//         if(!it.getStringExtra("IndM").contentEquals("add")) {
+//             myDB = new MateriaRepo(this);
+//             mate = myDB.searchDataSingle(campo, getIntent().getStringExtra("otM"));
+//
+//             if(mate!=null) {
+//                 loadData(mate);
+//             }else {
+//                 Toast.makeText(this, "Material não existe ", Toast.LENGTH_SHORT).show();
+//             }
+//         }else
+//             Toast.makeText(this, "Material a adicionar", Toast.LENGTH_SHORT).show();
+    }
+
+    private void loadData() {
+
+        myDB = new MateriaRepo(this);
+        mate = myDB.searchDataSingle("ID", getIntent().getStringExtra("IndM"));
+
+        etMaterial.setText(mate.getM_material());
+        etMarca.setText(mate.getM_marca());
+        etModelo.setText(mate.getM_modelo());
+        etSerial.setText(mate.getM_serial());
+        etMac.setText(mate.getM_mac());
+        etImei.setText(mate.getM_imei());
+        etIccid.setText(mate.getM_iccid());
+        etCartao.setText(mate.getM_cartao());
+        for(int r=0;r<spEstado.getCount();r++)
+            if(mate.m_estado.contentEquals((getResources().getStringArray(R.array.estado)[r])))
+                spEstado.setSelection(r);
+        disaEdit();
+    }
+
+    private void disaEdit(){
+
+        DiarioRepo diarDB= new DiarioRepo(getBaseContext());
+        Diaria diar= diarDB.searchDataSingle("OT",it.getStringExtra("otM"));
+
+        if(diar.d_estado.contentEquals("Fechado")) {
+            llButtons.setVisibility(View.GONE);
+            etMaterial.setClickable(false);
+            etMaterial.setFocusable(false);
+            etMaterial.setEnabled(false);
+            etMarca.setClickable(false);
+            etMarca.setFocusable(false);
+            etMarca.setEnabled(false);
+            etModelo.setClickable(false);
+            etModelo.setFocusable(false);
+            etModelo.setEnabled(false);
+            etSerial.setClickable(false);
+            etSerial.setFocusable(false);
+            etSerial.setEnabled(false);
+            etMac.setClickable(false);
+            etMac.setFocusable(false);
+            etMac.setEnabled(false);
+            etImei.setClickable(false);
+            etImei.setFocusable(false);
+            etImei.setEnabled(false);
+            etIccid.setClickable(false);
+            etIccid.setFocusable(false);
+            etIccid.setEnabled(false);
+            etCartao.setClickable(false);
+            etCartao.setFocusable(false);
+            etCartao.setEnabled(false);
+            spEstado.setClickable(false);
+            spEstado.setFocusable(false);
+            spEstado.setEnabled(false);
+            findViewById(R.id.V_Line).setBackgroundColor(Color.GRAY);
         }
-
-        if(res==null)
-            res="Não Existe";
-
-        Toast.makeText(this, ""+res, Toast.LENGTH_SHORT).show();
-
     }
 
     private void gravar() {

@@ -61,10 +61,10 @@ public class Registo extends AppCompatActivity implements View.OnClickListener{
             btRegis.setVisibility(View.VISIBLE);
             if(v==findViewById(R.id.BT_List))
                 it = new Intent(this, Material_List.class);
-//                Toast.makeText(this, " ACTIVIDADE LISTAGEM MATERIAL", Toast.LENGTH_LONG).show();
             else if (v==findViewById(R.id.BT_Reg)){
                 it = new Intent(this, Material.class);
-                it.putExtra("otM","");
+                it.putExtra("otM","novo");
+                it.putExtra("IndM","add");
             }
         }else{
             btRegis.setVisibility(View.GONE);
@@ -77,7 +77,6 @@ public class Registo extends AppCompatActivity implements View.OnClickListener{
             if(rbtJan.isChecked()) {
                 if (v == findViewById(R.id.BT_List)) {
                     it = new Intent(this, Diario_List.class);
-//                    it.putExtra("activity","registo");
                 }else if(v==findViewById(R.id.BT_Reg))
                     it = new Intent(this, Login_Reg.class);
             }

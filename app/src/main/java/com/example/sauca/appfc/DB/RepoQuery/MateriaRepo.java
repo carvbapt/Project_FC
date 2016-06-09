@@ -70,14 +70,21 @@ public class MateriaRepo {
     public  Materia searchDataSingle(String field, String value){
         SQLiteDatabase db= databasefc.getReadableDatabase();
         Materia mate=new Materia();
-        String str=null;
+        String str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE ";
 
-        if(field.equals("OT"))
-            str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP2+"=?";
-        else if(field.equals("MATERIAL"))
-            str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP3+"=?";
-        else if(field.equals("ESTADO"))
-            str="select ID,OT,MATERIAL,MARCA,MODELO,SERIAL,MAC,IMEI,ICCID,CARTAO,ESTADO FROM "+Materia.TABLE+" WHERE "+Materia.MAT_CAMP11+"=?";
+        switch (field.toUpperCase()){
+            case "ID": str=str+Materia.MAT_CAMP1+"=?";break;
+            case "OT": str=str+Materia.MAT_CAMP2+"=?";break;
+            case "MATERIAL": str=str+Materia.MAT_CAMP3+"=?";break;
+            case "SERIAL": str=str+Materia.MAT_CAMP6+"=?";break;
+            case "MAC": str=str+Materia.MAT_CAMP7+"=?";break;
+            case "IMEI": str=str+Materia.MAT_CAMP8+"=?";break;
+            case "ICCID": str=str+Materia.MAT_CAMP9+"=?";break;
+            case "CARTAO": str=str+Materia.MAT_CAMP10+"=?";break;
+            case "ESTADO": str=str+Materia.MAT_CAMP11+"=?";break;
+            default:break;
+        }
+
 
         // Get Single by Gender
         Cursor res = db.rawQuery(str,new String[]{value});

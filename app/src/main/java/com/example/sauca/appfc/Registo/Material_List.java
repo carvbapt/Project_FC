@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.sauca.appfc.DB.Adapter.MateAdapter;
 import com.example.sauca.appfc.DB.Model.Materia;
@@ -76,7 +78,7 @@ public class Material_List extends AppCompatActivity implements View.OnClickList
         }else if(v==findViewById(R.id.ET_mSearch)){
             etSearch.setFocusable(true);
             etSearch.setFocusableInTouchMode(true);
-        }else if(v==findViewById(R.id.BTI_Reset)){
+        }else if(v==findViewById(R.id.BTI_Reset)) {
             etSearch.setText("");
             etSearch.setFocusable(false);
         }
@@ -127,7 +129,6 @@ public class Material_List extends AppCompatActivity implements View.OnClickList
         adapter = new MateAdapter(getApplicationContext(), R.layout.fragment_material_row);
         listView.setAdapter(adapter);
 
-        int i=0;
         while(pnt.moveToNext()){
              Materia dtprovider= new Materia(pnt.getString(2),pnt.getString(4),pnt.getString(10));
              adapter.add(dtprovider);
@@ -137,15 +138,11 @@ public class Material_List extends AppCompatActivity implements View.OnClickList
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int lin=position+1;
                 pnt.moveToPosition(position);
-//                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(0) + " " + pnt.getString(1), Toast.LENGTH_LONG).show();
-                showEdit(Integer.parseInt(pnt.getString(0)), pnt.getString(1));
-//                Toast.makeText(getBaseContext(), "LINHA " + lin + " " + pnt.getString(1) + " " + pnt.getString(2), Toast.LEN/GTH_LONG).show();
+                showEdit(String.valueOf(pnt.getInt(0)),pnt.getString(1),pnt.getString(2));
             }
         });
     }
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /*     MENSAGENS  ALERT DIALOG   */
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,17 +156,18 @@ public class Material_List extends AppCompatActivity implements View.OnClickList
         builder.show();
     }
 
-    public void showEdit(final int pos,final String nom){
+    public void showEdit(final String pos,final String ot,String mat){
         final AlertDialog.Builder builder=new AlertDialog.Builder(this);
-        builder.setTitle("Registo de " + nom);
+        builder.setTitle("Registo de " + mat);
         builder.setMessage("Deseja Editar? ");
         builder.setNegativeButton("Editar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(getApplicationContext(), "EDITAR Registo" + pos, Toast.LENGTH_LONG).show();
                 // code to edit
                 it = new Intent(getBaseContext(), Material.class);
-                it.putExtra("EXTRA_MSG", pos);
+                it.putExtra("otM", ot);
+                Log.i("POSICAO","Lista - "+pos);
+                it.putExtra("IndM",pos);
                 startActivity(it);
             }
         });
