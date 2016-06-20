@@ -119,7 +119,7 @@
     <string name="Equi">Equipa. :</string>
     <string name="tarefa">Tarefa</string>
     <string name="mate">Material :</string>
-    <string name="rbt_janela">Janelas</string>
-    <string name="lista">Listagem</string>
+    <string name="rbt_janela">Ordens</string>
+    <string name="lista">Consultas</string>
 
 </resources>
